@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Shuffle, SkipStartFill, PlayFill, Pause, SkipEndFill, Repeat, Repeat1 } from 'react-bootstrap-icons';
+import { Shuffle, SkipStartFill, PlayFill, PauseFill, SkipEndFill, Repeat, Repeat1 } from 'react-bootstrap-icons';
+
 
 function Player() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -10,7 +11,7 @@ function Player() {
   };
 
   const toggleRepeat = () => {
-    // Cycle through 0, 1, 2
+
     setRepeatMode((prevMode) => (prevMode + 1) % 3);
   };
 
@@ -24,7 +25,7 @@ function Player() {
           <button className="player__controls-shuffle button"><Shuffle/></button>
           <button className="player__controls-rewind button"><SkipStartFill/></button>
           <button className="player__controls-toggle button" onClick={togglePlay}>
-            {isPlaying ? <Pause className="player__controls-toggle-pause"/> : <PlayFill className="player__controls-toggle-play"/>}
+            {isPlaying ? <PauseFill className="player__controls-toggle-pause"/> : <PlayFill className="player__controls-toggle-play"/>}
           </button>
           <button className="player__controls-forward button"><SkipEndFill/></button>
 
