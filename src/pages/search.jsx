@@ -7,10 +7,16 @@ const FetchAPI = () => {
    
    
    useEffect(() => {
+   const timerId = setTimeout(() => {
       if (query) {
          searchSongs(query);
+      } else {
+         setResults([]);
       }
-   }, [query]);
+   }, 300); 
+
+   return () => clearTimeout(timerId);
+}, [query]);
    
    const searchSongs = (query) => {
       const options = {
