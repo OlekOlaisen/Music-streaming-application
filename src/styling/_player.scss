@@ -1,0 +1,63 @@
+@use 'variables' as variable;
+
+.player {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-evenly;
+	height: 4rem;
+	width: 100vw;
+	position: fixed;
+	bottom: 3.5rem;
+	background-color: variable.$primary-color-background;
+
+}
+
+.player__controls {
+
+}
+
+.player__controls-loop-on {
+
+	color: variable.$secondary-color;
+}
+
+.player__controls-loop-1 {
+
+	color: variable.$secondary-color;
+}
+
+.player__controls-toggle-pause {
+	color: variable.$secondary-color;
+}
+
+.player__controls-toggle-play {
+	color: variable.$secondary-color;
+}
+
+.player__controls-buttons {
+	display: flex;
+	flex-flow: row;
+	gap: 2rem;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.player__progress {
+		display: none;
+	}
+
+.button {
+	font-size: 1.5rem;
+
+	&:hover {
+		color: variable.$secondary-color;
+	}
+}
+
+@media (min-width: 576px) { 
+	.player__progress {
+		display: block;
+	}
+ }
+

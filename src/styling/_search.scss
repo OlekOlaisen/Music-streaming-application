@@ -24,13 +24,15 @@
 	}
 	
 	&__input-container {
-		position: relative;
+		position: sticky;
 		display: block;
-		width: 100%;
+		top: 0.5rem;
+		
 	}
 	
 	
 	&__input {
+		
 		padding: 0.7rem 7rem;
 		background-color: variable.$primary-color-background-darker;
 		border: none;

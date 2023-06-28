@@ -5,6 +5,7 @@ import Home from './pages/home.jsx';
 import NotFound from './pages/notFound.jsx';
 import Search from './pages/search.jsx';
 import Playlists from './pages/playlists.jsx';
+import Player from './components/player.jsx';
 
 function AppRoutes() {
   return (
@@ -16,6 +17,7 @@ function AppRoutes() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer/>
+        <Player/>
     </Router>
     
 
