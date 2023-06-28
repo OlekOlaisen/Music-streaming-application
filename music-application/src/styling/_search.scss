@@ -3,6 +3,26 @@
 .search {
 	margin: 0.5rem;
 	
+	&__results {
+		height: 100%;
+		overflow-y: scroll;
+		color: white;
+		margin-bottom: 4rem;
+
+		&-item {
+			padding: 1rem;
+		}
+
+		&-title {
+			
+		}
+
+		&-artist {
+			color: grey;
+			font-size: 0.7rem;
+		}
+	}
+	
 	&__input-container {
 		position: relative;
 		display: block;
@@ -31,6 +51,10 @@
 			top: 50%;
 			transform: translateY(-50%);
 		}
+
+		
+
+		
 		
 	}
 	
