@@ -1,0 +1,9 @@
+@use './styling/imports' as *;
+
+html {
+	font-size: 20px;
+}
+
+body {
+	background-color: $primary-color-background;
+}

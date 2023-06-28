@@ -1,6 +1,8 @@
 function Home() {
   return (
-	<p>Search</p>
+	<section className="search">
+    <input type="text" name="" id="" />
+  </section>
   );
 }
 

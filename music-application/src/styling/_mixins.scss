@@ -1,0 +1,5 @@
+@use '../styling/variables' as *;
+
+@mixin background {
+  background-color: $primary-color-background;
+}
