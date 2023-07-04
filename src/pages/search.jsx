@@ -5,7 +5,7 @@ import { AudioContext } from '../components/audioContext.jsx';
 const FetchAPI = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
-  const { playSong, setPlaylist } = useContext(AudioContext);
+  const { playSong, setPlaylist, setCurrentIndex } = useContext(AudioContext);
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -15,71 +15,87 @@ const FetchAPI = () => {
         setResults([]);
       }
     }, 500);
-const searchSongs = (query) => {
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': '80f7e85633msh33f1fc9d67c7fc0p1378acjsne3b24971e450',
-        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-      },
+
+    const searchSongs = (query) => {
+      const options = {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': '80f7e85633msh33f1fc9d67c7fc0p1378acjsne3b24971e450',
+          'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
+        },
+      };
+
+      fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`, options)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((response) => {
+          if (!response.data || response.data.length === 0) {
+            console.error('No search results found');
+            return;
+          }
+          setResults(response.data);
+          setPlaylist(response.data);
+        })
+        .catch((err) => console.error(err));
     };
 
-    fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`, options)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`API request failed with status ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((response) => {
-        if (!response.data || response.data.length === 0) {
-          console.error('No search results found');
-          return;
-        }
-        setResults(response.data);
-        setPlaylist(response.data);
-      })
-      .catch((err) => console.error(err));
-  };
     return () => clearTimeout(timerId);
   }, [query, setPlaylist]);
 
-  
-
   const handleInputChange = (event) => {
     setQuery(event.target.value);
+    setCurrentIndex(-1); // Reset the current index when altering the search query
   };
 
   return (
     <main className="search">
-            <label className="search__label" htmlFor="search"></label>
-            <section className="search__input-container">
-                <input
-                    className="search__input"
-                    type="text"
-                    value={query}
-                    onChange={handleInputChange}
-                    placeholder="What do you want to listen to?"
-                />
-                <div className="search__input-icon">
-                    <SearchIcon />
-                </div>
-            </section>
+      <label className="search__label" htmlFor="search"></label>
+      <section className="search__input-container">
+        <input
+          className="search__input"
+          type="text"
+          value={query}
+          onChange={handleInputChange}
+          placeholder="What do you want to listen to?"
+        />
+        <div className="search__input-icon">
+          <SearchIcon />
+        </div>
+      </section>
 
-            <div className="search__results">
-                {results.map((song, index) => (
-                    <div className='search__results-item' key={index} onClick={() => playSong(song.preview, index)}>
-                        <div className='search__results-item-cover'>
-                            {song.album && <img className='search__results-item-image' src={song.album.cover} alt={`${song.title} cover`} />}
-                        </div>
-                        <div className='search__results-info'>
-                            <p className='search__results-title'>{song.title}</p>
-                            <p className='search__results-artist'>{song.artist.name}</p>
-                        </div>
-                    </div>
-                ))}
+      <div className="search__results">
+        {results.map((song, index) => (
+          <div
+            className="search__results-item"
+            key={index}
+            onClick={() => {
+              if (index !== setCurrentIndex) {
+                setCurrentIndex(index);
+                playSong(song.preview, index);
+              }
+            }}
+          >
+            <div className="search__results-item-cover">
+              {song.album && (
+                <img
+                  className="search__results-item-image"
+                  src={song.album.cover}
+                  alt={`${song.title} cover`}
+                />
+              )}
             </div>
-        </main>
+            <div className="search__results-info">
+              <p className="search__results-title">{song.title}</p>
+              <p className="search__results-artist">{song.artist.name}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </main>
   );
 };
 
