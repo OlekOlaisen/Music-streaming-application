@@ -6,22 +6,27 @@ import NotFound from './pages/notFound.jsx';
 import Search from './pages/search.jsx';
 import Playlists from './pages/playlists.jsx';
 import Player from './components/player.jsx';
+import { AudioProvider } from './components/audioContext.jsx';
 
 function AppRoutes() {
   return (
-    <Router>     
-        <Routes>
-          <Route path="/" element={<Home />} />
-			 <Route path="/search" element={<Search />} />
-			 <Route path="/playlists" element={<Playlists />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer/>
-        <Player/>
+    <Router>
+    <AudioProvider>    
+    <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/search" element={<Search />} />
+    <Route path="/playlists" element={<Playlists />} />
+    <Route path="*" element={<NotFound />} />
+    </Routes>
+    <Footer/>
+    <Player/>
+    </AudioProvider> 
     </Router>
     
-
-  );
-}
-
-export default AppRoutes;
+    
+    
+    );
+  }
+  
+  export default AppRoutes;
+  

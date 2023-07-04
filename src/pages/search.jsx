@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Search as SearchIcon } from 'react-bootstrap-icons';
-import Player from '../components/player.jsx';
+import { AudioContext } from '../components/audioContext.jsx'; // Update this import path
 
 const FetchAPI = () => {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
-    const [currentSong, setCurrentSong] = useState(null); // Added state to keep track of the current song
+    
+    const { playSong, setPlaylist } = useContext(AudioContext); // Using the AudioContext
     
     useEffect(() => {
         const timerId = setTimeout(() => {
@@ -41,16 +42,13 @@ const FetchAPI = () => {
                 return;
             }
             setResults(response.data);
+            setPlaylist(response.data); 
         })
         .catch((err) => console.error(err));
     };
     
     const handleInputChange = (event) => {
         setQuery(event.target.value);
-    };
-
-    const playSong = (song) => {
-        setCurrentSong(song.preview); // Assuming that the song object has a 'preview' property with the audio file URL
     };
 
     return (
@@ -71,7 +69,7 @@ const FetchAPI = () => {
 
             <div className="search__results">
                 {results.map((song, index) => (
-                    <div className='search__results-item' key={index} onClick={() => playSong(song)}> {/* Added click handler */}
+                    <div className='search__results-item' key={index} onClick={() => playSong(song.preview, index)}>
                         <div className='search__results-item-cover'>
                             {song.album && <img className='search__results-item-image' src={song.album.cover} alt={`${song.title} cover`} />}
                         </div>
@@ -82,9 +80,6 @@ const FetchAPI = () => {
                     </div>
                 ))}
             </div>
-
-            {/* Added audio element */}
-            {currentSong && <audio controls autoPlay src={currentSong} />}
         </main>
     );
 };
