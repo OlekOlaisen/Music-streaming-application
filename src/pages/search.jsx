@@ -1,58 +1,57 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Search as SearchIcon } from 'react-bootstrap-icons';
-import { AudioContext } from '../components/audioContext.jsx'; // Update this import path
+import { AudioContext } from '../components/audioContext.jsx';
 
 const FetchAPI = () => {
-    const [query, setQuery] = useState('');
-    const [results, setResults] = useState([]);
-    
-    const { playSong, setPlaylist } = useContext(AudioContext); // Using the AudioContext
-    
-    useEffect(() => {
-        const timerId = setTimeout(() => {
-            if (query) {
-                searchSongs(query);
-            } else {
-                setResults([]);
-            }
-        }, 500);
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+  const { playSong, setPlaylist } = useContext(AudioContext);
 
-        return () => clearTimeout(timerId);
-    }, [query]);
-    
-    const searchSongs = (query) => {
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': '80f7e85633msh33f1fc9d67c7fc0p1378acjsne3b24971e450',
-                'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-            },
-        };
-        
-        fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`, options)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`API request failed with status ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((response) => {
-            if (!response.data || response.data.length === 0) {
-                console.error('No search results found');
-                return;
-            }
-            setResults(response.data);
-            setPlaylist(response.data); 
-        })
-        .catch((err) => console.error(err));
-    };
-    
-    const handleInputChange = (event) => {
-        setQuery(event.target.value);
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      if (query) {
+        searchSongs(query);
+      } else {
+        setResults([]);
+      }
+    }, 500);
+const searchSongs = (query) => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '80f7e85633msh33f1fc9d67c7fc0p1378acjsne3b24971e450',
+        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
+      },
     };
 
-    return (
-        <main className="search">
+    fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`, options)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`API request failed with status ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((response) => {
+        if (!response.data || response.data.length === 0) {
+          console.error('No search results found');
+          return;
+        }
+        setResults(response.data);
+        setPlaylist(response.data);
+      })
+      .catch((err) => console.error(err));
+  };
+    return () => clearTimeout(timerId);
+  }, [query, setPlaylist]);
+
+  
+
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  return (
+    <main className="search">
             <label className="search__label" htmlFor="search"></label>
             <section className="search__input-container">
                 <input
@@ -81,7 +80,7 @@ const FetchAPI = () => {
                 ))}
             </div>
         </main>
-    );
+  );
 };
 
 export default FetchAPI;

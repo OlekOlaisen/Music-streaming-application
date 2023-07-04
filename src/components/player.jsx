@@ -1,60 +1,52 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Shuffle, SkipStartFill, PlayFill, PauseFill, SkipEndFill, Repeat, Repeat1 } from 'react-bootstrap-icons';
-import { AudioContext } from './audioContext.jsx'; 
+import { AudioContext } from './audioContext.jsx';
 
 function Player() {
-    const { isPlaying, togglePlay, playNext, playPrevious } = useContext(AudioContext); // Using the AudioContext
-    const [repeatMode, setRepeatMode] = useState(0); // 0 - off, 1 - repeat, 2 - repeat1
-    const audioRef = useRef(null);
+  const { isPlaying, togglePlay, playNext, playPrevious } = useContext(AudioContext);
+  const [repeatMode, setRepeatMode] = useState(0);
+  const audioRef = useRef(null);
 
-    useEffect(() => {
-        const handleError = (error) => {
-            if (error.message === 'The fetching process for the media resource was aborted by the user agent at the user\'s request.') {
-                // Ignore this specific error caused by user action
-                return;
-            }
+  const handleError = (error) => {
+    if (
+      error.message ===
+      "The fetching process for the media resource was aborted by the user agent at the user's request."
+    ) {
+      return;
+    }
 
-            console.error("Error playing audio:", error);
-            // Handle other errors appropriately
-            // For example, you can show an error message to the user or perform any other action.
-        };
+    console.error('Error playing audio:', error);
+    // Handle other errors appropriately
+    // For example, you can show an error message to the user or perform any other action.
+  };
 
-        audioRef.current.addEventListener('error', handleError);
+  useEffect(() => {
+    audioRef.current.addEventListener('error', handleError);
 
-        return () => {
-            if (audioRef.current) {
-                audioRef.current.pause();
-            }
-            audioRef.current.removeEventListener('error', handleError);
-        };
-    }, []);
-
-    useEffect(() => {
-        if (isPlaying) {
-            audioRef.current.play().catch(handleError); // Catch any play() errors
-        } else {
-            audioRef.current.pause();
-        }
-    }, [isPlaying]);
-
-    const handleError = (error) => {
-        if (error.message === 'The fetching process for the media resource was aborted by the user agent at the user\'s request.') {
-            // Ignore this specific error caused by user action
-            return;
-        }
-
-        console.error("Error playing audio:", error);
-        // Handle other errors appropriately
-        // For example, you can show an error message to the user or perform any other action.
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.removeEventListener('error', handleError);
+      }
     };
+  }, []);
 
-    const toggleRepeat = () => {
-        setRepeatMode((prevMode) => (prevMode + 1) % 3);
-    };
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current.play().catch(handleError);
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
 
-    return (
-        <section className='player'>
-            <div className="player__info">
+  const toggleRepeat = () => {
+    setRepeatMode((prevMode) => (prevMode + 1) % 3);
+  };
+
+  return (
+    <section className="player">
+      <div className="player__info">
                 <p>info</p>
             </div>
             <div className="player__controls">
@@ -75,9 +67,9 @@ function Player() {
             <div className="player__progress">
                 <p>bar</p>
             </div>
-            <audio ref={audioRef} onError={handleError} /> 
-        </section>
-    );
+            <audio ref={audioRef} />
+    </section>
+  );
 }
 
 export default Player;
