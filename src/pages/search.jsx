@@ -5,7 +5,7 @@ import { AudioContext } from '../components/audioContext.jsx';
 const FetchAPI = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
-  const { playSong, setPlaylist, setCurrentIndex } = useContext(AudioContext);
+  const { playSong, setPlaylist, currentIndex } = useContext(AudioContext);
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -34,7 +34,7 @@ const FetchAPI = () => {
         })
         .then((response) => {
           if (!response.data || response.data.length === 0) {
-            console.error('No search results found');
+            setResults([]);
             return;
           }
           setResults(response.data);
@@ -48,7 +48,6 @@ const FetchAPI = () => {
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
-    setCurrentIndex(-1); // Reset the current index when altering the search query
   };
 
   return (
@@ -70,14 +69,9 @@ const FetchAPI = () => {
       <div className="search__results">
         {results.map((song, index) => (
           <div
-            className="search__results-item"
+            className={`search__results-item${index === currentIndex ? ' current' : ''}`}
             key={index}
-            onClick={() => {
-              if (index !== setCurrentIndex) {
-                setCurrentIndex(index);
-                playSong(song.preview, index);
-              }
-            }}
+            onClick={() => playSong(song.preview, index)}
           >
             <div className="search__results-item-cover">
               {song.album && (

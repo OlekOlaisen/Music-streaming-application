@@ -66,7 +66,7 @@ export const AudioProvider = ({ children }) => {
         playNext,
         playPrevious,
         setPlaylist,
-        setCurrentIndex,
+        currentIndex, 
       }}
     >
       {children}

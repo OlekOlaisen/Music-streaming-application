@@ -2,17 +2,17 @@
 
 .search {
     margin: 0.5rem;
-
+    
     &__label {
         // Styles for label go here
     }
-
+    
     &__input-container {
         position: sticky;
         display: block;
         top: 0.5rem;
     }
-
+    
     &__input {
         padding: 0.7rem 7rem;
         background-color: variable.$primary-color-background-darker;
@@ -22,7 +22,7 @@
         position: relative;
         padding-left: 40px;
         width: 100%;
-
+        
         &-icon {
             color: variable.$secondary-color;
             position: absolute;
@@ -30,45 +30,51 @@
             top: 50%;
             transform: translateY(-50%);
         }
-
+        
         &:focus {
             outline: 2px solid variable.$secondary-color;
         }
     }
-
+    
     &__results {
         height: 100%;
         overflow-y: scroll;
         color: white;
         margin-bottom: 7rem;
-
+        
         &-item {
             padding: 1rem;
             display: flex;
             flex-flow: row;
-				gap: 1rem;
-
+            gap: 1rem;
+            
             &-cover {
                 
             }
-
-				&-image {
-					width: 50px;
-				}
-
+            
+            &-image {
+                width: 50px;
+            }
+            
             &-info {
                 display: flex;
                 flex-flow: column;
                 
-                .search__results-title {
-                    // Styles for title go here
-                }
-
-                .search__results-artist {
-                    color: grey;
-                    font-size: 0.7rem;
-                }
             }
+            
+            .search__results-artist{
+                color: grey;
+                font-size: 0.8rem;
+            }
+            
+            
         }
     }
 }
+
+
+.current { 
+    color: variable.$secondary-color;
+}
+
+
