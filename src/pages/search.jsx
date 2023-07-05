@@ -1,4 +1,4 @@
-import React, { useState, useContext, useCallback } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { Search as SearchIcon } from 'react-bootstrap-icons';
 import { AudioContext } from '../components/audioContext.jsx';
 
@@ -33,12 +33,26 @@ const FetchAPI = () => {
         setResults(response.data);
         setPlaylist(response.data);
         setError(null);
+        sessionStorage.setItem('searchResults', JSON.stringify(response.data));
       })
       .catch((err) => {
         console.error(err);
         setError('Error occurred while searching');
       });
   }, [setPlaylist]);
+
+  useEffect(() => {
+    const savedResults = sessionStorage.getItem('searchResults');
+
+    if (savedResults) {
+      try {
+        const parsedResults = JSON.parse(savedResults);
+        setResults(parsedResults);
+      } catch (e) {
+        console.error("Error parsing results from session storage:", e);
+      }
+    }
+  }, []);
 
   const handleInputChange = useCallback((event) => {
     const inputValue = event.target.value;
@@ -47,6 +61,18 @@ const FetchAPI = () => {
     setError(null);
     searchSongs(inputValue);
   }, [searchSongs, setCurrentIndex]);
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
+  const handleBeforeUnload = () => {
+    sessionStorage.removeItem('searchResults');
+  };
 
   return (
     <main className="search">
