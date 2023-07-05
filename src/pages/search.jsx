@@ -24,12 +24,7 @@ const FetchAPI = () => {
                 setError(null);
             }
         }, 500);
-
-        return () => clearTimeout(timerId); // clear the timer if the query changes before the timeout
-
-    }, [query, setPlaylist]);
-    
-    const searchSongs = (query) => {
+        const searchSongs = (query) => {
         const options = {
             method: 'GET',
             headers: {
@@ -61,6 +56,12 @@ const FetchAPI = () => {
             setError('Error occurred while searching');
         });
     };
+
+        return () => clearTimeout(timerId); // clear the timer if the query changes before the timeout
+
+    }, [query, setPlaylist, results.length]);
+    
+    
 
     const handleInputChange = (event) => {
         setQuery(event.target.value);
