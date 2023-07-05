@@ -7,6 +7,7 @@ export const AudioProvider = ({ children }) => {
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [isPlaying, setIsPlaying] = useState(false);
   const [repeatMode, setRepeatMode] = useState(0);
+  const [currentSong, setCurrentSong] = useState(null); // Add currentSong state
   const audioRef = useRef(null);
 
   const playSong = (songUrl, index) => {
@@ -52,6 +53,7 @@ export const AudioProvider = ({ children }) => {
       }).catch((error) => {
         console.error("Error playing audio:", error);
       });
+      setCurrentSong(playlist[currentIndex]); // Set the currentSong state
     }
   }, [currentIndex, playlist]);
 
@@ -67,7 +69,8 @@ export const AudioProvider = ({ children }) => {
         playPrevious,
         setPlaylist,
         setCurrentIndex,
-        currentIndex
+        currentIndex,
+        currentSong, 
       }}
     >
       {children}
