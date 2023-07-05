@@ -108,23 +108,32 @@ function Player() {
                 </div>
             </div>
       <div className="player__controls">
-      <div className="player__buttons">
-      <button className="player__controls-toggle button" onClick={togglePlay}>
-      {isPlaying ? (
-        <PauseFill className="player__controls-toggle-pause" />
-        ) : (
-          <PlayFill className="player__controls-toggle-play" />
-          )}
-          </button>
-          <button className="player__button">
-          <Heart className="player__button-icon" />
-          </button>
-          </div>
-          </div>
+    {hasPlayedSong && (
+        <div className="player__buttons">
+            <button className="player__controls-toggle button" onClick={togglePlay}>
+                {isPlaying ? (
+                    <PauseFill className="player__controls-toggle-pause" />
+                ) : (
+                    <PlayFill className="player__controls-toggle-play" />
+                )}
+            </button>
+            <button className="player__button">
+                <Heart className="player__button-icon" />
+            </button>
+        </div>
+    )}
+</div>
+
+
           </div>
           
           {controlsExpanded && (
-            <section className={`player__controls-expanded ${controlsExpanded ? 'open' : ''}`}>
+            <section
+    className={`player__controls-expanded ${controlsExpanded ? 'open' : ''} ${
+        albumImage ? 'hasBackground' : ''
+    }`}
+    style={albumImage ? { '--bg-image': `url(${albumImage})` } : {}}
+>
             <button className="player__controls-close button" onClick={toggleControlsExpanded}>
             <ChevronDown className="player__controls-close-icon" />
             </button>
