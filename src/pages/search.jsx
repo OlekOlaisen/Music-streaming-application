@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { Search as SearchIcon } from 'react-bootstrap-icons';
 import { AudioContext } from '../components/audioContext.jsx';
 
@@ -7,44 +7,6 @@ const FetchAPI = () => {
   const [results, setResults] = useState([]);
   const { playSong, setPlaylist, currentIndex, setCurrentIndex } = useContext(AudioContext);
   const [error, setError] = useState(null);
-
-  const debounce = useCallback((func, wait, immediate) => {
-    let timeout;
-
-    return function () {
-      const context = this,
-        args = arguments;
-
-      const later = () => {
-        timeout = null;
-        if (!immediate) {
-          func.apply(context, args);
-        }
-      };
-
-      const callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-
-      if (callNow) {
-        func.apply(context, args);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const savedResults = sessionStorage.getItem('searchResults');
-
-    if (savedResults) {
-      try {
-        const parsedResults = JSON.parse(savedResults);
-        
-        setResults(parsedResults);
-      } catch (e) {
-        console.error("Error parsing results from local storage:", e);
-      }
-    }
-  }, []);
 
   const searchSongs = useCallback((query) => {
     const options = {
@@ -70,7 +32,6 @@ const FetchAPI = () => {
         }
         setResults(response.data);
         setPlaylist(response.data);
-        sessionStorage.setItem('searchResults', JSON.stringify(response.data));
         setError(null);
       })
       .catch((err) => {
@@ -79,29 +40,16 @@ const FetchAPI = () => {
       });
   }, [setPlaylist]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedSearchSongs = useCallback(
-    debounce((query) => {
-      searchSongs(query);
-    }, 500, true),
-    []
-  );
-
-  useEffect(() => {
-    if (query) {
-      debouncedSearchSongs(query);
-    }
-  }, [query, debouncedSearchSongs]);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleInputChange = useCallback((event) => {
-    setQuery(event.target.value);
+    const inputValue = event.target.value;
+    setQuery(inputValue);
     setCurrentIndex(-1);
     setError(null);
-  }, [setCurrentIndex]);
+    searchSongs(inputValue);
+  }, [searchSongs, setCurrentIndex]);
 
   return (
-    <main className="search" key={results.length}>
+    <main className="search">
       <label className="search__label" htmlFor="search"></label>
       <section className="search__input-container">
         <input
@@ -117,7 +65,6 @@ const FetchAPI = () => {
       </section>
 
       <div className="search__results">
-        
         {error ? (
           <p>{error}</p>
         ) : (
@@ -140,7 +87,9 @@ const FetchAPI = () => {
                 )}
               </div>
               <div className="search__results-info">
-                <p className={`search__results-title ${currentIndex === index ? 'playing' : ''}`}>{song.title}</p>
+                <p className={`search__results-title ${currentIndex === index ? 'playing' : ''}`}>
+                  {song.title}
+                </p>
                 <p className="search__results-artist">{song.artist && song.artist.name}</p>
               </div>
             </div>
