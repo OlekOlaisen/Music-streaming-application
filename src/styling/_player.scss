@@ -16,6 +16,15 @@ audio {
 	display: none;
 }
 
+.player {
+  display: none;
+}
+
+
+.player.show {
+  display: block;
+}
+
 .player__controls {
 
 }

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Shuffle, SkipStartFill, PlayFill, PauseFill, SkipEndFill, Repeat, Repeat1 } from 'react-bootstrap-icons';
 import { AudioContext } from './audioContext.jsx';
@@ -7,6 +6,7 @@ function Player() {
   const { isPlaying, togglePlay, playNext, playPrevious } = useContext(AudioContext);
   const [repeatMode, setRepeatMode] = useState(0);
   const audioRef = useRef(null);
+  const [hasPlayedSong, setHasPlayedSong] = useState(false);
 
   const handleError = (error) => {
     if (
@@ -22,12 +22,14 @@ function Player() {
   };
 
   useEffect(() => {
-    audioRef.current.addEventListener('error', handleError);
+    const audio = audioRef.current; // Create a local variable to hold the value of audioRef.current
+
+    audio.addEventListener('error', handleError);
 
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.removeEventListener('error', handleError);
+      if (audio) {
+        audio.pause();
+        audio.removeEventListener('error', handleError);
       }
     };
   }, []);
@@ -35,6 +37,7 @@ function Player() {
   useEffect(() => {
     if (isPlaying) {
       audioRef.current.play().catch(handleError);
+      setHasPlayedSong(true);
     } else {
       audioRef.current.pause();
     }
@@ -45,29 +48,39 @@ function Player() {
   };
 
   return (
-    <section className="player">
+    <section className={`player ${hasPlayedSong ? 'show' : ''}`}>
       <div className="player__info">
-                <p>info</p>
-            </div>
-            <div className="player__controls">
-                <div className="player__controls-buttons">
-                    <button className="player__controls-shuffle button"><Shuffle /></button>
-                    <button className="player__controls-rewind button" onClick={playPrevious}><SkipStartFill /></button>
-                    <button className="player__controls-toggle button" onClick={togglePlay}>
-                        {isPlaying ? <PauseFill className="player__controls-toggle-pause" /> : <PlayFill className="player__controls-toggle-play" />}
-                    </button>
-                    <button className="player__controls-forward button" onClick={playNext}><SkipEndFill /></button>
-                    <button className="player__controls-loop button" onClick={toggleRepeat}>
-                        {repeatMode === 0 && <Repeat className="player__controls-loop-off" />}
-                        {repeatMode === 1 && <Repeat className="player__controls-loop-on" />}
-                        {repeatMode === 2 && <Repeat1 className="player__controls-loop-1" />}
-                    </button>
-                </div>
-            </div>
-            <div className="player__progress">
-                <p>bar</p>
-            </div>
-            <audio ref={audioRef} />
+        <p>info</p>
+      </div>
+      <div className="player__controls">
+        <div className="player__controls-buttons">
+          <button className="player__controls-shuffle button">
+            <Shuffle />
+          </button>
+          <button className="player__controls-rewind button" onClick={playPrevious}>
+            <SkipStartFill />
+          </button>
+          <button className="player__controls-toggle button" onClick={togglePlay}>
+            {isPlaying ? (
+              <PauseFill className="player__controls-toggle-pause" />
+            ) : (
+              <PlayFill className="player__controls-toggle-play" />
+            )}
+          </button>
+          <button className="player__controls-forward button" onClick={playNext}>
+            <SkipEndFill />
+          </button>
+          <button className="player__controls-loop button" onClick={toggleRepeat}>
+            {repeatMode === 0 && <Repeat className="player__controls-loop-off" />}
+            {repeatMode === 1 && <Repeat className="player__controls-loop-on" />}
+            {repeatMode === 2 && <Repeat1 className="player__controls-loop-1" />}
+          </button>
+        </div>
+      </div>
+      <div className="player__progress">
+        <p>bar</p>
+      </div>
+      <audio ref={audioRef} />
     </section>
   );
 }
