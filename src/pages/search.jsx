@@ -66,7 +66,7 @@ const FetchAPI = () => {
     useEffect(() => {
         const debouncedSearchSongs = debounce((query) => {
             searchSongs(query);
-        }, 300, true); // 300ms delay, execute immediately on first keystroke
+        }, 200, true); 
         
         if (query) {
             debouncedSearchSongs(query);
