@@ -3,15 +3,34 @@ import { Search as SearchIcon } from 'react-bootstrap-icons';
 import { AudioContext } from '../components/audioContext.jsx';
 
 const FetchAPI = () => {
+    console.log('FetchAPI rendered');
+
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
     const { playSong, setPlaylist, currentIndex, setCurrentIndex } = useContext(AudioContext);
     const [error, setError] = useState(null);
 
+    const debounce = (func, wait) => {
+        let timeout;
+        return function () {
+            const context = this,
+                args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), wait);
+        };
+    };
+
     useEffect(() => {
         const savedResults = localStorage.getItem('searchResults');
+
         if (savedResults) {
-            setResults(JSON.parse(savedResults));
+            try {
+                const parsedResults = JSON.parse(savedResults);
+                console.log("Parsed results from local storage:", parsedResults); // Added log
+                setResults(parsedResults);
+            } catch (e) {
+                console.error("Error parsing results from local storage:", e); // Added log
+            }
         }
     }, []);
 
@@ -48,34 +67,18 @@ const FetchAPI = () => {
             });
     }, [setPlaylist]);
 
-    const debounce = (func, wait, immediate) => {
-        let timeout;
-        return function() {
-            const context = this, args = arguments;
-            const later = function() {
-                timeout = null;
-                if (!immediate) func.apply(context, args);
-            };
-            const callNow = immediate && !timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            if (callNow) func.apply(context, args);
-        };
-    };
+    const debouncedSearchSongs = useCallback(
+        debounce((query) => {
+            searchSongs(query);
+        }, 1000),
+        []
+    );
 
     useEffect(() => {
-        const debouncedSearchSongs = debounce((query) => {
-            searchSongs(query);
-        }, 200, true); 
-        
         if (query) {
             debouncedSearchSongs(query);
-        } else if (!query && results.length > 0) {
-            setResults([]);
-            setError(null);
         }
-        
-    }, [query, setPlaylist, searchSongs, results.length]);
+    }, [query, debouncedSearchSongs]);
 
     const handleInputChange = (event) => {
         setQuery(event.target.value);
@@ -84,7 +87,7 @@ const FetchAPI = () => {
     };
 
     return (
-        <main className="search">
+        <main className="search" key={results.length}>
             <label className="search__label" htmlFor="search"></label>
             <section className="search__input-container">
                 <input
@@ -98,8 +101,9 @@ const FetchAPI = () => {
                     <SearchIcon />
                 </div>
             </section>
-            
+
             <div className="search__results">
+                {console.log('Rendering results', results)}
                 {error ? (
                     <p>{error}</p>
                 ) : (
@@ -113,7 +117,7 @@ const FetchAPI = () => {
                             }}
                         >
                             <div className="search__results-item-cover">
-                                {song.album && (
+                                {song.album && song.album.cover && (
                                     <img
                                         className="search__results-item-image"
                                         src={song.album.cover}
@@ -123,7 +127,7 @@ const FetchAPI = () => {
                             </div>
                             <div className="search__results-info">
                                 <p className={`search__results-title ${currentIndex === index ? "playing" : ""}`}>{song.title}</p>
-                                <p className="search__results-artist">{song.artist.name}</p>
+                                <p className="search__results-artist">{song.artist && song.artist.name}</p>
                             </div>
                         </div>
                     ))
