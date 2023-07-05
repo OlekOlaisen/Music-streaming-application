@@ -137,6 +137,8 @@ function Player() {
             <button className="player__controls-close button" onClick={toggleControlsExpanded}>
             <ChevronDown className="player__controls-close-icon" />
             </button>
+
+            <div className='player__controls-container'>
             <div className="player__controls-song-details">
             <img src={albumImage} alt="Album" className="player__controls-album-image" />
             <div className="player__controls-song-info">
@@ -168,11 +170,16 @@ function Player() {
                 {repeatMode === 2 && <Repeat1 className="player__controls-loop-1" />}
                 </button>
                 </div>
+
+</div>
                 </section>
                 )}
                 
                 <div className="player__progress">
                 </div>
+
+
+
                 <audio ref={audioRef} />
                 </section>
                 );

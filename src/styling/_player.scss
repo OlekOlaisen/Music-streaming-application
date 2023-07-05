@@ -76,7 +76,7 @@ audio {
   width: 100vw;
   background-color: variable.$primary-color-background;
   position: absolute;
-  top: -85vh;
+  bottom: -70px;
   transform: translateY(100%);
   transition: transform 0.3s ease-in-out;
 }
@@ -127,11 +127,27 @@ audio {
   gap: 2rem;
   align-items: center;
   justify-content: center;
-  height: 200px;
+  height: 100px;
   position: absolute;
-  bottom: 0;
   left: 0;
   right: 0;
+}
+
+.player__controls-song-title {
+  color: variable.$primary-text;
+  margin: 1rem;
+  text-align: center;
+}
+
+.player__controls-artist-name {
+  color: variable.$primary-text;
+  font-size: 0.8rem;
+  margin: 1rem;
+  text-align: center;
+}
+
+.player__controls-container {
+  margin: 5rem;
 }
 
 .player__controls-close-icon {
@@ -177,7 +193,7 @@ audio {
   margin: 0;
   font-size: 0.8rem;
   line-height: 1.2;
-  width: 300px;
+  width: 150px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -202,10 +218,12 @@ audio {
 
 
 
-
-
 @media (min-width: 576px) { 
   .player__progress {
     display: block;
+  }
+
+  .player__info-song-title {
+    width: 300px;
   }
 }
