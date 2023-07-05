@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { Search as SearchIcon } from 'react-bootstrap-icons';
 import { AudioContext } from '../components/audioContext.jsx';
 
@@ -14,17 +14,8 @@ const FetchAPI = () => {
             setResults(JSON.parse(savedResults));
         }
     }, []);
-    
-    useEffect(() => {
-        const timerId = setTimeout(() => {
-            if (query) {
-                searchSongs(query);
-            } else if (!query && results.length > 0) {
-                setResults([]);
-                setError(null);
-            }
-        }, 500);
-        const searchSongs = (query) => {
+
+    const searchSongs = useCallback((query) => {
         const options = {
             method: 'GET',
             headers: {
@@ -32,42 +23,66 @@ const FetchAPI = () => {
                 'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
             },
         };
-        
+
         fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`, options)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`API request failed with status ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((response) => {
-            if (!response.data || response.data.length === 0) {
-                setResults([]);
-                setError('No search results found');
-                return;
-            }
-            setResults(response.data);
-            setPlaylist(response.data);
-            localStorage.setItem('searchResults', JSON.stringify(response.data)); // Save results to local storage
-            setError(null);
-        })
-        .catch((err) => {
-            console.error(err);
-            setError('Error occurred while searching');
-        });
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((response) => {
+                if (!response.data || response.data.length === 0) {
+                    setResults([]);
+                    setError('No search results found');
+                    return;
+                }
+                setResults(response.data);
+                setPlaylist(response.data);
+                localStorage.setItem('searchResults', JSON.stringify(response.data)); // Save results to local storage
+                setError(null);
+            })
+            .catch((err) => {
+                console.error(err);
+                setError('Error occurred while searching');
+            });
+    }, [setPlaylist]);
+
+    const debounce = (func, wait, immediate) => {
+        let timeout;
+        return function() {
+            const context = this, args = arguments;
+            const later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            const callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
     };
 
-        return () => clearTimeout(timerId); // clear the timer if the query changes before the timeout
-
-    }, [query, setPlaylist, results.length]);
-    
-    
+    useEffect(() => {
+        const debouncedSearchSongs = debounce((query) => {
+            searchSongs(query);
+        }, 300, true); // 300ms delay, execute immediately on first keystroke
+        
+        if (query) {
+            debouncedSearchSongs(query);
+        } else if (!query && results.length > 0) {
+            setResults([]);
+            setError(null);
+        }
+        
+    }, [query, setPlaylist, searchSongs, results.length]);
 
     const handleInputChange = (event) => {
         setQuery(event.target.value);
         setCurrentIndex(-1);
         setError(null); // Clear error when altering the search query
     };
+
     return (
         <main className="search">
             <label className="search__label" htmlFor="search"></label>
