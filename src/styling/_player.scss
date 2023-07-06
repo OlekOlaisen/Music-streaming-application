@@ -208,7 +208,7 @@ audio {
 }
 
 .button {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   
   &:hover {
     color: variable.$secondary-color;
@@ -247,10 +247,6 @@ audio {
 .player__info-artist-name {
   color: variable.$primary-text;
   font-size: 0.8rem;
-}
-
-.no-scroll {
- overflow: hidden;
 }
 
 

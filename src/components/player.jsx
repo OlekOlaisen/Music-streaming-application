@@ -79,9 +79,8 @@ function Player() {
     setRepeatMode((prevMode) => (prevMode + 1) % 3);
   };
 
-  const albumImage = currentSong && currentSong.album ? currentSong.album.cover : '';
+  const albumImage = currentSong && currentSong.album ? currentSong.album.cover_xl : '';
   const artistName = currentSong && currentSong.artist ? currentSong.artist.name : '';
-
   const songTitle = currentSong ? currentSong.title : '';
 
   useEffect(() => {
@@ -151,6 +150,7 @@ function Player() {
             <div className="player__controls-song-info">
             <p className="player__controls-song-title">{songTitle}</p>
             <p className="player__controls-artist-name">{artistName}</p>
+
             </div>
             </div>
             
