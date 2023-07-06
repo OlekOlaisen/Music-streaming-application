@@ -79,7 +79,7 @@ function Player() {
     setRepeatMode((prevMode) => (prevMode + 1) % 3);
   };
 
-  const albumImage = currentSong && currentSong.album ? currentSong.album.cover : '';
+  const albumImage = currentSong && currentSong.album ? currentSong.album.cover_xl : '';
   const artistName = currentSong && currentSong.artist ? currentSong.artist.name : '';
 
   const songTitle = currentSong ? currentSong.title : '';
