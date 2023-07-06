@@ -49,7 +49,7 @@ const FetchAPI = () => {
       const artistName = artist && artist.name ? artist.name : 'Unknown Artist';
       document.title = `${title} - ${artistName}`;
     } else {
-      document.title = 'Deezer Preview App';
+      document.title = '';
     }
   }, [currentIndex, results]);
 
