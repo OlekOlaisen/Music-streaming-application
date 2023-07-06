@@ -9,87 +9,90 @@ function Player() {
   const titleRef = useRef(null);
   const [hasPlayedSong, setHasPlayedSong] = useState(false);
   const [controlsExpanded, setControlsExpanded] = useState(false);
-  
+
   const handleError = (error) => {
     if (
       error.message ===
       "The fetching process for the media resource was aborted by the user agent at the user's request."
-      ) {
-        return;
-      }
-      
-      console.error('Error playing audio:', error);
+    ) {
+      return;
+    }
 
+    console.error('Error playing audio:', error);
+  };
+
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    audio.addEventListener('error', handleError);
+
+    return () => {
+      if (audio) {
+        audio.pause();
+        audio.removeEventListener('error', handleError);
+      }
     };
-    
-    useEffect(() => {
-      const audio = audioRef.current; 
-      
-      audio.addEventListener('error', handleError);
-      
-      return () => {
-        if (audio) {
-          audio.pause();
-          audio.removeEventListener('error', handleError);
-        }
-      };
-    }, []);
-    
-    useEffect(() => {
-      if (isPlaying) {
-        audioRef.current.play().catch(handleError);
-        setHasPlayedSong(true);
-      } else {
-        audioRef.current.pause();
-      }
-    }, [isPlaying]);
+  }, []);
 
-     useEffect(() => {
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current.play().catch(handleError);
+      setHasPlayedSong(true);
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
     const titleElement = titleRef.current;
 
     const observer = new ResizeObserver(() => {
-        
-        setTimeout(() => {
-            if (titleElement) {
-                const textWidth = titleElement.scrollWidth;
-                const containerWidth = titleElement.clientWidth;
-                if (textWidth > containerWidth) {
-                    titleElement.classList.add("scrolling");
-                } else {
-                    titleElement.classList.remove("scrolling");
-                }
-            }
-        }, 0);
+      setTimeout(() => {
+        if (titleElement) {
+          const textWidth = titleElement.scrollWidth;
+          const containerWidth = titleElement.clientWidth;
+          if (textWidth > containerWidth) {
+            titleElement.classList.add('scrolling');
+          } else {
+            titleElement.classList.remove('scrolling');
+          }
+        }
+      }, 0);
     });
 
     if (titleElement) {
-        observer.observe(titleElement);
+      observer.observe(titleElement);
     }
 
     return () => {
-        if (titleElement) {
-            observer.unobserve(titleElement);
-        }
+      if (titleElement) {
+        observer.unobserve(titleElement);
+      }
     };
-}, [currentSong]);
+  }, [currentSong]);
 
+  const toggleControlsExpanded = () => {
+    setControlsExpanded((prevExpanded) => !prevExpanded);
+  };
 
-    
-    const toggleControlsExpanded = () => {
-      setControlsExpanded((prevExpanded) => !prevExpanded);
-    };
-    
-    const toggleRepeat = () => {
-      setRepeatMode((prevMode) => (prevMode + 1) % 3);
-    };
-    
-    const albumImage = currentSong && currentSong.album ? currentSong.album.cover : '';
-    const artistName = currentSong && currentSong.artist ? currentSong.artist.name : '';
-    
-    
-    const songTitle = currentSong ? currentSong.title : '';
-    
-    return (
+  const toggleRepeat = () => {
+    setRepeatMode((prevMode) => (prevMode + 1) % 3);
+  };
+
+  const albumImage = currentSong && currentSong.album ? currentSong.album.cover : '';
+  const artistName = currentSong && currentSong.artist ? currentSong.artist.name : '';
+
+  const songTitle = currentSong ? currentSong.title : '';
+
+  useEffect(() => {
+    if (controlsExpanded) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+  }, [controlsExpanded]);
+
+  return (
       <section className='player'>
       <div className={`player ${hasPlayedSong ? 'show' : ''}`}>
       <div className={`player__container ${albumImage ? 'hasBackground' : ''}`}
@@ -125,16 +128,9 @@ function Player() {
         </div>
     )}
 </div>
-
-
-          </div>
-          
-          
-                
-                <div className="player__progress">
+          </div>           
+               <div className="player__progress">
                 </div>
-
-
 
                 <audio ref={audioRef} />
                 </div>
@@ -190,4 +186,3 @@ function Player() {
               }
               
               export default Player;
-              

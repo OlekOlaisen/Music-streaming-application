@@ -249,7 +249,9 @@ audio {
   font-size: 0.8rem;
 }
 
-
+.no-scroll {
+ overflow: hidden;
+}
 
 
 @media (min-width: 576px) { 
