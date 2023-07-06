@@ -75,7 +75,7 @@ const FetchAPI = () => {
   };
 
   return (
-    <main className="search">
+    <section className="search">
       <label className="search__label" htmlFor="search"></label>
       <section className="search__input-container">
         <input
@@ -122,7 +122,7 @@ const FetchAPI = () => {
           ))
         )}
       </div>
-    </main>
+    </section>
   );
 };
 

@@ -53,7 +53,7 @@ export const AudioProvider = ({ children }) => {
       }).catch((error) => {
         console.error("Error playing audio:", error);
       });
-      setCurrentSong(playlist[currentIndex]); // Set the currentSong state
+      setCurrentSong(playlist[currentIndex]); 
     }
   }, [currentIndex, playlist]);
 

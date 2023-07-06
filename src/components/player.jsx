@@ -90,8 +90,10 @@ function Player() {
     const songTitle = currentSong ? currentSong.title : '';
     
     return (
-      <section className={`player ${hasPlayedSong ? 'show' : ''}`}>
-      <div className='player__container' >
+      <section className='player'>
+      <div className={`player ${hasPlayedSong ? 'show' : ''}`}>
+      <div className={`player__container ${albumImage ? 'hasBackground' : ''}`}
+      style={albumImage ? { '--bg-image': `url(${albumImage})` } : {}} >
       <div className="player__info" onClick={toggleControlsExpanded}>
         <div className='player__info-cover'>
                 {albumImage && (
@@ -127,7 +129,16 @@ function Player() {
 
           </div>
           
-          {controlsExpanded && (
+          
+                
+                <div className="player__progress">
+                </div>
+
+
+
+                <audio ref={audioRef} />
+                </div>
+                {controlsExpanded && (
             <section
     className={`player__controls-expanded ${controlsExpanded ? 'open' : ''} ${
         albumImage ? 'hasBackground' : ''
@@ -174,13 +185,6 @@ function Player() {
 </div>
                 </section>
                 )}
-                
-                <div className="player__progress">
-                </div>
-
-
-
-                <audio ref={audioRef} />
                 </section>
                 );
               }
