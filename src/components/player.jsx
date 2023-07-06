@@ -79,8 +79,9 @@ function Player() {
     setRepeatMode((prevMode) => (prevMode + 1) % 3);
   };
 
-  const albumImage = currentSong && currentSong.album ? currentSong.album.cover_xl : '';
+  const albumImage = currentSong && currentSong.album ? currentSong.album.cover : '';
   const artistName = currentSong && currentSong.artist ? currentSong.artist.name : '';
+
   const songTitle = currentSong ? currentSong.title : '';
 
   useEffect(() => {
@@ -91,98 +92,99 @@ function Player() {
     }
   }, [controlsExpanded]);
 
-  return (
+      return (
       <section className='player'>
       <div className={`player ${hasPlayedSong ? 'show' : ''}`}>
       <div className={`player__container ${albumImage ? 'hasBackground' : ''}`}
       style={albumImage ? { '--bg-image': `url(${albumImage})` } : {}} >
       <div className="player__info" onClick={toggleControlsExpanded}>
-        <div className='player__info-cover'>
-                {albumImage && (
-                    <img src={albumImage} alt="Album" className="player__info-album-image" />
-                )}
-                </div>
-                <div className='player__info-details'>
-                {songTitle && (
-                    <p className="player__info-song-title" ref={titleRef}>{songTitle}</p>
-                )}
-                {artistName && (
-                    <p className="player__info-artist-name">{artistName}</p>
-                )}
-                </div>
-            </div>
-      <div className="player__controls">
-    {hasPlayedSong && (
-        <div className="player__buttons">
-            <button className="player__controls-toggle button" onClick={togglePlay}>
-                {isPlaying ? (
-                    <PauseFill className="player__controls-toggle-pause" />
-                ) : (
-                    <PlayFill className="player__controls-toggle-play" />
-                )}
-            </button>
-            <button className="player__button">
-                <Heart className="player__button-icon" />
-            </button>
+      <div className='player__info-cover'>
+      {albumImage && (
+        <img src={albumImage} alt="Album" className="player__info-album-image" />
+        )}
         </div>
-    )}
-</div>
-          </div>           
-               <div className="player__progress">
-                </div>
-
-                <audio ref={audioRef} />
-                </div>
-                {controlsExpanded && (
-            <section
-    className={`player__controls-expanded ${controlsExpanded ? 'open' : ''} ${
-        albumImage ? 'hasBackground' : ''
-    }`}
-    style={albumImage ? { '--bg-image': `url(${albumImage})` } : {}}
->
-            <button className="player__controls-close button" onClick={toggleControlsExpanded}>
-            <ChevronDown className="player__controls-close-icon" />
-            </button>
-
-            <div className='player__controls-container'>
-            <div className="player__controls-song-details">
-            <img src={albumImage} alt="Album" className="player__controls-album-image" />
-            <div className="player__controls-song-info">
-            <p className="player__controls-song-title">{songTitle}</p>
-            <p className="player__controls-artist-name">{artistName}</p>
-
+        <div className='player__info-details'>
+        {songTitle && (
+          <p className="player__info-song-title" ref={titleRef}>{songTitle}</p>
+          )}
+          {artistName && (
+            <p className="player__info-artist-name">{artistName}</p>
+            )}
             </div>
             </div>
-            
-            <div className="player__controls-buttons">
-            <button className="player__controls-shuffle button">
-            <Shuffle />
-            </button>
-            <button className="player__controls-rewind button" onClick={playPrevious}>
-            <SkipStartFill />
-            </button>
-            <button className="player__controls-toggle button" onClick={togglePlay}>
-            {isPlaying ? (
-              <PauseFill className="player__controls-toggle-pause" />
-              ) : (
-                <PlayFill className="player__controls-toggle-play" />
-                )}
-                </button>
-                <button className="player__controls-forward button" onClick={playNext}>
-                <SkipEndFill />
-                </button>
-                <button className="player__controls-loop button" onClick={toggleRepeat}>
-                {repeatMode === 0 && <Repeat className="player__controls-loop-off" />}
-                {repeatMode === 1 && <Repeat className="player__controls-loop-on" />}
-                {repeatMode === 2 && <Repeat1 className="player__controls-loop-1" />}
-                </button>
-                </div>
-
-</div>
-                </section>
-                )}
-                </section>
-                );
-              }
-              
-              export default Player;
+            <div className="player__controls">
+            {hasPlayedSong && (
+              <div className="player__buttons">
+              <button className="player__controls-toggle button" onClick={togglePlay}>
+              {isPlaying ? (
+                <PauseFill className="player__controls-toggle-pause" />
+                ) : (
+                  <PlayFill className="player__controls-toggle-play" />
+                  )}
+                  </button>
+                  <button className="player__button">
+                  <Heart className="player__button-icon" />
+                  </button>
+                  </div>
+                  )}
+                  </div>
+                  </div>           
+                  <div className="player__progress">
+                  </div>
+                  
+                  <audio ref={audioRef} />
+                  </div>
+                  {controlsExpanded && (
+                    <section
+                    className={`player__controls-expanded ${controlsExpanded ? 'open' : ''} ${
+                      albumImage ? 'hasBackground' : ''
+                    }`}
+                    style={albumImage ? { '--bg-image': `url(${albumImage})` } : {}}
+                    >
+                    <button className="player__controls-close button" onClick={toggleControlsExpanded}>
+                    <ChevronDown className="player__controls-close-icon" />
+                    </button>
+                    
+                    <div className='player__controls-container'>
+                    <div className="player__controls-song-details">
+                    <img src={albumImage} alt="Album" className="player__controls-album-image" />
+                    <div className="player__controls-song-info">
+                    <p className="player__controls-song-title">{songTitle}</p>
+                    <p className="player__controls-artist-name">{artistName}</p>
+                    
+                    </div>
+                    </div>
+                    
+                    <div className="player__controls-buttons">
+                    <button className="player__controls-shuffle button">
+                    <Shuffle />
+                    </button>
+                    <button className="player__controls-rewind button" onClick={playPrevious}>
+                    <SkipStartFill />
+                    </button>
+                    <button className="player__controls-toggle button" onClick={togglePlay}>
+                    {isPlaying ? (
+                      <PauseFill className="player__controls-toggle-pause" />
+                      ) : (
+                        <PlayFill className="player__controls-toggle-play" />
+                        )}
+                        </button>
+                        <button className="player__controls-forward button" onClick={playNext}>
+                        <SkipEndFill />
+                        </button>
+                        <button className="player__controls-loop button" onClick={toggleRepeat}>
+                        {repeatMode === 0 && <Repeat className="player__controls-loop-off" />}
+                        {repeatMode === 1 && <Repeat className="player__controls-loop-on" />}
+                        {repeatMode === 2 && <Repeat1 className="player__controls-loop-1" />}
+                        </button>
+                        </div>
+                        
+                        </div>
+                        </section>
+                        )}
+                        </section>
+                        );
+                      }
+                      
+                      export default Player;
+                      

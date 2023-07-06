@@ -92,6 +92,11 @@ audio {
   height: 100%;
 }
 
+.no-scroll {
+ overflow: hidden;
+}
+
+
 .player__controls-expanded {
   display: block;
   z-index: 3;
