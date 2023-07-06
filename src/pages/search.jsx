@@ -41,6 +41,18 @@ const FetchAPI = () => {
       });
   }, [setPlaylist]);
 
+   useEffect(() => {
+
+    if (currentIndex >= 0 && results[currentIndex]) {
+      const currentSong = results[currentIndex];
+      const { title, artist } = currentSong;
+      const artistName = artist && artist.name ? artist.name : 'Unknown Artist';
+      document.title = `${title} - ${artistName}`;
+    } else {
+      document.title = 'Deezer Preview App';
+    }
+  }, [currentIndex, results]);
+
   useEffect(() => {
     const savedResults = sessionStorage.getItem('searchResults');
 
