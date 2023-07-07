@@ -4,6 +4,7 @@ import { AudioContext } from '../components/audioContext.jsx';
 
 const FetchAPI = () => {
   const [query, setQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState(query);
   const [results, setResults] = useState([]);
   const { playSong, setPlaylist, currentIndex, setCurrentIndex } = useContext(AudioContext);
   const [error, setError] = useState(null);
@@ -41,8 +42,7 @@ const FetchAPI = () => {
       });
   }, [setPlaylist]);
 
-   useEffect(() => {
-
+  useEffect(() => {
     if (currentIndex >= 0 && results[currentIndex]) {
       const currentSong = results[currentIndex];
       const { title, artist } = currentSong;
@@ -71,8 +71,25 @@ const FetchAPI = () => {
     setQuery(inputValue);
     setCurrentIndex(-1);
     setError(null);
-    searchSongs(inputValue);
-  }, [searchSongs, setCurrentIndex]);
+  }, [setCurrentIndex]);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 300);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [query]);
+
+  useEffect(() => {
+    if (debouncedQuery) {
+      searchSongs(debouncedQuery);
+    } else {
+      setResults([]);
+    }
+  }, [debouncedQuery, searchSongs]);
 
   useEffect(() => {
     window.addEventListener('beforeunload', handleBeforeUnload);
