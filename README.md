@@ -9,9 +9,9 @@
 
 
 Deezer-Preview is a react web application currently under development that allows users to search for songs within the Deezer API. The users can play a 30 second preview of the songs available through Deezer. 
-The web application is under development and is far from finished, but you can preview the project [here](https://deezer-preview.netlify.app/) as it continues to get developed.
+The web application is under development and is far from finished, but you can preview the project [here](https://deezer-preview.netlify.app) as it continues to get developed. Test it on your mobile for the best experience.
 
-NOTE: The web application is mobile first, and is not responsive to desktop yet. (This will come soon)
+NOTE: The web application is mobile first, and is not responsive to desktop as of yet. 
 
 
 ## Features
@@ -54,7 +54,7 @@ Open http://localhost:3000 to view it in your browser.
     
 ## Demo
 
-You can see a live demo of the application at: [Deezer-Preview](https://deezer-preview.netlify.app/)
+You can see a live demo of the application at: [Deezer-Preview](https://deezer-preview.netlify.app) or copy this link: https://deezer-preview.netlify.app
 
 
 
