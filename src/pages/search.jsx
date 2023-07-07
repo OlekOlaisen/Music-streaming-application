@@ -3,6 +3,7 @@ import { Search as SearchIcon } from 'react-bootstrap-icons';
 import { AudioContext } from '../components/audioContext.jsx';
 
 const FetchAPI = () => {
+
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState(query);
   const [results, setResults] = useState([]);
@@ -13,7 +14,7 @@ const FetchAPI = () => {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '80f7e85633msh33f1fc9d67c7fc0p1378acjsne3b24971e450',
+        'X-RapidAPI-Key': `${process.env.REACT_APP_RAPIDAPI_KEY}`,
         'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
       },
     };
