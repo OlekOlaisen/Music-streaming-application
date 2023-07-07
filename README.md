@@ -22,7 +22,7 @@ The application has the following features:
 - Search amongst 30 million tracks
 - Play any song
 - Functional music controls
-- Extended view of the song currently playing
+- Extended view of the song currently playing (Click on the song title in the player)
  ```
   
  ## Technologies Used
