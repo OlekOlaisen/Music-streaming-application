@@ -15,8 +15,9 @@ import {
 import { AudioContext } from './audioContext.jsx';
 
 function Player() {
-  const { isPlaying, togglePlay, playNext, playPrevious, currentSong, audioRef } = useContext(AudioContext);
-  const [repeatMode, setRepeatMode] = useState(0);
+  const { isPlaying, togglePlay, playNext, playPrevious, currentSong, audioRef, repeatMode, toggleRepeat } = useContext(
+    AudioContext
+  );
   const titleRef = useRef(null);
   const [hasPlayedSong, setHasPlayedSong] = useState(false);
   const [controlsExpanded, setControlsExpanded] = useState(false);
@@ -115,10 +116,6 @@ function Player() {
     setControlsExpanded((prevExpanded) => !prevExpanded);
   };
 
-  const toggleRepeat = () => {
-    setRepeatMode((prevMode) => (prevMode + 1) % 3);
-  };
-
   const albumImage = currentSong && currentSong.album ? currentSong.album.cover_xl : '';
   const artistName = currentSong && currentSong.artist ? currentSong.artist.name : '';
 
@@ -131,6 +128,20 @@ function Player() {
       document.body.classList.remove('no-scroll');
     }
   }, [controlsExpanded]);
+
+  const handleRepeat = () => {
+    toggleRepeat();
+    const audio = audioRef.current;
+
+    if (repeatMode === 0) {
+      audio.loop = false;
+    } else if (repeatMode === 1) {
+      audio.loop = true;
+    } else if (repeatMode === 2) {
+      audio.loop = false;
+      audio.addEventListener('ended', playNext);
+    }
+  };
 
   return (
     <section className='player'>
@@ -188,7 +199,7 @@ function Player() {
             <button className="player__controls-forward button" onClick={playNext}>
               <SkipEndFill />
             </button>
-            <button className="player__controls-loop button" onClick={toggleRepeat}>
+            <button className="player__controls-loop button" onClick={handleRepeat}>
               {repeatMode === 0 && <Repeat className="player__controls-loop-off" />}
               {repeatMode === 1 && <Repeat className="player__controls-loop-on" />}
               {repeatMode === 2 && <Repeat1 className="player__controls-loop-1" />}
@@ -262,7 +273,7 @@ function Player() {
               <button className="player__controls-forward button" onClick={playNext}>
                 <SkipEndFill />
               </button>
-              <button className="player__controls-loop button" onClick={toggleRepeat}>
+              <button className="player__controls-loop button" onClick={handleRepeat}>
                 {repeatMode === 0 && <Repeat className="player__controls-loop-off" />}
                 {repeatMode === 1 && <Repeat className="player__controls-loop-on" />}
                 {repeatMode === 2 && <Repeat1 className="player__controls-loop-1" />}
