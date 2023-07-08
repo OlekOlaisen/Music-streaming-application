@@ -10,7 +10,6 @@ import {
   Heart,
   ChevronDown,
   VolumeMuteFill,
-  VolumeDownFill,
   VolumeUpFill,
 } from 'react-bootstrap-icons';
 import { AudioContext } from './audioContext.jsx';
