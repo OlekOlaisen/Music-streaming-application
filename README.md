@@ -24,6 +24,7 @@ The application has the following features:
 - Control playback (play, pause, next, previous)
 - Repeat songs in different modes
 - Shuffle songs
+- Adjust volume and mute button (Desktop version only)
 - Extended view of the song currently playing (Click on the song title in the player)
  ```
   
