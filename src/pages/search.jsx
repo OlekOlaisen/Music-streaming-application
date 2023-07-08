@@ -3,11 +3,9 @@ import { Search as SearchIcon } from 'react-bootstrap-icons';
 import { AudioContext } from '../components/audioContext.jsx';
 
 const FetchAPI = () => {
-
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState(query);
-  const [results, setResults] = useState([]);
-  const { playSong, setPlaylist, currentIndex, setCurrentIndex } = useContext(AudioContext);
+  const { playSong, setPlaylist, currentIndex, setCurrentIndex, searchResults, setSearchResults } = useContext(AudioContext);
   const [error, setError] = useState(null);
 
   const searchSongs = useCallback((query) => {
@@ -28,44 +26,30 @@ const FetchAPI = () => {
       })
       .then((response) => {
         if (!response.data || response.data.length === 0) {
-          setResults([]);
+          setSearchResults([]);
           setError('No search results found');
           return;
         }
-        setResults(response.data);
+        setSearchResults(response.data);
         setPlaylist(response.data);
         setError(null);
-        sessionStorage.setItem('searchResults', JSON.stringify(response.data));
       })
       .catch((err) => {
         console.error(err);
         setError('Error occurred while searching');
       });
-  }, [setPlaylist]);
+  }, [setPlaylist, setSearchResults]);
 
   useEffect(() => {
-    if (currentIndex >= 0 && results[currentIndex]) {
-      const currentSong = results[currentIndex];
+    if (currentIndex >= 0 && searchResults[currentIndex]) {
+      const currentSong = searchResults[currentIndex];
       const { title, artist } = currentSong;
       const artistName = artist && artist.name ? artist.name : 'Unknown Artist';
       document.title = `${title} - ${artistName}`;
     } else {
       document.title = 'Deezer Preview App';
     }
-  }, [currentIndex, results]);
-
-  useEffect(() => {
-    const savedResults = sessionStorage.getItem('searchResults');
-
-    if (savedResults) {
-      try {
-        const parsedResults = JSON.parse(savedResults);
-        setResults(parsedResults);
-      } catch (e) {
-        console.error("Error parsing results from session storage:", e);
-      }
-    }
-  }, []);
+  }, [currentIndex, searchResults]);
 
   const handleInputChange = useCallback((event) => {
     const inputValue = event.target.value;
@@ -85,24 +69,10 @@ const FetchAPI = () => {
   }, [query]);
 
   useEffect(() => {
-    if (debouncedQuery) {
-      searchSongs(debouncedQuery);
-    } else {
-      setResults([]);
-    }
-  }, [debouncedQuery, searchSongs]);
-
-  useEffect(() => {
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, []);
-
-  const handleBeforeUnload = () => {
-    sessionStorage.removeItem('searchResults');
-  };
+  if (debouncedQuery) {
+    searchSongs(debouncedQuery);
+  }
+}, [debouncedQuery, searchSongs]);
 
   return (
     <section className="search">
@@ -124,7 +94,7 @@ const FetchAPI = () => {
         {error ? (
           <p>{error}</p>
         ) : (
-          results.map((song, index) => (
+          searchResults.map((song, index) => (
             <div
               className="search__results-item"
               key={index}

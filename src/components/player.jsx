@@ -220,7 +220,7 @@ function Player() {
 
         </div>
 
-        <div classNameclassName="player__progress"><p></p></div>
+        <div className="player__progress"><p></p></div>
 
         <audio ref={audioRef} />
       </div>
