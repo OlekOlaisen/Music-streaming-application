@@ -15,7 +15,7 @@ import {
 import { AudioContext } from './audioContext.jsx';
 
 function Player() {
-  const { isPlaying, togglePlay, playNext, playPrevious, currentSong, audioRef, repeatMode, toggleRepeat } = useContext(
+  const { isPlaying, togglePlay, playNext, playPrevious, currentSong, audioRef, repeatMode, toggleRepeat, shuffle, toggleShuffle } = useContext(
     AudioContext
   );
   const titleRef = useRef(null);
@@ -183,9 +183,12 @@ function Player() {
           </div>
 
           <div className="player__controls-buttons-desktop">
-            <button className="player__controls-shuffle button">
-              <Shuffle />
-            </button>
+            <button
+          className={`player__controls-shuffle button ${shuffle ? 'shuffle-active' : ''}`}
+          onClick={toggleShuffle}
+        >
+          <Shuffle />
+        </button>
             <button className="player__controls-rewind button" onClick={playPrevious}>
               <SkipStartFill />
             </button>
@@ -257,9 +260,12 @@ function Player() {
             </div>
 
             <div className="player__controls-buttons">
-              <button className="player__controls-shuffle button">
-                <Shuffle />
-              </button>
+              <button
+          className={`player__controls-shuffle button ${shuffle ? 'shuffle-active' : ''}`}
+          onClick={toggleShuffle}
+        >
+          <Shuffle />
+        </button>
               <button className="player__controls-rewind button" onClick={playPrevious}>
                 <SkipStartFill />
               </button>

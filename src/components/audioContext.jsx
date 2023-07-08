@@ -9,6 +9,8 @@ export const AudioProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [repeatMode, setRepeatMode] = useState(0);
   const [currentSong, setCurrentSong] = useState(null);
+  const [shuffle, setShuffle] = useState(false);
+  const [history, setHistory] = useState([]);
   const audioRef = useRef(null);
 
   const playSong = (songUrl, index) => {
@@ -23,21 +25,36 @@ export const AudioProvider = ({ children }) => {
     setRepeatMode((prevMode) => (prevMode + 1) % 3);
   };
 
+  const toggleShuffle = () => {
+    setShuffle((prevShuffle) => !prevShuffle);
+  };
+
   const playNext = useCallback(() => {
-    if (currentIndex < playlist.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+    let nextIndex;
+    if (shuffle) {
+      do {
+        nextIndex = Math.floor(Math.random() * playlist.length);
+      } while (nextIndex === currentIndex);
     } else {
-      setCurrentIndex(0); // Go back to the start of the playlist
+      nextIndex = currentIndex < playlist.length - 1 ? currentIndex + 1 : 0;
     }
-  }, [currentIndex, playlist]);
+    // before moving to the next song, push the current index to history
+    setHistory(prev => [...prev, currentIndex]); 
+    setCurrentIndex(nextIndex);
+  }, [currentIndex, playlist, shuffle]);
 
   const playPrevious = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
+    if (history.length > 0) {
+      // if there is a history, go to the previous song
+      const prevIndex = history.pop();
+      setHistory(history);
+      setCurrentIndex(prevIndex);
     } else if (repeatMode === 1) {
       setCurrentIndex(playlist.length - 1); // Go to the end of the playlist if repeatMode is 1
     }
   };
+
+
 
   useEffect(() => {
     if (audioRef.current) {
@@ -94,7 +111,9 @@ export const AudioProvider = ({ children }) => {
         currentSong,
         audioRef,
         searchResults, 
-        setSearchResults 
+        setSearchResults,
+        shuffle,
+        toggleShuffle,
       }}
     >
       {children}

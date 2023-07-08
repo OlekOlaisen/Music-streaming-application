@@ -262,6 +262,11 @@ audio {
   display: none;
 }
 
+.shuffle-active {
+  color: variable.$secondary-color;
+}
+
+
 
 @media (min-width: 576px) { 
   .player__progress {
