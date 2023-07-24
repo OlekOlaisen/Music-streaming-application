@@ -288,6 +288,7 @@ audio {
   outline: none;
   z-index: 6;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 /* Chrome */
@@ -298,7 +299,9 @@ audio {
   background: transparent;
   border-radius: 1.3px;
   border: none;
+  transition: all 0.2s;
 }
+
 .player__progress input[type='range']::-webkit-slider-thumb {
   margin-top: -3px; 
   width: 16px;   /* Increase the size */
@@ -308,6 +311,7 @@ audio {
   cursor: pointer;
   border-radius: 50%;
   -webkit-appearance: none;
+  transition: all 0.2s;
 }
 
 /* Firefox */
@@ -318,14 +322,16 @@ audio {
   background: transparent;
   border-radius: 1.3px;
   border: none;
+  transition: all 0.2s;
 }
 .player__progress input[type='range']::-moz-range-thumb {
   width: 16px;   /* Increase the size */
   height: 16px;  /* Increase the size */
-  background: #f78278;
+  background: transparent;
   border: none;
   cursor: pointer;
   border-radius: 50%;
+  transition: all 0.2s;
 }
 
 
@@ -466,9 +472,7 @@ audio {
  
 }
 
-.player__audio-slider::-ms-fill-lower {
- 
-}
+
 
 .button {
   font-size: 1.5rem;
