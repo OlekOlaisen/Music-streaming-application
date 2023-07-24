@@ -1,4 +1,4 @@
-import './App.scss';
+import './App.css';
 import AppRoutes from './AppRoutes';
 
 function App() {

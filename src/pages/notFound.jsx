@@ -1,6 +1,8 @@
+import NotFoundImage from '../assets/images/notFoundImage.gif'
+
 function NotFound() {
   return (
-	<p>404 Not Found</p>
+    <img className='notFound__image' src={NotFoundImage} alt="404 not found" />
   );
 }
 
