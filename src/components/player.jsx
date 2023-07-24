@@ -296,7 +296,13 @@ function Player() {
                               <ChevronDown className="player__controls-close-icon" />
                               </button>
                               
-                              <div className='player__controls-container'>
+                              
+                              <div className='player__controls-container-extended'>
+                              
+                              <div className='player__controls-options'>
+                                
+                              </div>
+
                               <div className="player__controls-song-details">
                               <img src={albumImage} alt="Album" className="player__controls-album-image" />
                               <div className="player__controls-song-info">
@@ -304,7 +310,18 @@ function Player() {
                               <p className="player__controls-artist-name">{artistName}</p>
                               </div>
                               </div>
-                              
+                              <div className="player__progress-extended" style={{'--progress': `${songProgress}%`}}>
+                            <input
+                            type="range"
+                            id="progress"
+                            name="progress"
+                            min="0"
+                            max="100"
+                            step="1"
+                            value={songProgress}
+                            onChange={handleProgressChange}
+                            />
+                            </div>
                               <div className="player__controls-buttons">
                               <button
                               className={`player__controls-shuffle button ${shuffle ? 'shuffle-active' : ''}`}
@@ -330,8 +347,11 @@ function Player() {
                                   {repeatMode === 1 && <Repeat className="player__controls-loop-on" />}
                                   {repeatMode === 2 && <Repeat1 className="player__controls-loop-1" />}
                                   </button>
-                                  </div>
-                                  </div>
+                              </div>
+
+                              </div>
+
+                              
                                   </section>
                                   )}
                                   
