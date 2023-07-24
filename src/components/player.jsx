@@ -25,6 +25,9 @@ function Player() {
     const [prevVolume, setPrevVolume] = useState(1);
     const [currentVolume, setCurrentVolume] = useState(1);
     const [songProgress, setSongProgress] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
+
     
     const handleError = (error) => {
       if (
@@ -63,16 +66,17 @@ function Player() {
         }
       };
       
-      // Function to update song progress
       const updateProgress = useCallback(() => {
-        const progress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
-        setSongProgress(progress);
-        
-        // If the song is still playing, keep updating the progress.
-        if (isPlaying) {
-          requestAnimationFrame(updateProgress);
-        }
-      }, [audioRef, isPlaying]);
+    const progress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+    setCurrentTime(audioRef.current.currentTime);
+    setSongProgress(progress);
+    
+    if (isPlaying) {
+        requestAnimationFrame(updateProgress);
+    }
+}, [audioRef, isPlaying]);
+
+
       
       useEffect(() => {
         if (isPlaying) {
@@ -86,6 +90,25 @@ function Player() {
         setSongProgress(newValue);
         audioRef.current.currentTime = (newValue / 100) * audioRef.current.duration;
       };
+
+
+      const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+};
+      useEffect(() => {
+    const audio = audioRef.current;
+    const setAudioData = () => {
+        setDuration(audio.duration);
+    };
+
+    audio.addEventListener('loadedmetadata', setAudioData);
+
+    return () => {
+        audio.removeEventListener('loadedmetadata', setAudioData);
+    };
+}, [audioRef]);
       
       
       useEffect(() => {
@@ -113,11 +136,28 @@ function Player() {
       useEffect(() => {
         if (isPlaying) {
           audioRef.current.play().catch(handleError);
+          setDuration(audioRef.current.duration);
           setHasPlayedSong(true);
         } else {
           audioRef.current.pause();
         }
       }, [isPlaying, audioRef]);
+
+      useEffect(() => {
+    const audio = audioRef.current;
+
+    const setAudioData = () => {
+        setDuration(audio.duration);
+        setCurrentTime(audio.currentTime);
+    };
+
+    audio.addEventListener('loadedmetadata', setAudioData);
+
+    return () => {
+        audio.removeEventListener('loadedmetadata', setAudioData);
+    };
+}, [audioRef]);
+
       
       useEffect(() => {
         const titleElement = titleRef.current;
@@ -270,6 +310,7 @@ function Player() {
                             </div>
                             
                             <div className="player__progress" style={{'--progress': `${songProgress}%`}}>
+                               
                             <input
                             type="range"
                             id="progress"
@@ -280,6 +321,7 @@ function Player() {
                             value={songProgress}
                             onChange={handleProgressChange}
                             />
+                           
                             </div>
                             
                             <audio ref={audioRef} />
@@ -311,6 +353,7 @@ function Player() {
                               </div>
                               </div>
                               <div className="player__progress-extended" style={{'--progress': `${songProgress}%`}}>
+                                
                             <input
                             type="range"
                             id="progress"
@@ -321,6 +364,10 @@ function Player() {
                             value={songProgress}
                             onChange={handleProgressChange}
                             />
+                            <div className='player__duration'>
+                            <span className="player__progress-currentTime">{formatTime(currentTime)}</span>
+                            <span className="player__progress-duration">{formatTime(duration - currentTime)}</span>
+                            </div>
                             </div>
                               <div className="player__controls-buttons">
                               <button

@@ -358,6 +358,15 @@ audio {
   z-index: 9;
 }
 
+.player__duration {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: white;
+}
+
 .player__progress-extended input[type='range'] {
   -webkit-appearance: none;
   -moz-appearance: none;
