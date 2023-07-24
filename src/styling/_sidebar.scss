@@ -1,30 +1,9 @@
 @use 'variables' as variable;
 
-.footer {
-	display: flex;
-	flex-flow: row;
-	justify-content: space-around;
-	align-items: center;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	height: 70px;
-	width: 100vw;
-	background-color: variable.$primary-color-background;
-}
 
-.footer__desktop {
+.sidebar {
 	display: none;
 }
-
-.footer__link {
-	font-size: 1.2rem;
-	background: transparent;
-	border: none;
-	color: variable.$secondary-color;
-}
-
-
 
 
 
@@ -40,7 +19,7 @@
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) { 
-	.footer__desktop {
+	.sidebar {
 		display: flex;
 		flex-flow: column;
 		align-items: center;
@@ -49,18 +28,30 @@
 		left: 0;
 		height: 100vh;
 		width: 200px;
-		background-color: #131c26;		
+		background-color: #131c26;	
+		padding-top: 5rem;	
 	}
 
-	.footer__desktop-link {
-	font-size: 1rem;
+	.sidebar-link-icon {
+	color: variable.$secondary-color;
+	margin: 0 0.5rem;
+}
+
+	.sidebar-link {
+	font-size: 0.8rem;
 	margin: 1rem;
 	background: transparent;
 	border: none;
 	color: variable.$primary-text;
 	text-decoration: none;
-	
+
+	&:hover {
+		color: variable.$secondary-color;
+	}
 }
+
+
+
 }
 
 // X-Large devices (large desktops, 1200px and up)

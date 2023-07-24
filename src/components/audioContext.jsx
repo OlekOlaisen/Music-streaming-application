@@ -55,7 +55,6 @@ export const AudioProvider = ({ children }) => {
   };
 
 
-
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {

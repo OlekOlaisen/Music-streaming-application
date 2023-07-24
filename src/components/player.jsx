@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
+import React, { useState, useContext, useRef, useEffect, useCallback } from 'react';
 import {
   Shuffle,
   SkipStartFill,
@@ -24,6 +24,7 @@ function Player() {
   const [volumeMuted, setVolumeMuted] = useState(false);
   const [prevVolume, setPrevVolume] = useState(1);
   const [currentVolume, setCurrentVolume] = useState(1);
+   const [songProgress, setSongProgress] = useState(0);
 
   const handleError = (error) => {
     if (
@@ -61,6 +62,29 @@ function Player() {
       setVolumeMuted(true);
     }
   };
+
+   // Function to update song progress
+  const updateProgress = useCallback(() => {
+    const progress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+    setSongProgress(progress);
+  }, [audioRef]);
+
+  // Handle change in song progress
+  const handleProgressChange = (e) => {
+    const newValue = e.target.value;
+    setSongProgress(newValue);
+    audioRef.current.currentTime = (newValue / 100) * audioRef.current.duration;
+  };
+
+  // Then use this memoized function as dependency in your useEffect hook
+useEffect(() => {
+  const audio = audioRef.current;
+  audio.addEventListener('timeupdate', updateProgress);
+
+  return () => {
+    audio.removeEventListener('timeupdate', updateProgress);
+  };
+}, [audioRef, updateProgress]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -234,7 +258,18 @@ function Player() {
 
         </div>
 
-        <div className="player__progress"><p></p></div>
+         <div className="player__progress" style={{'--progress': `${songProgress}%`}}>
+        <input
+          type="range"
+          id="progress"
+          name="progress"
+          min="0"
+          max="100"
+          step="1"
+          value={songProgress}
+          onChange={handleProgressChange}
+        />
+      </div>
 
         <audio ref={audioRef} />
       </div>

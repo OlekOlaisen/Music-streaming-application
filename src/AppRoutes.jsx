@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/footer.jsx';
+import Sidebar from './components/sidebar.jsx';
 import Home from './pages/home.jsx';
 import NotFound from './pages/notFound.jsx';
 import Search from './pages/search.jsx';
@@ -19,6 +20,7 @@ function AppRoutes() {
     <Route path="*" element={<NotFound />} />
     </Routes>
     <Footer/>
+    <Sidebar/>
     <Player/>
     </AudioProvider> 
     </Router>

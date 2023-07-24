@@ -265,13 +265,72 @@ audio {
 .shuffle-active {
   color: variable.$secondary-color;
 }
+.player__progress {
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, #f78278 var(--progress), transparent var(--progress));
+  border-radius: 5px;
+  position: absolute; 
+  top: 0;
+  cursor: pointer;
+}
+
+.player__progress input[type='range'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  top: 0;
+  background: transparent; 
+  border-radius: 5px;
+  outline: none;
+  z-index: 6;
+  cursor: pointer;
+}
+
+/* Chrome */
+.player__progress input[type='range']::-webkit-slider-runnable-track {
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  border-radius: 1.3px;
+  border: none;
+}
+.player__progress input[type='range']::-webkit-slider-thumb {
+  margin-top: -3px; 
+  width: 16px;   /* Increase the size */
+  height: 16px;  /* Increase the size */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-appearance: none;
+}
+
+/* Firefox */
+.player__progress input[type='range']::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: transparent;
+  border-radius: 1.3px;
+  border: none;
+}
+.player__progress input[type='range']::-moz-range-thumb {
+  width: 16px;   /* Increase the size */
+  height: 16px;  /* Increase the size */
+  background: #f78278;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
 
 
 
 @media (min-width: 576px) { 
-  .player__progress {
-    display: block;
-  }
   
   .player__info-song-title {
     width: 300px;
@@ -409,8 +468,6 @@ audio {
 
 .player__audio-slider::-ms-fill-lower {
  
-  
-  
 }
 
 .button {
