@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
-import { Search as SearchIcon } from 'react-bootstrap-icons';
+import { CgSearch, CgSearchLoading } from 'react-icons/cg';
+import { BiDotsVerticalRounded } from 'react-icons/bi';
+
 import { AudioContext } from '../components/audioContext.jsx';
 
 const FetchAPI = () => {
@@ -7,6 +9,8 @@ const FetchAPI = () => {
   const [debouncedQuery, setDebouncedQuery] = useState(query);
   const { playSong, setPlaylist, currentIndex, setCurrentIndex, searchResults, setSearchResults } = useContext(AudioContext);
   const [error, setError] = useState(null);
+  const [isFocused, setIsFocused] = useState(false);
+
 
   const searchSongs = useCallback((query) => {
     const options = {
@@ -79,15 +83,17 @@ const FetchAPI = () => {
       <label className="search__label" htmlFor="search"></label>
       <section className="search__input-container">
         <input
-          className="search__input"
-          type="text"
-          value={query}
-          onChange={handleInputChange}
-          placeholder="What do you want to listen to?"
-        />
+  className="search__input"
+  type="text"
+  value={query}
+  onChange={handleInputChange}
+  onFocus={() => setIsFocused(true)}
+  onBlur={() => setIsFocused(false)}
+  placeholder="What do you want to listen to?"
+/>
         <div className="search__input-icon">
-          <SearchIcon />
-        </div>
+  {isFocused ? <CgSearchLoading /> : <CgSearch />}
+</div>
       </section>
 
       <div className="search__results">
@@ -103,6 +109,8 @@ const FetchAPI = () => {
                 playSong(song.preview, index);
               }}
             >
+
+              <div className='search__results-item-container-song'>
               <div className="search__results-item-cover">
                 {song.album && song.album.cover && (
                   <img
@@ -118,6 +126,12 @@ const FetchAPI = () => {
                 </p>
                 <p className="search__results-artist">{song.artist && song.artist.name}</p>
               </div>
+              </div>
+              <div className='search__results-item-container-options'>
+              <div className="search__results-options">
+                 <button><BiDotsVerticalRounded className='option'/></button>
+              </div>
+            </div>
             </div>
           ))
         )}

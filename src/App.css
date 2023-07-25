@@ -150,9 +150,10 @@ html {
   margin-bottom: 7rem;
 }
 .search__results-item {
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
   flex-flow: row;
+  justify-content: space-between;
   gap: 1rem;
 }
 .search__results-item-image {
@@ -165,6 +166,15 @@ html {
 .search__results-item .search__results-artist {
   color: grey;
   font-size: 0.8rem;
+}
+
+.option {
+  font-size: 1.2rem;
+}
+
+.search__results-item-container-song {
+  display: flex;
+  gap: 1rem;
 }
 
 .playing {

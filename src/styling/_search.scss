@@ -72,6 +72,20 @@
     }
 }
 
+.option {
+    font-size: 1.2rem;
+}
+
+.search__results-item-container-song {
+    display: flex;
+    gap: 1rem;
+    
+}
+
+.search__results-item-container-options {
+    
+}
+
 
 .playing {
     color: variable.$secondary-color;
