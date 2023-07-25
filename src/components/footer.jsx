@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { HouseDoorFill, HouseDoor, Search, MusicNoteList } from 'react-bootstrap-icons';
+import { HouseDoorFill, HouseDoor } from 'react-bootstrap-icons';
 import { RiSearchLine, RiSearchFill, RiPlayListLine, RiPlayListFill,RiSearchEyeLine } from "react-icons/ri";
 
 function Footer() {
