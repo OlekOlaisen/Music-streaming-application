@@ -176,10 +176,9 @@ html {
   margin-bottom: 7rem;
 }
 .search__results-item {
-  padding: 0.5rem;
+  padding: 1rem;
   display: flex;
   flex-flow: row;
-  justify-content: space-between;
   gap: 1rem;
 }
 .search__results-item-image {
@@ -513,7 +512,7 @@ audio {
   -webkit-appearance: none;
           appearance: none;
   width: 100%;
-  height: 4px;
+  height: 10px;
   background: transparent;
   border-radius: 1.3px;
   border: none;
@@ -582,9 +581,9 @@ audio {
 }
 
 .player__progress-extended input[type=range] {
-  -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
+  -webkit-appearance: none;
+          appearance: none;
   width: 100%;
   height: 3px;
   position: absolute;
@@ -599,8 +598,6 @@ audio {
 
 /* Chrome */
 .player__progress-extended input[type=range]::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-          appearance: none;
   width: 100%;
   height: 4px;
   background: transparent;
@@ -618,7 +615,6 @@ audio {
   border: none;
   cursor: pointer;
   border-radius: 50%;
-  -webkit-appearance: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
@@ -700,22 +696,21 @@ audio {
     gap: 1rem;
     position: relative;
     z-index: 3;
-    margin-right: 2rem;
   }
   .player__audio-slider {
     -webkit-appearance: none;
-    -moz-appearance: none;
-         appearance: none;
+       -moz-appearance: none;
+            appearance: none;
     width: 100%;
-    height: 8px;
+    height: 4px;
     background: transparent;
     outline: none;
-    opacity: 0.7;
     transition: opacity 0.2s;
+    border-radius: 10px;
   }
   .player__audio-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    appearance: none;
+            appearance: none;
     width: 0;
     height: 0;
     cursor: pointer;
@@ -766,7 +761,7 @@ audio {
     background: var(--secondary-color);
   }
   .button {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
   .player__controls-song-details {
     display: flex;
@@ -780,6 +775,23 @@ audio {
   }
   .player__controls-artist-name {
     font-size: 1rem;
+  }
+  input[type=range] {
+    overflow: hidden;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 10px;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    height: 4px;
+    -webkit-appearance: none;
+    color: #13bba4;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    width: 0px;
+    -webkit-appearance: none;
+    height: 0px;
+    box-shadow: -80px 0 0 80px #f78278;
   }
 }
 .notFound__image {
