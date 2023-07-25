@@ -179,6 +179,7 @@ html {
   padding: 1rem;
   display: flex;
   flex-flow: row;
+  justify-content: space-between;
   gap: 1rem;
 }
 .search__results-item-image {
