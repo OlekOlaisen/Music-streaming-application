@@ -12,6 +12,9 @@ import {
   VolumeMuteFill,
   VolumeUpFill,
 } from 'react-bootstrap-icons';
+
+
+
 import { AudioContext } from './audioContext.jsx';
 
 function Player() {
@@ -109,6 +112,8 @@ function Player() {
         audio.removeEventListener('loadedmetadata', setAudioData);
     };
 }, [audioRef]);
+
+
       
       
       useEffect(() => {
@@ -216,6 +221,10 @@ function Player() {
           audio.loop = false;
           audio.addEventListener('ended', playNext);
         }
+
+       
+
+
       };
       
       return (

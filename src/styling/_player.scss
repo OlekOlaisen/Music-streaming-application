@@ -587,16 +587,18 @@ audio {
 /* IE/Edge styles */
 .player__audio-slider::-ms-track {
   background: rgba(0, 0, 0, 0.699);
-  
-  
 }
+
+
 
 .player__audio-slider::-ms-thumb {
   background: var(--secondary-color);
 }
 
+
+
 .button {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 

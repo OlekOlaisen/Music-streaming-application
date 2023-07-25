@@ -39,6 +39,10 @@ html {
   color: #f78278;
 }
 
+.footer__desktop-link-icon {
+  font-size: 2rem;
+}
+
 @media (min-width: 992px) {
   .footer__desktop {
     display: flex;
@@ -717,7 +721,7 @@ audio {
     background: var(--secondary-color);
   }
   .button {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   .player__controls-song-details {
     display: flex;
