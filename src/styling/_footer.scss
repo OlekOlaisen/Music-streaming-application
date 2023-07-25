@@ -18,7 +18,7 @@
 }
 
 .footer__link {
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	background: transparent;
 	border: none;
 	color: variable.$secondary-color;
@@ -26,6 +26,14 @@
 
 .footer__desktop-link-icon {
 	font-size: 2rem;
+}
+
+.player__progress-currentTime {
+	font-size: 0.8rem;
+}
+
+.player__progress-duration {
+font-size: 0.8rem;
 }
 
 
