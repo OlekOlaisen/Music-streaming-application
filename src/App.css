@@ -207,6 +207,84 @@ html {
   color: #f78278;
 }
 
+
+.player__progress-extended {
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, #f78278 var(--progress), #0e1721 var(--progress));
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  transition: width 0.1s ease-in-out;
+  z-index: 9;
+}
+
+
+
+.player__progress-extended input[type=range] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+          appearance: none;
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  top: 0;
+  background: transparent;
+  border-radius: 5px;
+  outline: none;
+  z-index: 6;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* Chrome */
+.player__progress-extended input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  border-radius: 1.3px;
+  border: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.player__progress-extended input[type=range]::-webkit-slider-thumb {
+  margin-top: -3px;
+  width: 0px;
+  height: 0px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+}
+
+/* Firefox */
+.player__progress-extended input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: transparent;
+  border-radius: 1.3px;
+  border: none;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.player__progress-extended input[type=range]::-moz-range-thumb {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+  
+}
+
 @media (min-width: 992px) {
   .search__input-container {
     width: 360px;
@@ -523,8 +601,8 @@ audio {
 
 .player__progress input[type=range]::-webkit-slider-thumb {
   margin-top: -3px;
-  width: 16px;
-  height: 16px;
+  width: 0px;
+  height: 0px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -532,6 +610,7 @@ audio {
   -webkit-appearance: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  
 }
 
 /* Firefox */
@@ -547,8 +626,9 @@ audio {
 }
 
 .player__progress input[type=range]::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
+  
+  width: 0px;
+  height: 0px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -561,17 +641,6 @@ audio {
   margin: 0 auto;
 }
 
-.player__progress-extended {
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(to right, #f78278 var(--progress), #0e1721 var(--progress));
-  border-radius: 5px;
-  position: relative;
-  cursor: pointer;
-  transition: width 0.1s ease-in-out;
-  z-index: 9;
-}
-
 .player__duration {
   width: 100%;
   display: flex;
@@ -581,67 +650,6 @@ audio {
   color: white;
 }
 
-.player__progress-extended input[type=range] {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-          appearance: none;
-  width: 100%;
-  height: 3px;
-  position: absolute;
-  top: 0;
-  background: transparent;
-  border-radius: 5px;
-  outline: none;
-  z-index: 6;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-/* Chrome */
-.player__progress-extended input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 4px;
-  background: transparent;
-  border-radius: 1.3px;
-  border: none;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-.player__progress-extended input[type=range]::-webkit-slider-thumb {
-  margin-top: -3px;
-  width: 16px;
-  height: 16px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  border-radius: 50%;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-/* Firefox */
-.player__progress-extended input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 4px;
-  cursor: pointer;
-  background: transparent;
-  border-radius: 1.3px;
-  border: none;
-  -moz-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-.player__progress-extended input[type=range]::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  border-radius: 50%;
-  -moz-transition: all 0.2s;
-  transition: all 0.2s;
-}
 
 .player__controls-container-extended {
   margin: 3rem;
