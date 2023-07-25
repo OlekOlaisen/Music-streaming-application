@@ -12,7 +12,7 @@ Deezer-Preview is a react web application currently under development that allow
 Users can control playback, repeat songs and playlists, shuffle songs and show extended view of the current song.
 The web application is under development and is far from finished, but you can preview the project [here](https://deezer-preview.netlify.app) as it continues to get developed. Test it on your mobile for the best experience.
 
-NOTE: The web application is mobile first, and is not very responsive to desktop as of yet. 
+
 
 
 ## Features
