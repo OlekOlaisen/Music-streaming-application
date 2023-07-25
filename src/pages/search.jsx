@@ -10,6 +10,14 @@ const FetchAPI = () => {
   const { playSong, setPlaylist, currentIndex, setCurrentIndex, searchResults, setSearchResults } = useContext(AudioContext);
   const [error, setError] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+   const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const menuClass = `slide-up-menu ${isMenuOpen ? 'slide-up-menu-visible' : 'slide-up-menu-hidden'}`;
+
 
 
   const searchSongs = useCallback((query) => {
@@ -128,11 +136,15 @@ const FetchAPI = () => {
               </div>
               </div>
               <div className='search__results-item-container-options'>
-              <div className="search__results-options">
-                 <button><BiDotsVerticalRounded className='option'/></button>
+              <div className="search__results-options">               
+      <BiDotsVerticalRounded onClick={toggleMenu} className='option' />
+      <div className={menuClass}>
+        <p>Add to playlist</p>
+      </div>
+    </div>
               </div>
             </div>
-            </div>
+            
           ))
         )}
       </div>

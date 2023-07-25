@@ -1,18 +1,5 @@
 @use 'variables' as variable;
 
-.home {
-	
-	height: 100%;
-}
-
-.home__logo {
-	width: 70%;
-	display: block;
-	margin: 3rem auto;
-}
-
-
-
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) { 
 	
@@ -25,13 +12,9 @@
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) { 
-
-	.home {
-	
-	margin-left: 10rem;
-	
-}
-	
+	.playlists {
+		margin-left: 10rem;
+	}
 }
 
 // X-Large devices (large desktops, 1200px and up)
