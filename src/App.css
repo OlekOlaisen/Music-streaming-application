@@ -570,6 +570,7 @@ audio {
   cursor: pointer;
   transition: width 0.1s ease-in-out;
   z-index: 9;
+  
 }
 
 .player__duration {
@@ -606,6 +607,7 @@ audio {
   border: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  
 }
 
 .player__progress-extended input[type=range]::-webkit-slider-thumb {
@@ -618,6 +620,7 @@ audio {
   border-radius: 50%;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  -webkit-appearance: none;
 }
 
 /* Firefox */
