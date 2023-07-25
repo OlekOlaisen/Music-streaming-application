@@ -176,7 +176,7 @@ html {
   margin-bottom: 7rem;
 }
 .search__results-item {
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
