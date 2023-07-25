@@ -65,11 +65,11 @@ export const AudioProvider = ({ children }) => {
     }
   }, [isPlaying]);
 
+  // Handle song change
   useEffect(() => {
     if (playlist[currentIndex]) {
       const audio = audioRef.current;
       audio.src = playlist[currentIndex].preview;
-      audio.loop = repeatMode === 2; // Repeat the current song if repeatMode is 2
       audio.play().then(() => {
         setIsPlaying(true);
       }).catch((error) => {
@@ -77,7 +77,13 @@ export const AudioProvider = ({ children }) => {
       });
       setCurrentSong(playlist[currentIndex]); 
     }
-  }, [currentIndex, playlist, repeatMode]);
+  }, [currentIndex, playlist]);
+
+  // Handle loop mode change
+  useEffect(() => {
+    const audio = audioRef.current;
+    audio.loop = repeatMode === 2; // Repeat the current song if repeatMode is 2
+  }, [repeatMode]);
 
   useEffect(() => {
     const audio = audioRef.current;

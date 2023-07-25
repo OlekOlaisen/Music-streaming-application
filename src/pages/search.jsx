@@ -18,8 +18,6 @@ const FetchAPI = () => {
 
   const menuClass = `slide-up-menu ${isMenuOpen ? 'slide-up-menu-visible' : 'slide-up-menu-hidden'}`;
 
-
-
   const searchSongs = useCallback((query) => {
     const options = {
       method: 'GET',
