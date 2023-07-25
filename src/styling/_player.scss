@@ -508,7 +508,7 @@ audio {
   gap: 1rem;
   position: relative;
   z-index: 3;
-
+    margin-right: 2rem;
 }
 
 .player__audio-slider {
@@ -553,7 +553,7 @@ audio {
 
 .player__audio-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-
+  background: transparent;
   
 }
 
