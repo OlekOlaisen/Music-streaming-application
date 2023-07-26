@@ -7,19 +7,19 @@ function Home() {
   const [error, setError] = useState(null);
 
   const fetchTrends = useCallback((endpoint, setData) => {
-    fetch(`/${endpoint}?apikey=${process.env.REACT_APP_DEEZER_API_KEY}`)
+    fetch(`/${endpoint}?apikey='ca0915a1bac255e54e9b844c07f5c53f'`)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => setData(data.data))
+  .catch((err) => {
+    console.error(err);
+    setError(`Error occurred while fetching ${endpoint}`);
+  });
 
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`API request failed with status ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => setData(data.data))
-      .catch((err) => {
-        console.error(err);
-        setError(`Error occurred while fetching ${endpoint}`);
-      });
   }, []);
 
   useEffect(() => {
