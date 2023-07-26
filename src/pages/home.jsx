@@ -7,22 +7,28 @@ function Home() {
   const [error, setError] = useState(null);
 
   const fetchTrends = useCallback((endpoint, setData) => {
-    fetch(`https://api.deezer.com/${endpoint}?apikey=${process.env.REACT_APP_DEEZER_API_KEY}`)
+  fetch(`/${endpoint}`)
   .then((response) => {
-    console.log(response);
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
     }
     return response.json();
   })
-  .then((data) => setData(data.data))
+  .then((data) => {
+    if (data.error) {
+      console.error('API returned an error:', data.error);
+      setError(`Error occurred while fetching ${endpoint}`);
+    } else {
+      setData(data.data);
+    }
+  })
   .catch((err) => {
     console.error(err);
-    setError(`Error occurred while fetching ${endpoint}`);
   });
 
 
-  }, []);
+}, []);
+
 
   useEffect(() => {
     fetchTrends('chart/0/tracks', setTrendingTracks);
