@@ -7,7 +7,7 @@ function Home() {
   const [error, setError] = useState(null);
 
   const fetchTrends = useCallback((endpoint, setData) => {
-    fetch(`/${endpoint}?apikey=${process.env.REACT_APP_DEEZER_API_KEY}`)
+    fetch(`https://api.deezer.com/${endpoint}?apikey=${process.env.REACT_APP_DEEZER_API_KEY}`)
 
       .then((response) => {
         if (!response.ok) {
