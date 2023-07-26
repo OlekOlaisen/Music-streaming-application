@@ -3,9 +3,7 @@
 .search {
     margin: 0.5rem;
     
-    &__label {
-        // Styles for label go here
-    }
+    
     
     &__input-container {
         position: sticky;
@@ -50,9 +48,7 @@
             gap: 1rem;
 
             
-            &-cover {
-                
-            }
+            
             
             &-image {
                 width: 50px;
@@ -84,9 +80,7 @@
     
 }
 
-.search__results-item-container-options {
-    
-}
+
 
 
 .playing {
