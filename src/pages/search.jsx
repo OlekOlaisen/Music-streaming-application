@@ -19,7 +19,7 @@ const FetchAPI = () => {
   const menuClass = `slide-up-menu ${isMenuOpen ? 'slide-up-menu-visible' : 'slide-up-menu-hidden'}`;
 
   const searchSongs = useCallback((query) => {
-    fetch(`https://api.deezer.com/search?q=${query}&apikey=${process.env.REACT_APP_DEEZER_API_KEY}`)
+    fetch(`/search?q=${query}&apikey=${process.env.REACT_APP_DEEZER_API_KEY}`)
 
       .then((response) => {
         if (!response.ok) {
