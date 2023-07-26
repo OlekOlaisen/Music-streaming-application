@@ -7,8 +7,9 @@ function Home() {
   const [error, setError] = useState(null);
 
   const fetchTrends = useCallback((endpoint, setData) => {
-    fetch(`/${endpoint}?apikey=${process.env.REACT_APP_DEEZER_API_KEY}`)
+    fetch(`https://api.deezer.com/${endpoint}?apikey=${process.env.REACT_APP_DEEZER_API_KEY}`)
   .then((response) => {
+    console.log(response);
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
     }
@@ -19,6 +20,7 @@ function Home() {
     console.error(err);
     setError(`Error occurred while fetching ${endpoint}`);
   });
+
 
   }, []);
 
