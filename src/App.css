@@ -19,13 +19,13 @@ html {
   transition: transform 0.3s ease-in-out;
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
-  height: 50vh; /* Set the height of the menu */
-  background: #fff;
+  height: 50vh;
+  background: #0e1721;
   z-index: 2;
   padding: 1em;
   box-sizing: border-box;
-  /* You can customize this section according to your needs */
 }
 
 .slide-up-menu-hidden {
@@ -136,6 +136,45 @@ html {
   margin: 3rem auto;
 }
 
+.home__trending-tracks {
+  display: flex;
+  flex-flow: row;
+  align-items: start;
+  overflow-x: auto;
+  gap: 1rem;
+}
+
+.home__trending-artists {
+  display: flex;
+  flex-flow: row;
+  padding: 0.5rem;
+  gap: 1rem;
+  align-items: start;
+  overflow-x: auto;
+}
+
+.home__trending-albums {
+  display: flex;
+  flex-flow: row;
+  padding: 0.5rem;
+  gap: 1rem;
+  align-items: start;
+  overflow-x: auto;
+}
+
+.home__trending-albums-cover {
+  width: 100px;
+}
+
+.home__trending-artists-cover {
+  width: 100px;
+  border-radius: 50%;
+}
+
+.home__trending-tracks-title, .home__trending-artists-title, .home__trending-albums-title {
+  color: #f78278;
+}
+
 @media (min-width: 992px) {
   .home {
     margin-left: 10rem;
@@ -176,7 +215,7 @@ html {
   margin-bottom: 7rem;
 }
 .search__results-item {
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -570,7 +609,6 @@ audio {
   cursor: pointer;
   transition: width 0.1s ease-in-out;
   z-index: 9;
-  
 }
 
 .player__duration {
@@ -607,7 +645,6 @@ audio {
   border: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-  
 }
 
 .player__progress-extended input[type=range]::-webkit-slider-thumb {
@@ -620,7 +657,6 @@ audio {
   border-radius: 50%;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-  -webkit-appearance: none;
 }
 
 /* Firefox */

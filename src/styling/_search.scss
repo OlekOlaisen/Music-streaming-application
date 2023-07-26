@@ -43,10 +43,12 @@
         margin-bottom: 7rem;
         
         &-item {
-            padding: 1rem;
+            padding: 0.5rem;
             display: flex;
             flex-flow: row;
+            justify-content: space-between;
             gap: 1rem;
+
             
             &-cover {
                 

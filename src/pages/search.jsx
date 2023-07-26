@@ -19,15 +19,8 @@ const FetchAPI = () => {
   const menuClass = `slide-up-menu ${isMenuOpen ? 'slide-up-menu-visible' : 'slide-up-menu-hidden'}`;
 
   const searchSongs = useCallback((query) => {
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': `${process.env.REACT_APP_RAPIDAPI_KEY}`,
-        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-      },
-    };
+    fetch(`/search?q=${query}&apikey=${process.env.REACT_APP_DEEZER_API_KEY}`)
 
-    fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`, options)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`API request failed with status ${response.status}`);
@@ -49,6 +42,7 @@ const FetchAPI = () => {
         setError('Error occurred while searching');
       });
   }, [setPlaylist, setSearchResults]);
+
 
   useEffect(() => {
     if (currentIndex >= 0 && searchResults[currentIndex]) {
@@ -137,7 +131,7 @@ const FetchAPI = () => {
               <div className="search__results-options">               
       <BiDotsVerticalRounded onClick={toggleMenu} className='option' />
       <div className={menuClass}>
-        <p>Add to playlist</p>
+        <button className='menuClass_add-to-favorites'>Add to playlist</button>
       </div>
     </div>
               </div>

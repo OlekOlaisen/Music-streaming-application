@@ -11,6 +11,48 @@
 	margin: 3rem auto;
 }
 
+.home__trending-tracks {
+	display: flex;
+	flex-flow: row;
+	
+	align-items: start;
+	overflow-x: auto;
+	gap: 1rem;
+}
+
+.home__trending-artists {
+	display: flex;
+	flex-flow: row;
+	padding: 0.5rem;
+	gap: 1rem;
+	align-items: start;
+	overflow-x: auto;
+
+}
+
+.home__trending-albums {
+	display: flex;
+	flex-flow: row;
+	padding: 0.5rem;
+	gap: 1rem;
+	align-items: start;
+	overflow-x: auto;
+}
+
+.home__trending-albums-cover {
+	width: 100px;
+}
+
+.home__trending-artists-cover {
+	width: 100px;
+	border-radius: 50%;
+	
+}
+
+.home__trending-tracks-title, .home__trending-artists-title, .home__trending-albums-title {
+	color: variable.$secondary-color;
+}
+
 
 
 // Small devices (landscape phones, 576px and up)
