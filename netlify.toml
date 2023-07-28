@@ -1,5 +1,5 @@
 [[redirects]]
 from = "/chart/*"
-to = "https://api.deezer.com/:splat"
+to = "https://api.deezer.com/chart/:splat"
 status = 200
 force = true
