@@ -31,9 +31,9 @@ function Home() {
 
 
   useEffect(() => {
-    fetchTrends('chart/0/tracks', setTrendingTracks);
-    fetchTrends('chart/0/artists', setTrendingArtists);
-    fetchTrends('chart/0/albums', setTrendingAlbums);
+    fetchTrends('/chart/0/tracks', setTrendingTracks);
+    fetchTrends('/chart/0/artists', setTrendingArtists);
+    fetchTrends('/chart/0/albums', setTrendingAlbums);
   }, [fetchTrends]);
 
   return (
