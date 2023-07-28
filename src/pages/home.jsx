@@ -7,7 +7,7 @@ function Home() {
   const [error, setError] = useState(null);
   
   const fetchTrends = useCallback((endpoint, setData) => {
-    fetch(`/${endpoint}`)
+    fetch(`https://deezer-preview.netlify.app/${endpoint}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`API request failed with status ${response.status}`);
