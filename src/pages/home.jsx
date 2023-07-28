@@ -7,7 +7,7 @@ function Home() {
   const [error, setError] = useState(null);
   
   const fetchTrends = useCallback((endpoint, setData) => {
-    fetch(`/${endpoint}`)
+    fetch(endpoint)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`API request failed with status ${response.status}`);
@@ -25,16 +25,14 @@ function Home() {
     .catch((err) => {
       console.error(err);
     });
-    
-    
   }, []);
   
-  
   useEffect(() => {
-    fetchTrends('chart/0/tracks', setTrendingTracks);
-    fetchTrends('chart/0/artists', setTrendingArtists);
-    fetchTrends('chart/0/albums', setTrendingAlbums);
+    fetchTrends('/api/chart/0/tracks', setTrendingTracks);
+    fetchTrends('/api/chart/0/artists', setTrendingArtists);
+    fetchTrends('/api/chart/0/albums', setTrendingAlbums);
   }, [fetchTrends]);
+  
   
   return (
     <main className="home">
