@@ -1,8 +1,10 @@
 @use 'variables' as variable;
 
 .home {
-	
+	display: flex;
 	height: 100%;
+	flex-flow: column;
+	gap: 1rem;
 }
 
 .home__logo {
@@ -14,17 +16,17 @@
 .home__trending-tracks {
 	display: flex;
 	flex-flow: row;
-	
 	align-items: flex-start;
 	overflow-x: auto;
 	gap: 1rem;
+	padding: 0.5rem;
 }
 
 .home__trending-artists {
 	display: flex;
 	flex-flow: row;
 	padding: 0.5rem;
-	gap: 1rem;
+	
 	align-items: flex-start;
 	overflow-x: auto;
 
@@ -39,6 +41,27 @@
 	overflow-x: auto;
 }
 
+.home__trending-tracks-item {
+	overflow: hidden;
+	width: 100px;
+}
+
+.home__trending-artist-item {
+	width: 150px;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	gap: 0.5rem;
+	overflow: hidden;
+	word-wrap: break-word;
+}
+
+.home__trending-albums-item {
+	width: 100px;
+	overflow: hidden;
+	word-wrap: break-word;
+}
+
 .home__trending-albums-cover {
 	width: 100px;
 }
@@ -49,8 +72,29 @@
 	
 }
 
+.home__trending-tracks-cover {
+	width: 100px;
+}
+
 .home__trending-tracks-title, .home__trending-artists-title, .home__trending-albums-title {
 	color: variable.$secondary-color;
+	
+}
+
+.artist__name {
+	color: variable.$secondary-color;
+	font-size: 0.7rem;
+}
+
+.album__title {
+	color: white;
+	font-size: 0.8rem;
+	
+}
+
+.track__title{
+	color: white;
+	font-size: 0.8rem;
 }
 
 

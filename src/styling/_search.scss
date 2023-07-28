@@ -80,6 +80,14 @@
     
 }
 
+.search__results-item {
+  padding: 0.5rem;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  gap: 1rem;
+  z-index: 0;
+} 
 
 
 

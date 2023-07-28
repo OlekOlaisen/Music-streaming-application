@@ -21,6 +21,7 @@ audio {
   justify-content: space-evenly;
   align-items: center;
   overflow: hidden;
+  background-color: variable.$primary-color-background;
 }
 
 .player__container {

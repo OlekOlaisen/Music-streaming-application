@@ -127,7 +127,10 @@ html {
   }
 }
 .home {
+  display: flex;
   height: 100%;
+  flex-flow: column;
+  gap: 1rem;
 }
 
 .home__logo {
@@ -142,13 +145,13 @@ html {
   align-items: flex-start;
   overflow-x: auto;
   gap: 1rem;
+  padding: 0.5rem;
 }
 
 .home__trending-artists {
   display: flex;
   flex-flow: row;
   padding: 0.5rem;
-  gap: 1rem;
   align-items: flex-start;
   overflow-x: auto;
 }
@@ -162,6 +165,27 @@ html {
   overflow-x: auto;
 }
 
+.home__trending-tracks-item {
+  overflow: hidden;
+  width: 100px;
+}
+
+.home__trending-artist-item {
+  width: 150px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.home__trending-albums-item {
+  width: 100px;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
 .home__trending-albums-cover {
   width: 100px;
 }
@@ -171,8 +195,27 @@ html {
   border-radius: 50%;
 }
 
+.home__trending-tracks-cover {
+  width: 100px;
+}
+
 .home__trending-tracks-title, .home__trending-artists-title, .home__trending-albums-title {
   color: #f78278;
+}
+
+.artist__name {
+  color: #f78278;
+  font-size: 0.7rem;
+}
+
+.album__title {
+  color: white;
+  font-size: 0.8rem;
+}
+
+.track__title {
+  color: white;
+  font-size: 0.8rem;
 }
 
 @media (min-width: 992px) {
@@ -242,6 +285,15 @@ html {
   gap: 1rem;
 }
 
+.search__results-item {
+  padding: 0.5rem;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  gap: 1rem;
+  z-index: 0;
+}
+
 .playing {
   color: #f78278;
 }
@@ -277,6 +329,7 @@ audio {
   justify-content: space-evenly;
   align-items: center;
   overflow: hidden;
+  background-color: #131c26;
 }
 
 .player__container {
