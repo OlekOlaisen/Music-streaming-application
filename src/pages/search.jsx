@@ -19,7 +19,9 @@ const FetchAPI = () => {
   const menuClass = `slide-up-menu ${isMenuOpen ? 'slide-up-menu-visible' : 'slide-up-menu-hidden'}`;
 
   const searchSongs = useCallback((query) => {
-    fetch(`/search?q=${query}&apikey=${process.env.REACT_APP_DEEZER_API_KEY}`)
+    console.log('Query:', query);
+    fetch(`/.netlify/functions/proxy/search?q=${query}`)
+
 
       .then((response) => {
         if (!response.ok) {

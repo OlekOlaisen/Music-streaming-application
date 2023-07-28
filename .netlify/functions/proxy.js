@@ -1,18 +1,24 @@
-let fetch;
-
 exports.handler = async function(event, context) {
-  if (!fetch) {
-    fetch = (await import('node-fetch')).default;
-  }
-
-  console.log('Incoming request:', event.path);
-
-  const path = event.path.replace(/\.netlify\/functions\/[^/]+/, '');
-  const target = 'https://api.deezer.com' + path;
-
-  console.log('Proxied request:', target);
-
   try {
+    if (!fetch) {
+      fetch = (await import('node-fetch')).default;
+    }
+
+    console.log('Incoming request:', event.path);
+
+    const path = event.path.replace(/\.netlify\/functions\/[^/]+/, '');
+    let target = 'https://api.deezer.com' + path;
+
+    const queryString = Object.keys(event.queryStringParameters)
+      .map(key => key + '=' + encodeURIComponent(event.queryStringParameters[key]))
+      .join('&');
+
+    if (queryString) {
+      target = target + '?' + queryString;
+    }
+
+    console.log('Proxied request:', target);
+
     const response = await fetch(target);
     console.log('Response:', response.status, response.statusText);
     
