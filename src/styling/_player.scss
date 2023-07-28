@@ -314,8 +314,8 @@ audio {
 
 .player__progress input[type='range']::-webkit-slider-thumb {
   margin-top: -3px; 
-  width: 16px;   
-  height: 16px; 
+  width: 0px;   
+  height: 0px; 
   background: transparent;
   border: none;
   cursor: pointer;
@@ -335,8 +335,8 @@ audio {
   transition: all 0.2s;
 }
 .player__progress input[type='range']::-moz-range-thumb {
-  width: 16px;  
-  height: 16px;  
+  width: 0px;  
+  height: 0px;  
   background: transparent;
   border: none;
   cursor: pointer;
@@ -397,13 +397,13 @@ audio {
 
 .player__progress-extended input[type='range']::-webkit-slider-thumb {
   margin-top: -3px; 
-  width: 16px;   
-  height: 16px;  
+  width: 0px;   
+  height: 0px;  
   background: transparent;
   border: none;
   cursor: pointer;
   border-radius: 50%;
-  
+  -webkit-appearance: none;
   transition: all 0.2s;
 }
 
@@ -419,8 +419,8 @@ audio {
 }
 
 .player__progress-extended input[type='range']::-moz-range-thumb {
-  width: 16px;   
-  height: 16px;  
+  width: 0px;   
+  height: 0px;  
   background: transparent;
   border: none;
   cursor: pointer;
@@ -525,10 +525,10 @@ audio {
 }
 
 .player__audio-slider::-webkit-slider-thumb {
-  
+  -webkit-appearance: none;
   appearance: none;
-  width: 0;
-  height: 0;
+  width: 0px;
+  height: 0px;
   cursor: pointer;
 }
 
@@ -638,6 +638,7 @@ input[type='range'] {
       -webkit-appearance: none;
       height: 0px;
       box-shadow: -80px 0 0 80px variable.$secondary-color;
+      
     }
 
 
