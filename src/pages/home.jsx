@@ -6,33 +6,33 @@ function Home() {
   const [trendingAlbums, setTrendingAlbums] = useState([]);
   const [error, setError] = useState(null);
   
-  const fetchTrends = useCallback((endpoint, setData) => {
-    fetch(endpoint)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data.error) {
-        console.error('API returned an error:', data.error);
-        setError(`Error occurred while fetching ${endpoint}`);
-      } else {
-        setData(data.data);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  }, []);
+ const fetchTrends = useCallback((endpoint, setData) => {
+  fetch(`/.netlify/functions/proxy/${endpoint}`)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    if (data.error) {
+      console.error('API returned an error:', data.error);
+      setError(`Error occurred while fetching ${endpoint}`);
+    } else {
+      setData(data.data);
+    }
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+}, []);
+  
   
   useEffect(() => {
-    fetchTrends('/api/chart/0/tracks', setTrendingTracks);
-    fetchTrends('/api/chart/0/artists', setTrendingArtists);
-    fetchTrends('/api/chart/0/albums', setTrendingAlbums);
+    fetchTrends('chart/0/tracks', setTrendingTracks);
+    fetchTrends('chart/0/artists', setTrendingArtists);
+    fetchTrends('chart/0/albums', setTrendingAlbums);
   }, [fetchTrends]);
-  
   
   return (
     <main className="home">
