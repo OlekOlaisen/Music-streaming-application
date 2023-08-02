@@ -51,10 +51,12 @@ function Home() {
       
       {trendingArtists.map((artist) => (
         <div key={artist.id}> 
+        <Link className='Link' to={`/artist/${artist.id}`}>
         <div className='home__trending-artist-item'>
         <img className="home__trending-artists-cover" src={artist.picture} alt={artist.name} />
-        <Link to={`/artist/${artist.id}`} className='artist__name'>{artist.name}</Link>       
+        <p className='artist__name'>{artist.name}</p>       
         </div>
+        </Link>
         </div>
         ))}
         </div>

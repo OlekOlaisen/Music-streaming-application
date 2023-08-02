@@ -112,7 +112,7 @@ const FetchAPI = () => {
               }}
             >
               <div className="search__results-item-container-song">
-                <Link to={`/artist/${song.artist.id}`}>
+                
                   <div className="search__results-item-cover">
                     {song.album && song.album.cover && (
                       <img
@@ -130,11 +130,13 @@ const FetchAPI = () => {
                     >
                       {song.title}
                     </p>
+                    <Link className='Link' to={`/artist/${song.artist.id}`}>
                     <p className="search__results-artist">
                       {song.artist && song.artist.name}
                     </p>
+                    </Link>
                   </div>
-                </Link>
+                
               </div>
               <div className="search__results-item-container-options">
                 <div className="search__results-options">
