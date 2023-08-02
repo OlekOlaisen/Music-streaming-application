@@ -7,6 +7,7 @@ import NotFound from './pages/notFound.jsx';
 import Search from './pages/search.jsx';
 import Playlists from './pages/playlists.jsx';
 import Player from './components/player.jsx';
+import Artist from './pages/artist.jsx';
 import { AudioProvider } from './components/audioContext.jsx';
 
 function AppRoutes() {
@@ -17,6 +18,7 @@ function AppRoutes() {
     <Route path="/" element={<Home />} />
     <Route path="/search" element={<Search />} />
     <Route path="/playlists" element={<Playlists />} />
+    <Route path="/artist/:id" element={<Artist />} />
     <Route path="*" element={<NotFound />} />
     </Routes>
     <Footer/>

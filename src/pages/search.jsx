@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { CgSearch, CgSearchLoading } from 'react-icons/cg';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
-
+import { Link } from 'react-router-dom';
 import { AudioContext } from '../components/audioContext.jsx';
 
 const FetchAPI = () => {
@@ -80,22 +80,22 @@ const FetchAPI = () => {
   }
 }, [debouncedQuery, searchSongs]);
 
-  return (
+ return (
     <section className="search">
       <label className="search__label" htmlFor="search"></label>
       <section className="search__input-container">
         <input
-  className="search__input"
-  type="text"
-  value={query}
-  onChange={handleInputChange}
-  onFocus={() => setIsFocused(true)}
-  onBlur={() => setIsFocused(false)}
-  placeholder="What do you want to listen to?"
-/>
+          className="search__input"
+          type="text"
+          value={query}
+          onChange={handleInputChange}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          placeholder="What do you want to listen to?"
+        />
         <div className="search__input-icon">
-  {isFocused ? <CgSearchLoading /> : <CgSearch />}
-</div>
+          {isFocused ? <CgSearchLoading /> : <CgSearch />}
+        </div>
       </section>
 
       <div className="search__results">
@@ -111,34 +111,40 @@ const FetchAPI = () => {
                 playSong(song.preview, index);
               }}
             >
-
-              <div className='search__results-item-container-song'>
-              <div className="search__results-item-cover">
-                {song.album && song.album.cover && (
-                  <img
-                    className="search__results-item-image"
-                    src={song.album.cover}
-                    alt={`${song.title} cover`}
-                  />
-                )}
+              <div className="search__results-item-container-song">
+                <Link to={`/artist/${song.artist.id}`}>
+                  <div className="search__results-item-cover">
+                    {song.album && song.album.cover && (
+                      <img
+                        className="search__results-item-image"
+                        src={song.album.cover}
+                        alt={`${song.title} cover`}
+                      />
+                    )}
+                  </div>
+                  <div className="search__results-info">
+                    <p
+                      className={`search__results-title ${
+                        currentIndex === index ? 'playing' : ''
+                      }`}
+                    >
+                      {song.title}
+                    </p>
+                    <p className="search__results-artist">
+                      {song.artist && song.artist.name}
+                    </p>
+                  </div>
+                </Link>
               </div>
-              <div className="search__results-info">
-                <p className={`search__results-title ${currentIndex === index ? 'playing' : ''}`}>
-                  {song.title}
-                </p>
-                <p className="search__results-artist">{song.artist && song.artist.name}</p>
-              </div>
-              </div>
-              <div className='search__results-item-container-options'>
-              <div className="search__results-options">               
-      <BiDotsVerticalRounded onClick={toggleMenu} className='option' />
-      <div className={menuClass}>
-        <button className='menuClass_add-to-favorites'>Add to playlist</button>
-      </div>
-    </div>
+              <div className="search__results-item-container-options">
+                <div className="search__results-options">
+                  <BiDotsVerticalRounded onClick={toggleMenu} className="option" />
+                  <div className={menuClass}>
+                    <button className="menuClass_add-to-favorites">Add to playlist</button>
+                  </div>
+                </div>
               </div>
             </div>
-            
           ))
         )}
       </div>

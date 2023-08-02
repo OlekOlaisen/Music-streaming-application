@@ -1,0 +1,118 @@
+@use 'variables' as variable;
+
+.artists {
+	color: variable.$primary-text;
+	margin: 0.5rem;
+}
+
+.artists__info {
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	gap: 2rem;
+	margin: 2rem;
+}
+
+.artists__text {
+	display: flex;
+	flex-flow: column;
+}
+
+.artists__name {
+	color: variable.$secondary-color;
+	font-size: 3rem;
+	font-weight: 700;
+	
+}
+
+.artists__cover {
+	border-radius: 50%;
+	width: 200px;
+}
+
+.artists__fans, .artists__albums {
+	font-size: 0.8rem;
+	color: grey;
+}
+
+.artists__top-tracks {
+	display: flex;
+	flex-flow: column;
+
+}
+
+.artists__track-item {
+	padding: 0.5rem;
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+}
+
+.track__album-cover {
+	width: 50px;
+	margin: 0.5rem;
+}
+
+.artists__album {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 8rem;
+  
+}
+
+.album__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.album__cover {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0.3rem;
+}
+
+.album__title {
+  margin-top: 0.5rem;
+  text-align: center;
+  color: white;
+}
+
+.track__album-number {
+	color: white;
+}
+
+
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+	
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+	
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+
+.artists {
+	margin-left: 10rem;
+}
+
+.artists__album {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+	
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {  }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {  }

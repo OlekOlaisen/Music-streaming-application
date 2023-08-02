@@ -64,6 +64,7 @@
 
 .home__trending-albums-cover {
 	width: 100px;
+	border-radius: 0.3rem;
 }
 
 .home__trending-artists-cover {
@@ -74,6 +75,7 @@
 
 .home__trending-tracks-cover {
 	width: 100px;
+	border-radius: 0.3rem;
 }
 
 .home__trending-tracks-title, .home__trending-artists-title, .home__trending-albums-title {
@@ -84,6 +86,7 @@
 .artist__name {
 	color: variable.$secondary-color;
 	font-size: 0.7rem;
+	
 }
 
 .album__title {
