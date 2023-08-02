@@ -40,98 +40,6 @@ html {
   transform: translateY(0);
 }
 
-.artists {
-  color: #ffffff;
-  margin: 0.5rem;
-}
-
-.artists__info {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  gap: 2rem;
-  margin: 2rem;
-}
-
-.artists__text {
-  display: flex;
-  flex-flow: column;
-}
-
-.artists__name {
-  color: #f78278;
-  font-size: 3rem;
-  font-weight: 700;
-}
-
-.artists__cover {
-  border-radius: 50%;
-  width: 200px;
-}
-
-.artists__fans, .artists__albums {
-  font-size: 0.8rem;
-  color: grey;
-}
-
-.artists__top-tracks {
-  display: flex;
-  flex-flow: column;
-}
-
-.artists__track-item {
-  padding: 0.5rem;
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-}
-
-.track__album-cover {
-  width: 50px;
-  margin: 0.5rem;
-}
-
-.artists__album {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 8rem;
-}
-
-.album__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.album__cover {
-  width: 150px;
-  height: 150px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 0.3rem;
-}
-
-.album__title {
-  margin-top: 0.5rem;
-  text-align: center;
-  color: white;
-}
-
-.track__album-number {
-  color: white;
-}
-
-@media (min-width: 992px) {
-  .artists {
-    margin-left: 10rem;
-  }
-  .artists__album {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-  }
-}
 .footer {
   display: flex;
   flex-flow: row;
@@ -1009,6 +917,98 @@ audio {
   .search__results {
     margin-bottom: 3rem;
     margin-left: 10rem;
+  }
+}
+.artists {
+  color: #ffffff;
+  margin: 0.5rem;
+}
+
+.artists__info {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem;
+}
+
+.artists__text {
+  display: flex;
+  flex-flow: column;
+}
+
+.artists__name {
+  color: #f78278;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.artists__cover {
+  border-radius: 50%;
+  width: 200px;
+}
+
+.artists__fans, .artists__albums {
+  font-size: 0.8rem;
+  color: grey;
+}
+
+.artists__top-tracks {
+  display: flex;
+  flex-flow: column;
+}
+
+.artists__track-item {
+  padding: 0.5rem;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.track__album-cover {
+  width: 50px;
+  margin: 0.5rem;
+}
+
+.artists__album {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 8rem;
+}
+
+.album__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.album__cover {
+  width: 150px;
+  height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 0.3rem;
+}
+
+.album__title {
+  margin-top: 0.5rem;
+  text-align: center;
+  color: white;
+}
+
+.track__album-number {
+  color: white;
+}
+
+@media (min-width: 992px) {
+  .artists {
+    margin-left: 10rem;
+  }
+  .artists__album {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
   }
 }
 html {
