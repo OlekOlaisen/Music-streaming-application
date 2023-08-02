@@ -290,7 +290,7 @@ audio {
   -moz-appearance: none;
   appearance: none;
   width: 100%;
-  height: 3px;
+  height: 4px;
   position: absolute;
   top: 0;
   background: transparent; 
@@ -299,6 +299,7 @@ audio {
   z-index: 6;
   cursor: pointer;
   transition: all 0.2s;
+  opacity: 0;
 }
 
 /* Chrome */
@@ -373,7 +374,7 @@ audio {
   -moz-appearance: none;
   appearance: none;
   width: 100%;
-  height: 3px;
+  height: 4px;
   position: absolute;
   top: 0;
   background: transparent; 
@@ -382,6 +383,7 @@ audio {
   z-index: 6;
   cursor: pointer;
   transition: all 0.2s;
+  opacity: 0;
 }
 
 /* Chrome */
