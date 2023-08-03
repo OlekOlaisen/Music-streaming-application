@@ -115,6 +115,9 @@
     color: grey;
 }
 
+.Link:hover {
+    color: variable.$secondary-color;
+}
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) { 

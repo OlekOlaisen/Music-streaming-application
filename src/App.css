@@ -1018,6 +1018,10 @@ audio {
   color: grey;
 }
 
+.Link:hover {
+  color: #f78278;
+}
+
 @media (min-width: 576px) {
   .search__results-empty-text {
     font-size: 1.5rem;
