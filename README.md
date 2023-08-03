@@ -21,9 +21,11 @@ The application has the following features:
 ```
 - Home, Search, Playlists pages
 - Search and play over 30 million tracks (30 second song preview)
+- View top 10 tracks, artists and albums
+- View a detailed artist page with top 5 songs and their albums
 - Control playback (play, pause, next, previous)
-- Repeat songs in different modes
-- Shuffle songs
+- Repeat songs in different modes (Repeat playlist and repeat song)
+- Shuffle next song in playlist
 - Adjust volume and mute button (Desktop version only)
 - Extended view of the song currently playing (Click on the song title in the player)
  ```
