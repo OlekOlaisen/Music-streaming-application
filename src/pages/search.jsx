@@ -113,7 +113,7 @@ useEffect(() => {
   ) : searchResults.length === 0 ? (
     <div className='search__results-empty'>
       <p className='search__results-empty-text'>Search among 30 million songs</p>
-      <img className='search__results-empty-image' src={Search} alt="image of a woman searching the web" />
+      <img className='search__results-empty-image' src={Search} alt="a woman searching the web" />
     </div>
   ) : (
     searchResults.map((song, index) => (
