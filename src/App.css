@@ -923,6 +923,10 @@ audio {
     gap: 1rem;
   }
 }
+.album {
+  margin-left: 10rem;
+}
+
 .search {
   margin: 0.5rem;
 }

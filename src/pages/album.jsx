@@ -1,0 +1,61 @@
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { AudioContext } from '../components/audioContext';
+
+const Album = () => {
+  const { id } = useParams();
+  const [albumData, setAlbumData] = useState(null);
+  const [songs, setSongs] = useState([]);
+  const { playSong, currentSong, setPlaylist } = useContext(AudioContext);
+
+    useEffect(() => {
+  setPlaylist(songs);
+}, [songs, setPlaylist]);
+
+  useEffect(() => {
+    fetch(`/.netlify/functions/proxy/album/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        setAlbumData(data);
+        setSongs(data.tracks.data); 
+      });
+
+  }, [id]);
+
+  if (!albumData || !songs.length) {
+    return <div>Loading...</div>;
+  }
+
+
+
+
+  return (
+    <div className='album'>
+      <div className='album__info'>
+        <img className="album__cover" src={albumData.cover} alt={albumData.title} />
+        <div className='album__text'>
+          <h1 className='album__name'>{albumData.title}</h1>
+          <p className='album__artist'><Link className='Link' to={`/artist/${albumData.artist.id}`}> {albumData.artist.name}</Link></p>
+          <p className='album__nb_tracks'>Number of tracks: {albumData.nb_tracks}</p>
+        </div>
+      </div>
+      <h2>Tracks</h2>
+      <div className='album__tracks'>
+        {songs.map((track, index) => (
+  <div
+    key={track.id}
+    onClick={() => playSong(track, index)}
+    className={`track__item ${currentSong && currentSong.id === track.id ? 'playing' : ''}`}
+  >
+    <span className='track__number'>{index + 1}.</span>
+    <span className='track__name'>{track.title}</span>
+    <audio controls src={track.preview}></audio>
+  </div>
+))}
+
+      </div>
+    </div>
+  );
+};
+
+export default Album;

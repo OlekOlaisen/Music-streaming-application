@@ -37,6 +37,17 @@ function Home() {
     fetchTrends('chart/0/artists', setTrendingArtists);
     fetchTrends('chart/0/albums', setTrendingAlbums);
   }, [fetchTrends]);
+
+  const findTrackById = useCallback((id) => {
+    return trendingTracks.findIndex(track => track.id === id);
+  }, [trendingTracks]);
+
+  const handleTrackClick = useCallback((track) => {
+    const trackIndex = findTrackById(track.id);
+    playSong(track.preview, trackIndex);
+    setPlaylist(trendingTracks);
+  }, [playSong, setPlaylist, findTrackById, trendingTracks]);
+
   
   return (
     <main className="home">
@@ -64,9 +75,9 @@ function Home() {
          <h2 className="home__trending-tracks-title">Top 10 tracks</h2>
     <div className="home__trending-tracks">
     
-   {trendingTracks.map((track, index) => (
-  <div key={track.id}>
-    <div className='home__trending-tracks-item' onClick={() => { playSong(track.preview, index); setPlaylist(trendingTracks); }}>
+   {trendingTracks.map((track) => (
+        <div key={track.id}>
+          <div className='home__trending-tracks-item' onClick={() => handleTrackClick(track)}>
       <img className='home__trending-tracks-cover' src={track.album.cover} alt={track.title} />
       <h3 className={`track__title ${currentSong && currentSong.id === track.id ? 'playing' : ''}`}>{track.title}</h3>
       <Link to={`/artist/${track.artist.id}`} className='artist__name' onClick={(event) => event.stopPropagation()}> {track.artist.name}</Link>

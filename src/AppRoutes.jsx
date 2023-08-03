@@ -8,23 +8,25 @@ import Search from './pages/search.jsx';
 import Playlists from './pages/playlists.jsx';
 import Player from './components/player.jsx';
 import Artist from './pages/artist.jsx';
+import Album from './pages/album.jsx';
 import { AudioProvider } from './components/audioContext.jsx';
 
 function AppRoutes() {
   return (
     <Router>
-    <AudioProvider>    
-    <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/search" element={<Search />} />
-    <Route path="/playlists" element={<Playlists />} />
-    <Route path="/artist/:id" element={<Artist />} />
-    <Route path="*" element={<NotFound />} />
-    </Routes>
-    <Footer/>
-    <Sidebar/>
-    <Player/>
-    </AudioProvider> 
+      <AudioProvider>    
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/playlists" element={<Playlists />} />
+          <Route path="/artist/:id" element={<Artist />} />
+          <Route path="/album/:id" element={<Album />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      <Footer/>
+      <Sidebar/>
+      <Player/>
+      </AudioProvider> 
     </Router>
     
     

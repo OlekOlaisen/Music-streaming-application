@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { AudioContext } from '../components/audioContext';
+import { Link } from 'react-router-dom';
 
 const Artist = () => {
   const [artistData, setArtistData] = useState(null);
@@ -63,11 +64,14 @@ const Artist = () => {
       <h2>Albums</h2>
       <div className='artists__album'>
         {albums.map(album => (
-          <div key={album.id} className='album__item'>
-            <img className="album__cover" src={album.cover} alt={album.title} />
-            <span>{album.title}</span>
-          </div>
-        ))}
+  <div key={album.id} className='album__item'>
+    <Link to={`/album/${album.id}`}>
+      <img className="album__cover" src={album.cover} alt={album.title} />
+      <span>{album.title}</span>
+    </Link>
+  </div>
+))}
+
       </div>
     </div>
   );
