@@ -13,6 +13,7 @@ button {
 
 .Link {
   text-decoration: none;
+  color: gray;
 }
 
 html {
@@ -975,6 +976,22 @@ audio {
   font-size: 0.8rem;
 }
 
+.search__results-empty {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem;
+}
+
+.search__results-empty-image {
+  width: 80%;
+}
+
+.search__results-empty-text {
+  font-size: 1rem;
+}
+
 .option {
   font-size: 1.2rem;
 }
@@ -1001,6 +1018,16 @@ audio {
   color: grey;
 }
 
+@media (min-width: 576px) {
+  .search__results-empty-text {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 768px) {
+  .search__results-empty-image {
+    width: 60%;
+  }
+}
 @media (min-width: 992px) {
   .search__input-container {
     width: 360px;
@@ -1009,6 +1036,12 @@ audio {
   .search__results {
     margin-bottom: 3rem;
     margin-left: 10rem;
+  }
+  .search__results-empty-text {
+    font-size: 2rem;
+  }
+  .search__results-empty-image {
+    width: 40%;
   }
 }
 html {

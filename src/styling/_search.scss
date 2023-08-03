@@ -70,6 +70,22 @@
     }
 }
 
+.search__results-empty {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem;
+}
+
+.search__results-empty-image {
+    width: 80%;
+}
+
+.search__results-empty-text {
+    font-size: 1rem;
+}
+
 .option {
     font-size: 1.2rem;
 }
@@ -101,10 +117,18 @@
 
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {  }
+@media (min-width: 576px) { 
+    .search__results-empty-text {
+    font-size: 1.5rem;
+}
+ }
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {  }
+@media (min-width: 768px) { 
+    .search__results-empty-image {
+    width: 60%;
+}
+ }
 
 // Large devices (desktops, 992px and up) 
 @media (min-width: 992px) { 
@@ -115,10 +139,17 @@
     }
 
     .search__results {
-
         margin-bottom: 3rem;
         margin-left: 10rem;
     }
+
+    .search__results-empty-text {
+    font-size: 2rem;
+}
+
+    .search__results-empty-image {
+    width: 40%;
+}
 
  }
 

@@ -3,6 +3,8 @@ import { CgSearch, CgSearchLoading } from 'react-icons/cg';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import { AudioContext } from '../components/audioContext.jsx';
+import Search from '../assets/images/search.svg';
+
 
 const FetchAPI = () => {
   const [query, setQuery] = useState('');
@@ -80,6 +82,13 @@ const FetchAPI = () => {
   }
 }, [debouncedQuery, searchSongs]);
 
+useEffect(() => {
+  return () => {
+    setSearchResults([]); 
+  };
+}, [setSearchResults]);
+
+
  return (
     <section className="search">
       <label className="search__label" htmlFor="search"></label>
@@ -99,10 +108,15 @@ const FetchAPI = () => {
       </section>
 
       <div className="search__results">
-        {error ? (
-          <p>{error}</p>
-        ) : (
-          searchResults.map((song, index) => (
+  {error ? (
+    <p>{error}</p>
+  ) : searchResults.length === 0 ? (
+    <div className='search__results-empty'>
+      <p className='search__results-empty-text'>Search among 30 million songs</p>
+      <img className='search__results-empty-image' src={Search} alt="image of a woman searching the web" />
+    </div>
+  ) : (
+    searchResults.map((song, index) => (
             <div
               className="search__results-item"
               key={index}
@@ -130,11 +144,11 @@ const FetchAPI = () => {
                     >
                       {song.title}
                     </p>
-                    <Link className='Link' to={`/artist/${song.artist.id}`}>
-                    <p className="search__results-artist">
-                      {song.artist && song.artist.name}
+                    
+                    <p className="search__results-artist"><Link className='Link' to={`/artist/${song.artist.id}`}>
+                      {song.artist && song.artist.name}</Link>
                     </p>
-                    </Link>
+                    
                   </div>
                 
               </div>
