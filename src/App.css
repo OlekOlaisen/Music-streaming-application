@@ -893,6 +893,7 @@ audio {
 .artists__top-tracks {
   display: flex;
   flex-flow: column;
+  margin: 1rem;
 }
 
 .artists__track-item {
@@ -967,6 +968,12 @@ audio {
     align-items: center;
     gap: 2rem;
     margin: 2rem;
+  }
+  .artists__name {
+    color: #f78278;
+    font-size: 3rem;
+    font-weight: 700;
+    width: 100vw;
   }
 }
 .album {

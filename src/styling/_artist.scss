@@ -42,8 +42,14 @@
 .artists__top-tracks {
 	display: flex;
 	flex-flow: column;
+	margin: 1rem;
+
 	
 }
+
+
+
+
 
 .artists__track-item {
 	gap: 0.5rem;
@@ -135,6 +141,15 @@
 	gap: 2rem;
 	margin: 2rem;
 }
+
+.artists__name {
+	color: variable.$secondary-color;
+	font-size: 3rem;
+	font-weight: 700;
+	width: 100vw;
+}
+
+
 	
 }
 
