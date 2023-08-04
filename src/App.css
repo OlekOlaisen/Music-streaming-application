@@ -16,6 +16,10 @@ button {
   color: gray;
 }
 
+a {
+  text-decoration: none;
+}
+
 html {
   font-family: "Nunito Sans", sans-serif;
 }
@@ -41,7 +45,7 @@ html {
   transform: translateY(0);
 }
 
-.footer {
+.footer__container {
   display: flex;
   flex-flow: row;
   justify-content: space-around;
@@ -235,11 +239,12 @@ html {
   display: flex;
   flex-flow: row;
   justify-content: space-evenly;
-  height: 4rem;
+  height: 0rem;
   width: 100vw;
   position: fixed;
   bottom: 3.5rem;
   background-color: #131c26;
+  transition: 0.1s ease-in;
 }
 
 audio {
@@ -253,6 +258,7 @@ audio {
   align-items: center;
   overflow: hidden;
   background-color: #131c26;
+  height: 4rem;
 }
 
 .player__container {
@@ -834,6 +840,9 @@ audio {
 .artists {
   color: #ffffff;
   margin: 0.5rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
 }
 
 .artists__info {
@@ -871,7 +880,7 @@ audio {
 }
 
 .artists__track-item {
-  padding: 0.5rem;
+  gap: 0.5rem;
   display: flex;
   flex-flow: row;
   align-items: center;
@@ -889,13 +898,14 @@ audio {
   margin-bottom: 8rem;
 }
 
-.album__item {
+.artists__album-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
-.album__cover {
+.artists__album-cover {
   width: 150px;
   height: 150px;
   -o-object-fit: cover;
@@ -911,6 +921,20 @@ audio {
 
 .track__album-number {
   color: white;
+  font-size: 0.8rem;
+}
+
+.artists__top-tracks-headline {
+  margin: 2rem 0 1rem 0;
+}
+
+.artists__album-headline {
+  margin: 2rem 0 1rem 0;
+}
+
+.artists__album-title {
+  color: white;
+  text-decoration: none;
 }
 
 @media (min-width: 992px) {

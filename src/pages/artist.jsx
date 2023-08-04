@@ -43,7 +43,7 @@ const Artist = () => {
           <p className='artists__albums'>Number of albums: {artistData.nb_album}</p>
         </div>
       </div>
-      <h2>Top Tracks</h2>
+      <h2 className='artists__top-tracks-headline'>Top Tracks</h2>
       <div className='artists__top-tracks'>
         {topTracks.map((track, index) => (
           <div
@@ -61,13 +61,13 @@ const Artist = () => {
         ))}
       </div>
 
-      <h2>Albums</h2>
+      <h2 className='artists__album-headline'>Albums</h2>
       <div className='artists__album'>
         {albums.map(album => (
-  <div key={album.id} className='album__item'>
+  <div key={album.id} className='artists__album-item'>
     <Link to={`/album/${album.id}`}>
-      <img className="album__cover" src={album.cover} alt={album.title} />
-      <span>{album.title}</span>
+      <img className="artists__album-cover" src={album.cover} alt={album.title} />
+      <p className='artists__album-title'>{album.title}</p>
     </Link>
   </div>
 ))}

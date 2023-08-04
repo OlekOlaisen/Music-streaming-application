@@ -11,8 +11,8 @@ function Footer() {
     const isActive = path => location.pathname === path;
 
   return (
-	<div className="footer__container">
-	<section className='footer'>
+	<div className="footer">
+	<section className='footer__container'>
             <NavLink className="footer__link" to="/" end>
                 {isActive('/') ? <HouseDoorFill /> : <HouseDoor />}
             </NavLink>

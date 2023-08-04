@@ -4,11 +4,12 @@
   display: flex;
   flex-flow: row;
   justify-content: space-evenly;
-  height: 4rem;
+  height: 0rem;
   width: 100vw;
   position: fixed;
   bottom: 3.5rem;
   background-color: variable.$primary-color-background;
+  transition: 0.1s ease-in;
 }
 
 audio {
@@ -22,6 +23,7 @@ audio {
   align-items: center;
   overflow: hidden;
   background-color: variable.$primary-color-background;
+  height: 4rem;
 }
 
 .player__container {
