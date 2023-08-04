@@ -22,6 +22,7 @@ const Artist = () => {
     fetch(`/.netlify/functions/proxy/artist/${id}/albums`)  
       .then(response => response.json())
       .then(data => setAlbums(data.data)); 
+      
 
   }, [id]);
 
@@ -34,11 +35,13 @@ const Artist = () => {
   return (
     <div className='artists'>
       <div className='artists__info'>
-        <img className="artists__cover" src={artistData.picture} alt={artistData.name} />
+        <img className="artists__cover" src={artistData.picture_xl} alt={artistData.name} />
         <div className='artists__text'>
           <h1 className='artists__name'>{artistData.name}</h1>
           <p className='artists__fans'>Number of fans: {artistData.nb_fan}</p>
           <p className='artists__albums'>Number of albums: {artistData.nb_album}</p>
+
+
         </div>
       </div>
       <h2 className='artists__top-tracks-headline'>Top Tracks</h2>

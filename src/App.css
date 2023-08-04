@@ -101,6 +101,9 @@ html {
     color: #ffffff;
     text-decoration: none;
   }
+  .footer__container {
+    display: none;
+  }
 }
 .sidebar {
   display: none;
@@ -147,6 +150,18 @@ html {
   width: 70%;
   display: block;
   margin: 3rem auto;
+}
+
+.home__trending-artists-title {
+  margin: 1rem;
+}
+
+.home__trending-tracks-title {
+  margin: 1rem;
+}
+
+.home__trending-albums-title {
+  margin: 1rem;
 }
 
 .home__trending-tracks {
@@ -915,7 +930,6 @@ audio {
 
 .album__title {
   margin-top: 0.5rem;
-  text-align: center;
   color: white;
 }
 
@@ -948,9 +962,79 @@ audio {
   }
 }
 .album {
-  margin-left: 10rem;
+  margin-left: 0rem;
+  display: flex;
+  flex-flow: column;
+  gap: 3rem;
 }
 
+.track__item {
+  padding: 0.5rem;
+  display: flex;
+  flex-flow: row;
+  gap: 1rem;
+  z-index: 0;
+}
+
+.track__name {
+  color: white;
+  font-size: 0.8rem;
+}
+
+.album__info-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.album__name {
+  color: #f78278;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.album__info-text-container {
+  display: flex;
+  flex-flow: column;
+}
+
+.album__cover {
+  width: 250px;
+  margin: 1rem;
+}
+
+.album__nb_tracks {
+  color: #ffffff;
+}
+
+.album__artist {
+  color: gray;
+}
+
+.album__tracks {
+  margin: 0 1rem 4rem 1rem;
+}
+
+.album__tracks-headline {
+  color: #f78278;
+}
+
+@media (min-width: 768px) {
+  .album__cover {
+    width: 250px;
+  }
+}
+@media (min-width: 992px) {
+  .album {
+    margin-left: 10rem;
+  }
+  .album__info-container {
+    flex-flow: row;
+    margin: 3rem;
+    gap: 2rem;
+  }
+}
 .search {
   margin: 0.5rem;
 }

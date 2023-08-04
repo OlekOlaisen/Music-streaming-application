@@ -6,6 +6,7 @@ const Album = () => {
   const { id } = useParams();
   const [albumData, setAlbumData] = useState(null);
   const [songs, setSongs] = useState([]);
+  const [releaseYear, setReleaseYear] = useState(null);
   const {  currentSong, playSongInContext} = useContext(AudioContext);
 
     
@@ -16,6 +17,7 @@ const Album = () => {
       .then(data => {
         setAlbumData(data);
         setSongs(data.tracks.data); 
+        setReleaseYear(data.release_date.slice(0, 4));
       });
 
   }, [id]);
@@ -24,21 +26,25 @@ const Album = () => {
     return <div>Loading...</div>;
   }
 
-
-
-
   return (
     <div className='album'>
       <div className='album__info'>
-        <img className="album__cover" src={albumData.cover} alt={albumData.title} />
-        <div className='album__text'>
+        <div className='album__info-container'>
+        <img className="album__cover" src={albumData.cover_xl} alt={albumData.title} />
+        <div className='album__info-text-container'>
           <h1 className='album__name'>{albumData.title}</h1>
-          <p className='album__artist'><Link className='Link' to={`/artist/${albumData.artist.id}`}> {albumData.artist.name}</Link></p>
-          <p className='album__nb_tracks'>Number of tracks: {albumData.nb_tracks}</p>
-        </div>
+          <p className='album__artist'><Link className='Link' to={`/artist/${albumData.artist.id}`}> {albumData.artist.name} </Link> • {albumData.nb_tracks} songs • {releaseYear}</p>
+          <p className='album__nb_tracks'> </p>
+          
+          </div>
+          </div>
+        
+          
+              
       </div>
-      <h2>Tracks</h2>
+      
       <div className='album__tracks'>
+        <h2 className='album__tracks-headline'>Tracks ({albumData.nb_tracks})</h2>
         {songs.map((track, index) => (
   <div
     key={track.id}
@@ -46,7 +52,7 @@ const Album = () => {
     className={`track__item ${currentSong && currentSong.id === track.id ? 'playing' : ''}`}
   >
     <span className='track__number'>{index + 1}.</span>
-    <span className='track__name'>{track.title}</span>
+    <span className={`track__name ${currentSong && currentSong.id === track.id ? 'playing' : ''}`}>{track.title}</span>
     <audio controls src={track.preview}></audio>
   </div>
 ))}
