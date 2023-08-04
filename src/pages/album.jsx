@@ -6,11 +6,9 @@ const Album = () => {
   const { id } = useParams();
   const [albumData, setAlbumData] = useState(null);
   const [songs, setSongs] = useState([]);
-  const { playSong, currentSong, setPlaylist } = useContext(AudioContext);
+  const {  currentSong, playSongInContext} = useContext(AudioContext);
 
-    useEffect(() => {
-  setPlaylist(songs);
-}, [songs, setPlaylist]);
+    
 
   useEffect(() => {
     fetch(`/.netlify/functions/proxy/album/${id}`)
@@ -44,7 +42,7 @@ const Album = () => {
         {songs.map((track, index) => (
   <div
     key={track.id}
-    onClick={() => playSong(track, index)}
+    onClick={() => playSongInContext(track, index, songs)}
     className={`track__item ${currentSong && currentSong.id === track.id ? 'playing' : ''}`}
   >
     <span className='track__number'>{index + 1}.</span>

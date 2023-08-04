@@ -17,6 +17,13 @@ export const AudioProvider = ({ children }) => {
     setCurrentIndex(index);
   };
 
+  const playSongInContext = (song, index, newPlaylist) => {
+    setPlaylist(newPlaylist);
+    setCurrentIndex(index);
+    setCurrentSong(song);
+    setIsPlaying(true);
+  };
+
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
   };
@@ -104,6 +111,7 @@ export const AudioProvider = ({ children }) => {
     <AudioContext.Provider
       value={{
         playSong,
+        playSongInContext,
         isPlaying,
         togglePlay,
         repeatMode,

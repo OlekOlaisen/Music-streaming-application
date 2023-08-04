@@ -8,7 +8,7 @@ const Artist = () => {
   const [topTracks, setTopTracks] = useState([]);
   const [albums, setAlbums] = useState([]);
   const { id } = useParams();
-  const { playSong, currentSong, setPlaylist } = useContext(AudioContext);
+  const {  currentSong, playSongInContext } = useContext(AudioContext);
 
   useEffect(() => {
     fetch(`/.netlify/functions/proxy/artist/${id}`)
@@ -25,9 +25,7 @@ const Artist = () => {
 
   }, [id]);
 
-  useEffect(() => {
-    setPlaylist(topTracks);
-  }, [topTracks, setPlaylist]);
+ 
 
   if (!artistData || !topTracks.length || !albums.length) {
     return <div>Loading...</div>;
@@ -46,11 +44,11 @@ const Artist = () => {
       <h2 className='artists__top-tracks-headline'>Top Tracks</h2>
       <div className='artists__top-tracks'>
         {topTracks.map((track, index) => (
-          <div
-            key={track.id}
-            onClick={() => playSong(track, index)}
-            className={`artists__track-item ${currentSong && currentSong.id === track.id ? 'playing' : ''}`}
-          >
+        <div
+          key={track.id}
+          onClick={() => playSongInContext(track, index, topTracks)}
+          className={`artists__track-item ${currentSong && currentSong.id === track.id ? 'playing' : ''}`}
+        >
             <span className='track__number'>{index + 1}.</span>
             <img className="track__album-cover" src={track.album.cover} alt={track.title} />
             <span className={`track__album-number ${currentSong && currentSong.id === track.id ? 'playing' : ''}`}>
