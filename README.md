@@ -19,15 +19,18 @@ The web application is under development and is far from finished, but you can p
 
 The application has the following features:
 ```
-- Home, Search, Playlists pages
+- Home, Search, Playlists, artist and album pages
 - Search and play over 30 million tracks (30 second song preview)
 - View top 10 tracks, artists and albums
 - View a detailed artist page with top 5 songs and their albums
+- View albums and play the songs inside them
 - Control playback (play, pause, next, previous)
-- Repeat songs in different modes (Repeat playlist and repeat song)
-- Shuffle next song in playlist
-- Adjust volume and mute button (Desktop version only)
+- Loop in different modes (Loop off, loop playlist or loop song)
+- Shuffle the next song in the playlist
+- Adjust volume and mute button (Desktop viewport only)
 - Extended view of the song currently playing (Click on the song title in the player)
+- Track duration count and countdown
+- Interactive progress-bar
  ```
   
  ## Technologies Used
