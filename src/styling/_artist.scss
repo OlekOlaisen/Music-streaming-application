@@ -10,8 +10,9 @@
 
 .artists__info {
 	display: flex;
-	flex-flow: row;
+	flex-flow: column;
 	align-items: center;
+	text-align: center;
 	gap: 2rem;
 	margin: 2rem;
 }
@@ -125,6 +126,14 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
+}
+
+.artists__info {
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	gap: 2rem;
+	margin: 2rem;
 }
 	
 }

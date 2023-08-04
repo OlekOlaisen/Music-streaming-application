@@ -38,8 +38,8 @@ const Artist = () => {
         <img className="artists__cover" src={artistData.picture_xl} alt={artistData.name} />
         <div className='artists__text'>
           <h1 className='artists__name'>{artistData.name}</h1>
-          <p className='artists__fans'>Number of fans: {artistData.nb_fan}</p>
-          <p className='artists__albums'>Number of albums: {artistData.nb_album}</p>
+          <p className='artists__fans'>Followers:  {artistData.nb_fan}</p>
+          <p className='artists__albums'>Albums: {artistData.nb_album}</p>
 
 
         </div>
