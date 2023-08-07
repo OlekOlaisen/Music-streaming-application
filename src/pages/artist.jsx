@@ -24,22 +24,19 @@ const Artist = () => {
     fetch(`/.netlify/functions/proxy/artist/${id}/albums`)
     .then(response => response.json())
     .then(data => {
-      setAlbums(data.data);
-
       Promise.all(data.data.map(album => fetch(`/.netlify/functions/proxy/album/${album.id}`)))
         .then(responses => Promise.all(responses.map(response => response.json())))
         .then(albumData => {
-          // For each album, add its genres to the genres state, if genres exist.
+          setAlbums(albumData);
+
           const allGenres = albumData.flatMap(album => album.genres ? album.genres.data : []);
-          
-          // Count frequency of each genre.
+
           const genreCount = allGenres.reduce((acc, genre) => {
             acc[genre.id] = (acc[genre.id] || { count: 0, genre });
             acc[genre.id].count++;
             return acc;
           }, {});
-          
-          // Sort by frequency and pick top 3.
+
           const topGenres = Object.values(genreCount)
             .sort((a, b) => b.count - a.count)
             .slice(0, 3)
@@ -48,7 +45,7 @@ const Artist = () => {
           setGenres(topGenres);
         });
     });
-}, [id]);
+  }, [id]);
 
 
   if (!artistData || !topTracks.length || !albums.length) {
@@ -75,7 +72,7 @@ const Artist = () => {
 
         </div>
       </div>
-      <h2 className='artists__top-tracks-headline'>Top Tracks</h2>
+      <h2 className='artists__top-tracks-headline'>Popular</h2>
       <div className='artists__top-tracks'>
         {topTracks.map((track, index) => (
         <div
@@ -93,13 +90,14 @@ const Artist = () => {
         ))}
       </div>
 
-      <h2 className='artists__album-headline'>EP & Albums</h2>
+      <h2 className='artists__album-headline'>EP/Singles/Albums</h2>
       <div className='artists__album'>
         {albums.map(album => (
   <div key={album.id} className='artists__album-item'>
     <Link to={`/album/${album.id}`}>
       <img className="artists__album-cover" src={album.cover_xl} alt={album.title} />
       <p className='artists__album-title'>{album.title}</p>
+      <p className='artists__album-recordtype'>({album.record_type})</p>
     </Link>
   </div>
 ))}
