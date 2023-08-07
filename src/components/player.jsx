@@ -1,4 +1,5 @@
 import React, { useState, useContext, useRef, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Shuffle,
   SkipStartFill,
@@ -251,7 +252,7 @@ function Player() {
             <p className="player__info-song-title" ref={titleRef}>{songTitle}</p>
             )}
             {artistName && (
-              <p className="player__info-artist-name">{artistName}</p>
+              <p className="player__info-artist-name"><Link className='player__link'  to={`/artist/${currentSong.artist.id}`} onClick={(event) => event.stopPropagation()}>{artistName}</Link></p>
               )}
               </div>
               </div>

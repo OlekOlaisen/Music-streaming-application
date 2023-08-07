@@ -12,6 +12,10 @@
   transition: 0.1s ease-in;
 }
 
+.player__link {
+  color: variable.$secondary-color;
+}
+
 audio {
   display: none;
 }

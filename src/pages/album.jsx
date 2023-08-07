@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { AudioContext } from '../components/audioContext';
+import { Ping } from '@uiball/loaders'
 
 const Album = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const Album = () => {
   }, [id]);
 
   if (!albumData || !songs.length) {
-    return <div>Loading...</div>;
+    return <Ping size={45} speed={2} color='f78278' className="spinner"/>
   }
 
   return (
@@ -33,7 +34,7 @@ const Album = () => {
         <img className="album__cover" src={albumData.cover_xl} alt={albumData.title} />
         <div className='album__info-text-container'>
           <h1 className='album__name'>{albumData.title}</h1>
-          <p className='album__artist'><Link className='Link' to={`/artist/${albumData.artist.id}`}> {albumData.artist.name} </Link> • {albumData.nb_tracks} songs • {releaseYear}</p>
+          <p className='album__artist'><Link className='Link' to={`/artist/${albumData.artist.id}`}> {albumData.artist.name} </Link>  • {releaseYear} • {albumData.nb_tracks} songs</p>
           <p className='album__nb_tracks'> </p>
           
           </div>

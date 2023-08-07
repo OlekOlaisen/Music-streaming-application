@@ -20,6 +20,7 @@
 .artists__text {
 	display: flex;
 	flex-flow: column;
+	gap: 0.5rem;
 }
 
 .artists__name {
@@ -43,7 +44,7 @@
 	display: flex;
 	flex-flow: column;
 	margin: 1rem;
-
+	
 	
 }
 
@@ -64,30 +65,30 @@
 }
 
 .artists__album {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin-bottom: 8rem;
-  
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+	margin-bottom: 8rem;
+	
 }
 
 .artists__album-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
 }
 
 .artists__album-cover {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 0.3rem;
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 0.3rem;
 }
 
 .album__title {
-  margin-top: 0.5rem;
-  color: white;
+	margin-top: 0.5rem;
+	color: white;
 }
 
 .track__album-number {
@@ -97,7 +98,7 @@
 
 .artists__top-tracks-headline {
 	margin: 2rem 0 1rem 0;
-
+	
 }
 
 .artists__album-headline {
@@ -107,6 +108,38 @@
 .artists__album-title {
 	color: white;
 	text-decoration: none;
+}
+
+.artists__genres {
+	font-size: 0.8rem;
+	color: grey;
+}
+
+.nb_album {
+	color: variable.$secondary-color;
+}
+
+.nb_fan {
+	color: variable.$secondary-color;
+}
+
+
+.genre-0 {
+	font-size: 0.8rem;
+	color: variable.$secondary-color;
+	text-align: start;
+}
+
+.genre-1 {
+	font-size: 0.8rem;
+	color: variable.$secondary-color;
+	text-align: start;
+}
+
+.genre-2 {
+	font-size: 0.8rem;
+	color: variable.$secondary-color;
+	text-align: start;
 }
 
 
@@ -123,33 +156,34 @@
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) { 
-
-.artists {
-	margin-left: 10rem;
-}
-
-.artists__album {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
-
-.artists__info {
-	display: flex;
-	flex-flow: row;
-	align-items: center;
-	gap: 2rem;
-	margin: 2rem;
-}
-
-.artists__name {
-	color: variable.$secondary-color;
-	font-size: 3rem;
-	font-weight: 700;
-	width: 100vw;
-}
-
-
+	
+	.artists {
+		margin-left: 10rem;
+	}
+	
+	.artists__album {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+	}
+	
+	.artists__info {
+		display: flex;
+		flex-flow: row;
+		align-items: center;
+		gap: 2rem;
+		margin: 2rem;
+	}
+	
+	.artists__name {
+		color: variable.$secondary-color;
+		font-size: 3rem;
+		font-weight: 700;
+		
+	}
+	
+	
+	
 	
 }
 

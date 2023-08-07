@@ -45,6 +45,10 @@ html {
   transform: translateY(0);
 }
 
+.spinner {
+  margin-left: 10rem;
+}
+
 .footer__container {
   display: flex;
   flex-flow: row;
@@ -260,6 +264,10 @@ html {
   bottom: 3.5rem;
   background-color: #131c26;
   transition: 0.1s ease-in;
+}
+
+.player__link {
+  color: #f78278;
 }
 
 audio {
@@ -872,6 +880,7 @@ audio {
 .artists__text {
   display: flex;
   flex-flow: column;
+  gap: 0.5rem;
 }
 
 .artists__name {
@@ -953,6 +962,37 @@ audio {
   text-decoration: none;
 }
 
+.artists__genres {
+  font-size: 0.8rem;
+  color: grey;
+}
+
+.nb_album {
+  color: #f78278;
+}
+
+.nb_fan {
+  color: #f78278;
+}
+
+.genre-0 {
+  font-size: 0.8rem;
+  color: #f78278;
+  text-align: start;
+}
+
+.genre-1 {
+  font-size: 0.8rem;
+  color: #f78278;
+  text-align: start;
+}
+
+.genre-2 {
+  font-size: 0.8rem;
+  color: #f78278;
+  text-align: start;
+}
+
 @media (min-width: 992px) {
   .artists {
     margin-left: 10rem;
@@ -973,7 +1013,6 @@ audio {
     color: #f78278;
     font-size: 3rem;
     font-weight: 700;
-    width: 100vw;
   }
 }
 .album {
