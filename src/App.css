@@ -1076,7 +1076,7 @@ audio {
 }
 
 .album__tracks {
-  margin: 0 1rem 4rem 1rem;
+  margin: 0 1rem 8rem 1rem;
 }
 
 .album__tracks-headline {
@@ -1096,6 +1096,9 @@ audio {
     flex-flow: row;
     margin: 3rem;
     gap: 2rem;
+  }
+  .album__tracks {
+    margin: 0 1rem 4rem 1rem;
   }
 }
 .search {
