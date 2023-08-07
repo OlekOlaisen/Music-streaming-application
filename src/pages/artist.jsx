@@ -70,7 +70,7 @@ const Artist = () => {
       Top Genres:
       {genres.map((genre, index) => (
         <div key={genre.id}>
-          <p className={`genre-name genre-${index}`}>• {genre.name}</p>
+          <p className={`genre-name genre-${index}`}> ᠎ {genre.name}, ᠎ </p>
         </div>
       ))}
     </div>

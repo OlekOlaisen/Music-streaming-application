@@ -1014,6 +1014,10 @@ audio {
     font-size: 3rem;
     font-weight: 700;
   }
+  .artists__genres {
+    display: flex;
+    flex-flow: row;
+  }
 }
 .album {
   margin-left: 0rem;
