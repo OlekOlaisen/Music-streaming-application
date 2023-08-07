@@ -1,85 +1,86 @@
 @use 'variables' as variable;
 
 .footer__container {
-	display: flex;
-	flex-flow: row;
-	justify-content: space-around;
-	align-items: center;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	height: 70px;
-	width: 100vw;
-	background-color: variable.$primary-color-background;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 70px;
+  width: 100vw;
+  background-color: variable.$primary-color-background;
+
+  @media (min-width: 992px) { 
+    display: none;
+  }
 }
 
 .footer__desktop {
-	display: none;
+  display: none;
+
+  @media (min-width: 992px) { 
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    width: 200px;
+    background-color: #131c26;
+  }
 }
 
-.footer__link {
-	font-size: 1.5rem;
-	background: transparent;
-	border: none;
-	color: variable.$secondary-color;
+.footer {
+  &__link {
+    font-size: 1.5rem;
+    background: transparent;
+    border: none;
+    color: variable.$secondary-color;
+  }
+
+  &__desktop-link {
+    font-size: 1rem;
+    margin: 1rem;
+    background: transparent;
+    border: none;
+    color: variable.$primary-text;
+    text-decoration: none;
+
+    @media (min-width: 992px) { 
+      display: block;
+    }
+  }
+
+  &__desktop-link-icon {
+    font-size: 2rem;
+  }
 }
 
-.footer__desktop-link-icon {
-	font-size: 2rem;
+.player__progress {
+  &-currentTime {
+    font-size: 0.8rem;
+  }
+  
+  &-duration {
+    font-size: 0.8rem;
+  }
 }
 
-.player__progress-currentTime {
-	font-size: 0.8rem;
-}
-
-.player__progress-duration {
-font-size: 0.8rem;
-}
-
-
-
-
-
-// Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) { 
-	
+  // Add specific styles here.
 }
 
-// Medium devices (tablets, 768px and up)
 @media (min-width: 768px) { 
-	
+  // Add specific styles here.
 }
 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) { 
-	.footer__desktop {
-		display: flex;
-		flex-flow: column;
-		align-items: center;
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		height: 100vh;
-		width: 200px;
-		background-color: #131c26;		
-	}
-
-	.footer__desktop-link {
-	font-size: 1rem;
-	margin: 1rem;
-	background: transparent;
-	border: none;
-	color: variable.$primary-text;
-	text-decoration: none;
-	
-}
-.footer__container {
-	display: none;
-}
+@media (min-width: 1200px) { 
+  // Add specific styles here.
 }
 
-// X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  }
-
-// XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {  }
+@media (min-width: 1400px) { 
+  // Add specific styles here.
+}

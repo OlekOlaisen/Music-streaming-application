@@ -2,15 +2,13 @@
 
 .search {
     margin: 0.5rem;
-    
-    
-    
+
     &__input-container {
         position: sticky;
         display: block;
         top: 0.5rem;
     }
-    
+
     &__input {
         padding: 0.7rem 7rem;
         background-color: variable.$primary-color-background-darker;
@@ -20,7 +18,7 @@
         position: relative;
         padding-left: 40px;
         width: 100%;
-        
+
         &-icon {
             color: variable.$secondary-color;
             position: absolute;
@@ -28,84 +26,67 @@
             top: 50%;
             transform: translateY(-50%);
         }
-        
+
         &:focus {
             outline: 2px solid variable.$secondary-color;
         }
     }
-    
+
     &__results {
         height: 100%;
         overflow-y: scroll;
         color: white;
         margin-bottom: 7rem;
-        
+
         &-item {
             padding: 0.5rem;
             display: flex;
             flex-flow: row;
             justify-content: space-between;
             gap: 1rem;
+            z-index: 0;
 
-            
-            
-            
             &-image {
                 width: 50px;
             }
-            
+
             &-info {
                 display: flex;
                 flex-flow: column;
-                
             }
-            
-            .search__results-artist{
+
+            .search__results-artist {
                 color: grey;
                 font-size: 0.8rem;
             }
-            
-            
         }
     }
-}
 
-.search__results-empty {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    margin: 3rem;
-}
+    &__results-empty {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        margin: 3rem;
 
-.search__results-empty-image {
-    width: 80%;
-}
+        &-image {
+            width: 80%;
+        }
 
-.search__results-empty-text {
-    font-size: 1rem;
+        &-text {
+            font-size: 1rem;
+        }
+    }
+
+    &__results-item-container-song {
+        display: flex;
+        gap: 1rem;
+    }
 }
 
 .option {
     font-size: 1.2rem;
 }
-
-.search__results-item-container-song {
-    display: flex;
-    gap: 1rem;
-    
-}
-
-.search__results-item {
-  padding: 0.5rem;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  gap: 1rem;
-  z-index: 0;
-} 
-
-
 
 .playing {
     color: variable.$secondary-color;
@@ -115,49 +96,51 @@
     color: grey;
 }
 
-.Link:hover {
-    color: variable.$secondary-color;
+.Link {
+    &:hover {
+        color: variable.$secondary-color;
+    }
 }
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { 
+@media (min-width: 576px) {
     .search__results-empty-text {
-    font-size: 1.5rem;
+        font-size: 1.5rem;
+    }
 }
- }
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
     .search__results-empty-image {
-    width: 60%;
+        width: 60%;
+    }
 }
- }
 
 // Large devices (desktops, 992px and up) 
 @media (min-width: 992px) { 
+    .search {
+        &__input-container {
+            width: 360px;
+            margin: 0.5rem auto;
+        }
 
-    .search__input-container{
-        width: 360px;
-        margin: 0.5rem auto;
+        &__results {
+            margin-bottom: 3rem;
+            margin-left: 10rem;
+        }
+
+        &__results-empty-text {
+            font-size: 2rem;
+        }
+
+        &__results-empty-image {
+            width: 40%;
+        }
     }
-
-    .search__results {
-        margin-bottom: 3rem;
-        margin-left: 10rem;
-    }
-
-    .search__results-empty-text {
-    font-size: 2rem;
 }
-
-    .search__results-empty-image {
-    width: 40%;
-}
-
- }
 
 // X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  }
+@media (min-width: 1200px) { }
 
 // XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {  }
+@media (min-width: 1400px) { }

@@ -36,7 +36,7 @@ const Album = () => {
               <Link className='Link' to={`/artist/${albumData.artist.id}`}> 
                 {albumData.artist.name} 
               </Link>  
-              • {releaseYear} • {albumData.nb_tracks} songs • <span className='album__artist-record-type'>{albumData.record_type}</span>
+               ‎ {/* Invisible character */} • {releaseYear} • {albumData.nb_tracks} songs • <span className='album__artist-record-type'>{albumData.record_type}</span>
             </p>
             <p className='album__nb_tracks'> </p>
           </div>

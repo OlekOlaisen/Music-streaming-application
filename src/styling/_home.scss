@@ -1,143 +1,92 @@
 @use 'variables' as variable;
 
 .home {
-	display: flex;
-	height: 100%;
-	flex-flow: column;
-	gap: 1rem;
-	margin-bottom: 4rem;
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+  gap: 1rem;
+  margin-bottom: 4rem;
+
+  &__logo {
+    width: 70%;
+    display: block;
+    margin: 3rem auto;
+  }
+
+  &__trending-tracks-title,
+  &__trending-artists-title,
+  &__trending-albums-title {
+    margin: 1rem;
+    color: variable.$secondary-color;
+  }
+
+  &__trending-tracks,
+  &__trending-artists,
+  &__trending-albums {
+    display: flex;
+    flex-flow: row;
+    padding: 0.5rem;
+    align-items: flex-start;
+    overflow-x: auto;
+    gap: 1rem;
+  }
+
+  &__trending-tracks-item,
+  &__trending-albums-item {
+    overflow: hidden;
+    width: 100px;
+  }
+
+  &__trending-artist-item {
+    width: 100px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: hidden;
+    word-wrap: break-word;
+  }
+
+  &__trending-albums-cover,
+  &__trending-tracks-cover {
+    width: 100px;
+    border-radius: 0.3rem;
+  }
+
+  &__trending-artists-cover {
+    width: 100px;
+    border-radius: 50%;
+  }
 }
 
-.home__logo {
-	width: 70%;
-	display: block;
-	margin: 3rem auto;
+.artist__name,
+.album__title,
+.track__title {
+  color: variable.$secondary-color;
+  font-size: 0.7rem;
 }
 
-.home__trending-artists-title {
-	margin: 1rem;
+.album__title,
+.track__title {
+  color: white;
+  font-size: 0.8rem;
 }
-
-.home__trending-tracks-title {
-	margin: 1rem;
-}
-
-.home__trending-albums-title {
-	margin: 1rem;
-}
-
-.home__trending-tracks {
-	display: flex;
-	flex-flow: row;
-	align-items: flex-start;
-	overflow-x: auto;
-	gap: 1rem;
-	padding: 0.5rem;
-}
-
-.home__trending-artists {
-	display: flex;
-	flex-flow: row;
-	padding: 0.5rem;
-	
-	align-items: flex-start;
-	overflow-x: auto;
-
-}
-
-.home__trending-albums {
-	display: flex;
-	flex-flow: row;
-	padding: 0.5rem;
-	gap: 1rem;
-	align-items: flex-start;
-	overflow-x: auto;
-}
-
-.home__trending-tracks-item {
-	overflow: hidden;
-	width: 100px;
-}
-
-.home__trending-artist-item {
-	width: 120px;
-	display: flex;
-	flex-flow: column;
-	align-items: center;
-	gap: 0.5rem;
-	overflow: hidden;
-	word-wrap: break-word;
-}
-
-.home__trending-albums-item {
-	width: 100px;
-	overflow: hidden;
-	word-wrap: break-word;
-}
-
-.home__trending-albums-cover {
-	width: 100px;
-	border-radius: 0.3rem;
-}
-
-.home__trending-artists-cover {
-	width: 100px;
-	border-radius: 50%;
-	
-}
-
-.home__trending-tracks-cover {
-	width: 100px;
-	border-radius: 0.3rem;
-}
-
-.home__trending-tracks-title, .home__trending-artists-title, .home__trending-albums-title {
-	color: variable.$secondary-color;
-	
-}
-
-.artist__name {
-	color: variable.$secondary-color;
-	font-size: 0.7rem;
-	
-}
-
-.album__title {
-	color: white;
-	font-size: 0.8rem;
-	
-}
-
-.track__title{
-	color: white;
-	font-size: 0.8rem;
-}
-
-
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { 
-	
-}
+@media (min-width: 576px) { }
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { 
-	
-}
+@media (min-width: 768px) { }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) { 
-
-	.home {
-	
-	margin-left: 10rem;
-	
-}
-	
+  .home {
+    margin-left: 10rem;
+  }
 }
 
 // X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  }
+@media (min-width: 1200px) { }
 
 // XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {  }
+@media (min-width: 1400px) { }

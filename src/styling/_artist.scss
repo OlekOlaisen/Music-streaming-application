@@ -6,202 +6,163 @@
 	display: flex;
 	flex-flow: column;
 	justify-content: space-evenly;
-}
 
-
-.artists__info {
-	display: flex;
-	flex-flow: column;
-	align-items: center;
-	text-align: center;
-	gap: 2rem;
-	margin: 2rem;
-}
-
-.artists__text {
-	display: flex;
-	flex-flow: column;
-	gap: 0.5rem;
-	align-items: center;
-}
-
-.artists__name {
-	color: variable.$secondary-color;
-	font-size: 3rem;
-	font-weight: 700;
-	
-}
-
-.artists__cover {
-	border-radius: 50%;
-	width: 200px;
-}
-
-.artists__fans, .artists__albums {
-	font-size: 0.8rem;
-	color: grey;
-}
-
-.artists__top-tracks {
-	display: flex;
-	flex-flow: column;
-	margin: 1rem;
-	
-	
-}
-
-
-.artists__album-recordtype {
-	color: grey;
-	text-transform: uppercase;
-	font-size: 0.6rem;
-}
-
-
-
-
-.artists__track-item {
-	gap: 0.5rem;
-	display: flex;
-	flex-flow: row;
-	align-items: center;
-}
-
-.track__album-cover {
-	width: 50px;
-	margin: 0.5rem;
-}
-
-.artists__album {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 1rem;
-	margin-bottom: 8rem;
-	
-}
-
-.artists__album-item {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
-}
-
-.artists__album-cover {
-	width: 150px;
-	height: 150px;
-	object-fit: cover;
-	border-radius: 0.3rem;
-}
-
-.album__title {
-	margin-top: 0.5rem;
-	color: white;
-}
-
-.track__album-number {
-	color: white;
-	font-size: 0.8rem;
-}
-
-.artists__top-tracks-headline {
-	margin: 2rem 0 1rem 0;
-	
-}
-
-.artists__album-headline {
-	margin: 2rem 0 1rem 0;
-}
-
-.artists__album-title {
-	color: white;
-	text-decoration: none;
-}
-
-.artists__genres {
-	font-size: 0.8rem;
-	color: grey;
-}
-
-.nb_album {
-	color: variable.$secondary-color;
-}
-
-.nb_fan {
-	color: variable.$secondary-color;
-}
-
-
-.genre-0 {
-	font-size: 0.8rem;
-	color: variable.$secondary-color;
-	text-align: start;
-}
-
-.genre-1 {
-	font-size: 0.8rem;
-	color: variable.$secondary-color;
-	text-align: start;
-}
-
-.genre-2 {
-	font-size: 0.8rem;
-	color: variable.$secondary-color;
-	text-align: start;
-}
-
-
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { 
-	
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { 
-	
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) { 
-	
-	.artists {
-		margin-left: 10rem;
-	}
-	
-	.artists__album {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 1rem;
-	}
-	
-	.artists__info {
+	&__info {
 		display: flex;
-		flex-flow: row;
+		flex-flow: column;
 		align-items: center;
+		text-align: center;
 		gap: 2rem;
 		margin: 2rem;
 	}
-	
-	.artists__name {
+
+	&__text {
+		display: flex;
+		flex-flow: column;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	&__name {
 		color: variable.$secondary-color;
 		font-size: 3rem;
 		font-weight: 700;
-		
 	}
 
-	.artists__genres {
+	&__cover {
+		border-radius: 50%;
+		width: 200px;
+	}
+
+	&__fans, &__albums {
+		font-size: 0.8rem;
+		color: grey;
+	}
+
+	&__top-tracks {
+		display: flex;
+		flex-flow: column;
+		margin: 1rem;
+	}
+
+	&__album-recordtype {
+		color: grey;
+		text-transform: uppercase;
+		font-size: 0.6rem;
+	}
+
+	&__track-item {
+		gap: 0.5rem;
 		display: flex;
 		flex-flow: row;
+		align-items: center;
 	}
-	
-	
-	
+
+	&__album {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+		margin-bottom: 8rem;
+	}
+
+	&__album-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	&__album-cover {
+		width: 150px;
+		height: 150px;
+		object-fit: cover;
+		border-radius: 0.3rem;
+	}
+
+	&__album-headline {
+		margin: 2rem 0 1rem 0;
+	}
+
+	&__album-title {
+		color: white;
+		text-decoration: none;
+	}
+
+	&__genres {
+		font-size: 0.8rem;
+		color: grey;
+	}
+
+	.nb_album {
+		color: variable.$secondary-color;
+	}
+
+	.nb_fan {
+		color: variable.$secondary-color;
+	}
+}
+
+.track {
+	&__album-cover {
+		width: 50px;
+		margin: 0.5rem;
+	}
+
+	&__album-number {
+		color: white;
+		font-size: 0.8rem;
+	}
+}
+
+.genre-0, .genre-1, .genre-2 {
+	font-size: 0.8rem;
+	color: variable.$secondary-color;
+	text-align: start;
+}
+
+@media (min-width: 576px) {
+	// Add specific styles here.
+}
+
+@media (min-width: 768px) {
+	// Add specific styles here.
+}
+
+@media (min-width: 992px) {
+	.artists {
+		margin-left: 10rem;
+
+		&__album {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 1rem;
+		}
+
+		&__info {
+			display: flex;
+			flex-flow: row;
+			align-items: center;
+			gap: 2rem;
+			margin: 2rem;
+		}
+
+		&__name {
+			color: variable.$secondary-color;
+			font-size: 3rem;
+			font-weight: 700;
+		}
+
+		&__genres {
+			display: flex;
+			flex-flow: row;
+		}
+	}
+}
+
+@media (min-width: 1200px) {
 	
 }
 
-// X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  }
-
-// XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {  }
+@media (min-width: 1400px) {
+	
+}

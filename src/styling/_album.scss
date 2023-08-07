@@ -5,74 +5,80 @@
   display: flex;
   flex-flow: column;
   gap: 3rem;
-  
-}
 
+  &__artist-record-type {
+    text-transform: uppercase;
+  }
+
+  &__info-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  &__name {
+    color: #f78278;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__info-text-container {
+    display: flex;
+    flex-flow: column;
+  }
+
+  &__cover {
+    width: 250px;
+    margin: 1rem;
+  }
+
+  &__nb_tracks {
+    color: variable.$primary-text;
+  }
+
+  &__artist {
+    color: gray;
+  }
+
+  &__tracks {
+    margin: 0 1rem 8rem 1rem;
+
+    &-headline {
+      color: variable.$secondary-color;
+    }
+  }
+
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) { 
+    margin-left: 10rem;
+
+    &__info-container {
+      flex-flow: row;
+      margin: 3rem;
+      gap: 2rem;
+    }
+
+    &__tracks {
+      margin: 0 1rem 4rem 1rem;
+    }
+  }
+}
 
 .track__item {
   padding: 0.5rem;
   display: flex;
   flex-flow: row;
-  
   gap: 1rem;
   z-index: 0;
+
+  
 }
 
 .track__name {
-  color: white;
-  font-size: 0.8rem;
-}
-
-.album__artist-record-type {
-  text-transform: uppercase;
-}
-
-.album__info-container {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-}
-
-.album__name {
-  color: #f78278;
-  font-size: 3rem;
-  font-weight: 700;
-  text-align: center;
-}
-
-.album__info-text-container {
-  display: flex;
-  flex-flow: column;
-}
-
-.album__cover {
-  width: 250px;
-  margin: 1rem;
-}
-
-.album__nb_tracks {
-  color: variable.$primary-text;
-}
-
-.album__artist {
-  color: gray;
-}
-
-.album__tracks {
-  margin: 0 1rem 8rem 1rem;
-}
-
-.album__tracks-headline{
-  color: variable.$secondary-color;
-}
-
-
-
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { 
-  
-}
+    color: white;
+    font-size: 0.8rem;
+  }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) { 
@@ -81,28 +87,17 @@
   }
 }
 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) { 
-  .album {
-    margin-left: 10rem;
-  }
-  
-  .album__info-container {
-    flex-flow: row;
-    margin: 3rem;
-    gap: 2rem;
-  }
-  
-  .album__tracks {
-  margin: 0 1rem 4rem 1rem;
-}
-  
-  
-  
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+  // no styles
 }
 
 // X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  }
+@media (min-width: 1200px) { 
+  // no styles
+}
 
 // XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {  }
+@media (min-width: 1400px) { 
+  // no styles
+}

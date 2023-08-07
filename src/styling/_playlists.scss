@@ -1,49 +1,42 @@
 @use 'variables' as variable;
 
-
-.playlists__favorited-item {
-	padding: 0.5rem;
+.playlists {
+  &__favorited-item {
+    padding: 0.5rem;
     display: flex;
     flex-flow: column;
-}
+  }
 
-.playlists__favorited-title {
-	color: #fff;
-}
+  &__favorited-title {
+    color: #fff;
+  }
 
- .playlists__favorited-artist {
+  &__favorited-artist {
     color: grey;
     font-size: 0.8rem;
-}
+  }
 
-.playlists__headline {
-	color: #fff;
+  &__headline {
+    color: #fff;
+  }
 
-}
+  &__playlist-title {
+    color: variable.$secondary-color;
+  }
 
-.playlists__playlist-title {
-	color: variable.$secondary-color;
+  @media (min-width: 992px) {
+    margin-left: 10rem;
+  }
 }
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { 
-	
-}
+@media (min-width: 576px) { }
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { 
-	
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) { 
-	.playlists {
-		margin-left: 10rem;
-	}
-}
+@media (min-width: 768px) { }
 
 // X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  }
+@media (min-width: 1200px) { }
 
 // XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {  }
+@media (min-width: 1400px) { }

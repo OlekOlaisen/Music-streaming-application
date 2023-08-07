@@ -4,7 +4,6 @@ html {
     font-family: 'Nunito Sans', sans-serif;
 }
 
-
 .slide-up-menu {
   transition: transform 0.3s ease-in-out;
   position: fixed;
@@ -17,33 +16,35 @@ html {
   padding: 1em;
   box-sizing: border-box;
   
-}
+  &-hidden {
+    transform: translateY(100%);
+  }
 
-.slide-up-menu-hidden {
-  transform: translateY(100%);
-}
-
-.slide-up-menu-visible {
-  transform: translateY(0);
+  &-visible {
+    transform: translateY(0);
+  }
 }
 
 .spinner {
   margin-left: 10rem;
 }
 
+@media (min-width: 576px) { 
+  // Add specific styles here.
+}
 
+@media (min-width: 768px) { 
+  // Add specific styles here.
+}
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {  }
+@media (min-width: 992px) { 
+  // Add specific styles here.
+}
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {  }
+@media (min-width: 1200px) { 
+  // Add specific styles here.
+}
 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {  }
-
-// X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  }
-
-// XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {  }
+@media (min-width: 1400px) { 
+  // Add specific styles here.
+}

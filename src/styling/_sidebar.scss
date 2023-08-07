@@ -1,25 +1,10 @@
 @use 'variables' as variable;
 
-
 .sidebar {
 	display: none;
-}
 
-
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { 
-	
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { 
-	
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) { 
-	.sidebar {
+	// Large devices (desktops, 992px and up)
+	@media (min-width: 992px) {
 		display: flex;
 		flex-flow: column;
 		align-items: center;
@@ -33,29 +18,32 @@
 	}
 
 	.sidebar-link-icon {
-	color: variable.$secondary-color;
-	margin: 0 0.5rem;
-}
+		color: variable.$secondary-color;
+		margin: 0 0.5rem;
+	}
 
 	.sidebar-link {
-	font-size: 0.8rem;
-	margin: 1rem;
-	background: transparent;
-	border: none;
-	color: variable.$primary-text;
-	text-decoration: none;
+		font-size: 0.8rem;
+		margin: 1rem;
+		background: transparent;
+		border: none;
+		color: variable.$primary-text;
+		text-decoration: none;
 
-	&:hover {
-		color: variable.$secondary-color;
+		&:hover {
+			color: variable.$secondary-color;
+		}
 	}
 }
 
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { }
 
-
-}
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { }
 
 // X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {  }
+@media (min-width: 1200px) { }
 
 // XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {  }
+@media (min-width: 1400px) { }
