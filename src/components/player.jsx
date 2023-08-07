@@ -13,15 +13,14 @@ import {
   VolumeMuteFill,
   VolumeUpFill,
 } from 'react-bootstrap-icons';
-
-
-
 import { AudioContext } from './audioContext.jsx';
+import { FavoritesContext } from './favoritesContext.jsx';
 
 function Player() {
   const { isPlaying, togglePlay, playNext, playPrevious, currentSong, audioRef, repeatMode, toggleRepeat, shuffle, toggleShuffle } = useContext(
     AudioContext
     );
+    const { addFavorite } = useContext(FavoritesContext);
     const titleRef = useRef(null);
     const [hasPlayedSong, setHasPlayedSong] = useState(false);
     const [controlsExpanded, setControlsExpanded] = useState(false);
@@ -266,9 +265,14 @@ function Player() {
                     <PlayFill className="player__controls-toggle-play" />
                     )}
                     </button>
-                    <button className="player__button">
-                    <Heart className="player__button-icon" />
-                    </button>
+                    <button className="player__favorite" onClick={() => addFavorite({ id: currentSong.id, title: currentSong.title, artistName: currentSong.artist.name })}>
+  <Heart className="player__favorite-icon" />
+</button>
+
+
+
+
+
                     </div>
                     )}
                     </div>

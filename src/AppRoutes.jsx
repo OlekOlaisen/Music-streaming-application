@@ -10,11 +10,14 @@ import Player from './components/player.jsx';
 import Artist from './pages/artist.jsx';
 import Album from './pages/album.jsx';
 import { AudioProvider } from './components/audioContext.jsx';
+import { FavoritesProvider } from './components/favoritesContext.jsx';
+
 
 function AppRoutes() {
   return (
     <Router>
-      <AudioProvider>    
+      <AudioProvider>
+        <FavoritesProvider> 
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
@@ -26,6 +29,7 @@ function AppRoutes() {
       <Footer/>
       <Sidebar/>
       <Player/>
+      </FavoritesProvider>   
       </AudioProvider> 
     </Router>
     

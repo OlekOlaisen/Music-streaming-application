@@ -855,6 +855,29 @@ audio {
     display: block;
   }
 }
+.playlists__favorited-item {
+  padding: 0.5rem;
+  display: flex;
+  flex-flow: column;
+}
+
+.playlists__favorited-title {
+  color: #fff;
+}
+
+.playlists__favorited-artist {
+  color: grey;
+  font-size: 0.8rem;
+}
+
+.playlists__headline {
+  color: #fff;
+}
+
+.playlists__playlist-title {
+  color: #f78278;
+}
+
 @media (min-width: 992px) {
   .playlists {
     margin-left: 10rem;
