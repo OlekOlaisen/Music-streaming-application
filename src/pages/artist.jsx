@@ -26,8 +26,6 @@ const Artist = () => {
     .then(data => {
       setAlbums(data.data);
 
-      // Then fetch the genres for each album.
-      // Promise.all ensures we wait for all requests to complete.
       Promise.all(data.data.map(album => fetch(`/.netlify/functions/proxy/album/${album.id}`)))
         .then(responses => Promise.all(responses.map(response => response.json())))
         .then(albumData => {
@@ -52,7 +50,6 @@ const Artist = () => {
     });
 }, [id]);
 
- 
 
   if (!artistData || !topTracks.length || !albums.length) {
     return  <Ping size={45} speed={2} color='f78278' className="spinner"/>;
@@ -87,7 +84,7 @@ const Artist = () => {
           className={`artists__track-item ${currentSong && currentSong.id === track.id ? 'playing' : ''}`}
         >
             <span className='track__number'>{index + 1}.</span>
-            <img className="track__album-cover" src={track.album.cover} alt={track.title} />
+            <img className="track__album-cover" src={track.album.cover_xl} alt={track.title} />
             <span className={`track__album-number ${currentSong && currentSong.id === track.id ? 'playing' : ''}`}>
               {track.title}
             </span>
@@ -96,12 +93,12 @@ const Artist = () => {
         ))}
       </div>
 
-      <h2 className='artists__album-headline'>Albums</h2>
+      <h2 className='artists__album-headline'>EP & Albums</h2>
       <div className='artists__album'>
         {albums.map(album => (
   <div key={album.id} className='artists__album-item'>
     <Link to={`/album/${album.id}`}>
-      <img className="artists__album-cover" src={album.cover} alt={album.title} />
+      <img className="artists__album-cover" src={album.cover_xl} alt={album.title} />
       <p className='artists__album-title'>{album.title}</p>
     </Link>
   </div>

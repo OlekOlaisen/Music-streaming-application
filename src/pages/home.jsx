@@ -84,7 +84,7 @@ function Home() {
             >
               <img
                 className='home__trending-tracks-cover'
-                src={track.album.cover}
+                src={track.album.cover_xl}
                 alt={track.title}
               />
               <h3
@@ -115,7 +115,7 @@ function Home() {
               <div className='home__trending-albums-item'>
                 <img
                   className='home__trending-albums-cover'
-                  src={album.cover}
+                  src={album.cover_xl}
                   alt={album.title}
                 />
                 <h3 className='album__title'>{album.title}</h3>

@@ -881,6 +881,7 @@ audio {
   display: flex;
   flex-flow: column;
   gap: 0.5rem;
+  align-items: center;
 }
 
 .artists__name {
@@ -1037,6 +1038,10 @@ audio {
 .track__name {
   color: white;
   font-size: 0.8rem;
+}
+
+.album__artist-record-type {
+  text-transform: uppercase;
 }
 
 .album__info-container {

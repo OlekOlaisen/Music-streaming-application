@@ -131,7 +131,7 @@ useEffect(() => {
                     {song.album && song.album.cover && (
                       <img
                         className="search__results-item-image"
-                        src={song.album.cover}
+                        src={song.album.cover_xl}
                         alt={`${song.title} cover`}
                       />
                     )}
