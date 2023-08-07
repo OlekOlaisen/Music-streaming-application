@@ -200,7 +200,7 @@ html {
 }
 
 .home__trending-artist-item {
-  width: 150px;
+  width: 120px;
   display: flex;
   flex-flow: column;
   align-items: center;

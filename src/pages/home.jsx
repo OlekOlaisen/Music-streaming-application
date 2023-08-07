@@ -56,7 +56,7 @@ function Home() {
 
       {error && <div>Error: {error}</div>}
 
-      <h2 className="home__trending-artists-title">Top 10 Artists</h2>
+      <h2 className="home__trending-artists-title">Popular Artists</h2>
       <div className="home__trending-artists">
         {trendingArtists.map((artist) => (
           <div key={artist.id}>
@@ -74,7 +74,32 @@ function Home() {
         ))}
       </div>
 
-      <h2 className="home__trending-tracks-title">Top 10 tracks</h2>
+      <h2 className="home__trending-albums-title">Popular Albums</h2>
+      <div className="home__trending-albums">
+        {trendingAlbums.map((album) => (
+          <div key={album.id}>
+            <Link to={`/album/${album.id}`} className='Link'>
+              <div className='home__trending-albums-item'>
+                <img
+                  className='home__trending-albums-cover'
+                  src={album.cover_xl}
+                  alt={album.title}
+                />
+                <h3 className='album__title'>{album.title}</h3>
+                <Link
+                  to={`/artist/${album.artist.id}`}
+                  className='artist__name'
+                >
+                  {' '}
+                  {album.artist.name}
+                </Link>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </div>
+
+      <h2 className="home__trending-tracks-title">Top 10 Tracks</h2>
       <div className="home__trending-tracks">
         {trendingTracks.map((track) => (
           <div key={track.id}>
@@ -107,30 +132,7 @@ function Home() {
         ))}
       </div>
 
-      <h2 className="home__trending-albums-title">Top 10 Albums</h2>
-      <div className="home__trending-albums">
-        {trendingAlbums.map((album) => (
-          <div key={album.id}>
-            <Link to={`/album/${album.id}`} className='Link'>
-              <div className='home__trending-albums-item'>
-                <img
-                  className='home__trending-albums-cover'
-                  src={album.cover_xl}
-                  alt={album.title}
-                />
-                <h3 className='album__title'>{album.title}</h3>
-                <Link
-                  to={`/artist/${album.artist.id}`}
-                  className='artist__name'
-                >
-                  {' '}
-                  {album.artist.name}
-                </Link>
-              </div>
-            </Link>
-          </div>
-        ))}
-      </div>
+      
     </main>
   );
 }
