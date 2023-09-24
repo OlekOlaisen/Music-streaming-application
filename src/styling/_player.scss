@@ -97,6 +97,11 @@ audio {
   color: variable.$primary-text;
 }
 
+.player__favorite-icon--active {
+  font-size: 1.3rem;
+  color: variable.$secondary-color
+}
+
 
 .player__controls-song-details {
   display: flex;

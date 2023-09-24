@@ -2,29 +2,35 @@ import React, { createContext, useState, useEffect } from 'react';
 
 export const FavoritesContext = createContext();
 
-export const FavoritesProvider = (props) => {
+export const FavoritesProvider = ({ children }) => {
   const [favoriteSongs, setFavoriteSongs] = useState(() => {
-    // Try to get favorites from localStorage when the component is first rendered
-    const savedFavorites = localStorage.getItem('favoriteSongs');
-    if (savedFavorites) {
-      return JSON.parse(savedFavorites);
-    } else {
+    try {
+      return JSON.parse(localStorage.getItem('favoriteSongs')) || [];
+    } catch (err) {
+      console.error('Error retrieving favoriteSongs:', err);
       return [];
     }
   });
 
-  // Whenever favoriteSongs changes, update localStorage
   useEffect(() => {
-    localStorage.setItem('favoriteSongs', JSON.stringify(favoriteSongs));
+    try {
+      localStorage.setItem('favoriteSongs', JSON.stringify(favoriteSongs));
+    } catch (err) {
+      console.error('Error saving favoriteSongs:', err);
+    }
   }, [favoriteSongs]);
 
   const addFavorite = (song) => {
     setFavoriteSongs((prevFavorites) => [...prevFavorites, song]);
   };
 
+  const removeFavorite = (id) => {
+    setFavoriteSongs((prevFavorites) => prevFavorites.filter((song) => song.id !== id));
+  };
+
   return (
-    <FavoritesContext.Provider value={{ favoriteSongs, addFavorite }}>
-      {props.children}
+    <FavoritesContext.Provider value={{ favoriteSongs, addFavorite, removeFavorite }}>
+      {children}
     </FavoritesContext.Provider>
   );
 };

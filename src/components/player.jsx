@@ -9,6 +9,7 @@ import {
   Repeat,
   Repeat1,
   Heart,
+  HeartFill,
   ChevronDown,
   VolumeMuteFill,
   VolumeUpFill,
@@ -20,7 +21,8 @@ function Player() {
   const { isPlaying, togglePlay, playNext, playPrevious, currentSong, audioRef, repeatMode, toggleRepeat, shuffle, toggleShuffle } = useContext(
     AudioContext
     );
-    const { addFavorite } = useContext(FavoritesContext);
+    const { addFavorite, removeFavorite, favoriteSongs } = useContext(FavoritesContext);
+    const [isFavorite, setIsFavorite] = useState(false);
     const titleRef = useRef(null);
     const [hasPlayedSong, setHasPlayedSong] = useState(false);
     const [controlsExpanded, setControlsExpanded] = useState(false);
@@ -30,7 +32,7 @@ function Player() {
     const [songProgress, setSongProgress] = useState(0);
     const [duration, setDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
-
+    
     
     const handleError = (error) => {
       if (
@@ -70,16 +72,32 @@ function Player() {
       };
       
       const updateProgress = useCallback(() => {
-    const progress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
-    setCurrentTime(audioRef.current.currentTime);
-    setSongProgress(progress);
-    
-    if (isPlaying) {
-        requestAnimationFrame(updateProgress);
-    }
-}, [audioRef, isPlaying]);
+        const progress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+        setCurrentTime(audioRef.current.currentTime);
+        setSongProgress(progress);
+        
+        if (isPlaying) {
+          requestAnimationFrame(updateProgress);
+        }
+      }, [audioRef, isPlaying]);
+      
+      const toggleFavorite = () => {
+  if (isFavorite) {
+    removeFavorite(currentSong.id);
+  } else {
+    addFavorite({ id: currentSong.id, title: currentSong.title, artistName: currentSong.artist.name });
+  }
+  setIsFavorite(!isFavorite);
+};
 
+useEffect(() => {
+  const checkIsFavorite = () => {
+    const exists = favoriteSongs.some(song => song.id === currentSong.id);
+    setIsFavorite(exists);
+  };
 
+  checkIsFavorite();
+}, [currentSong, favoriteSongs]);
       
       useEffect(() => {
         if (isPlaying) {
@@ -93,27 +111,27 @@ function Player() {
         setSongProgress(newValue);
         audioRef.current.currentTime = (newValue / 100) * audioRef.current.duration;
       };
-
-
+      
+      
       const formatTime = (time) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-};
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      };
       useEffect(() => {
-    const audio = audioRef.current;
-    const setAudioData = () => {
-        setDuration(audio.duration);
-    };
-
-    audio.addEventListener('loadedmetadata', setAudioData);
-
-    return () => {
-        audio.removeEventListener('loadedmetadata', setAudioData);
-    };
-}, [audioRef]);
-
-
+        const audio = audioRef.current;
+        const setAudioData = () => {
+          setDuration(audio.duration);
+        };
+        
+        audio.addEventListener('loadedmetadata', setAudioData);
+        
+        return () => {
+          audio.removeEventListener('loadedmetadata', setAudioData);
+        };
+      }, [audioRef]);
+      
+      
       
       
       useEffect(() => {
@@ -147,22 +165,22 @@ function Player() {
           audioRef.current.pause();
         }
       }, [isPlaying, audioRef]);
-
+      
       useEffect(() => {
-    const audio = audioRef.current;
-
-    const setAudioData = () => {
-        setDuration(audio.duration);
-        setCurrentTime(audio.currentTime);
-    };
-
-    audio.addEventListener('loadedmetadata', setAudioData);
-
-    return () => {
-        audio.removeEventListener('loadedmetadata', setAudioData);
-    };
-}, [audioRef]);
-
+        const audio = audioRef.current;
+        
+        const setAudioData = () => {
+          setDuration(audio.duration);
+          setCurrentTime(audio.currentTime);
+        };
+        
+        audio.addEventListener('loadedmetadata', setAudioData);
+        
+        return () => {
+          audio.removeEventListener('loadedmetadata', setAudioData);
+        };
+      }, [audioRef]);
+      
       
       useEffect(() => {
         const titleElement = titleRef.current;
@@ -221,16 +239,16 @@ function Player() {
           audio.loop = false;
           audio.addEventListener('ended', playNext);
         }
-
+        
         for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
-  e.style.setProperty('--value', e.value);
-  e.style.setProperty('--min', e.min === '' ? '0' : e.min);
-  e.style.setProperty('--max', e.max === '' ? '100' : e.max);
-  e.addEventListener('input', () => e.style.setProperty('--value', e.value));
-}
-
+          e.style.setProperty('--value', e.value);
+          e.style.setProperty('--min', e.min === '' ? '0' : e.min);
+          e.style.setProperty('--max', e.max === '' ? '100' : e.max);
+          e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+        }
+        
       };
-
+      
       
       
       return (
@@ -265,14 +283,12 @@ function Player() {
                     <PlayFill className="player__controls-toggle-play" />
                     )}
                     </button>
-                    <button className="player__favorite" onClick={() => addFavorite({ id: currentSong.id, title: currentSong.title, artistName: currentSong.artist.name })}>
-  <Heart className="player__favorite-icon" />
-</button>
-
-
-
-
-
+                    
+                    <button className={`player__favorite ${isFavorite ? 'active' : ''}`} onClick={toggleFavorite}>
+                    {isFavorite ? <HeartFill className="player__favorite-icon--active" /> : <Heart className="player__favorite-icon" />}
+                    </button>
+                    
+                    
                     </div>
                     )}
                     </div>
@@ -330,7 +346,7 @@ function Player() {
                             </div>
                             
                             <div className="player__progress" style={{'--progress': `${songProgress}%`}}>
-                               
+                            
                             <input
                             type="range"
                             id="progress"
@@ -341,7 +357,7 @@ function Player() {
                             value={songProgress}
                             onChange={handleProgressChange}
                             />
-                           
+                            
                             </div>
                             
                             <audio ref={audioRef} />
@@ -362,9 +378,9 @@ function Player() {
                               <div className='player__controls-container-extended'>
                               
                               <div className='player__controls-options'>
-                                
+                              
                               </div>
-
+                              
                               <div className="player__controls-song-details">
                               <img src={albumImage} alt="Album" className="player__controls-album-image" />
                               <div className="player__controls-song-info">
@@ -373,22 +389,22 @@ function Player() {
                               </div>
                               </div>
                               <div className="player__progress-extended" style={{'--progress': `${songProgress}%`}}>
-                                
-                            <input
-                            type="range"
-                            id="progress"
-                            name="progress"
-                            min="0"
-                            max="100"
-                            step="1"
-                            value={songProgress}
-                            onChange={handleProgressChange}
-                            />
-                            <div className='player__duration'>
-                            <span className="player__progress-currentTime">{formatTime(currentTime)}</span>
-                            <span className="player__progress-duration">{formatTime(duration - currentTime)}</span>
-                            </div>
-                            </div>
+                              
+                              <input
+                              type="range"
+                              id="progress"
+                              name="progress"
+                              min="0"
+                              max="100"
+                              step="1"
+                              value={songProgress}
+                              onChange={handleProgressChange}
+                              />
+                              <div className='player__duration'>
+                              <span className="player__progress-currentTime">{formatTime(currentTime)}</span>
+                              <span className="player__progress-duration">{formatTime(duration - currentTime)}</span>
+                              </div>
+                              </div>
                               <div className="player__controls-buttons">
                               <button
                               className={`player__controls-shuffle button ${shuffle ? 'shuffle-active' : ''}`}
@@ -414,11 +430,11 @@ function Player() {
                                   {repeatMode === 1 && <Repeat className="player__controls-loop-on" />}
                                   {repeatMode === 2 && <Repeat1 className="player__controls-loop-1" />}
                                   </button>
-                              </div>
-
-                              </div>
-
-                              
+                                  </div>
+                                  
+                                  </div>
+                                  
+                                  
                                   </section>
                                   )}
                                   

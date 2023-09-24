@@ -303,6 +303,11 @@ audio {
   color: #ffffff;
 }
 
+.player__favorite-icon--active {
+  font-size: 1.3rem;
+  color: #f78278;
+}
+
 .player__controls-song-details {
   display: flex;
   flex-flow: column;
