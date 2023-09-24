@@ -92,12 +92,14 @@ function Player() {
 
 useEffect(() => {
   const checkIsFavorite = () => {
+    if (!currentSong) return;
     const exists = favoriteSongs.some(song => song.id === currentSong.id);
     setIsFavorite(exists);
   };
 
   checkIsFavorite();
 }, [currentSong, favoriteSongs]);
+
       
       useEffect(() => {
         if (isPlaying) {
