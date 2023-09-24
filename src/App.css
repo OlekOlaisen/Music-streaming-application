@@ -308,6 +308,18 @@ audio {
   color: #f78278;
 }
 
+.player__favorite-icon-mobile {
+  font-size: 1.3rem;
+  color: #ffffff;
+  display: none;
+}
+
+.player__favorite-icon-mobile--active {
+  font-size: 1.3rem;
+  color: #f78278;
+  display: none;
+}
+
 .player__controls-song-details {
   display: flex;
   flex-flow: column;
@@ -656,7 +668,8 @@ audio {
 
 @media (min-width: 576px) {
   .player__info-song-title {
-    width: 300px;
+    max-width: 300px;
+    width: 100%;
   }
 }
 @media (min-width: 992px) {
@@ -772,6 +785,16 @@ audio {
   }
   .button {
     font-size: 2rem;
+  }
+  .player__favorite-icon-mobile {
+    font-size: 1rem;
+    color: #ffffff;
+    display: block;
+  }
+  .player__favorite-icon-mobile--active {
+    font-size: 1rem;
+    color: #f78278;
+    display: block;
   }
   .player__controls-song-details {
     display: flex;

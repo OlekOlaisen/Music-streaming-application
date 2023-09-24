@@ -81,7 +81,9 @@ function Player() {
         }
       }, [audioRef, isPlaying]);
       
-      const toggleFavorite = () => {
+      const toggleFavorite = (e) => {
+  e.stopPropagation(); 
+  
   if (isFavorite) {
     removeFavorite(currentSong.id);
   } else {
@@ -95,6 +97,7 @@ function Player() {
   }
   setIsFavorite(!isFavorite);
 };
+
 
 
 useEffect(() => {
@@ -280,8 +283,13 @@ useEffect(() => {
             {artistName && (
               <p className="player__info-artist-name"><Link className='player__link'  to={`/artist/${currentSong.artist.id}`} onClick={(event) => event.stopPropagation()}>{artistName}</Link></p>
               )}
+              
               </div>
+              <button className={`player__favorite ${isFavorite ? 'active' : ''}`} onClick={toggleFavorite}>
+                    {isFavorite ? <HeartFill className="player__favorite-icon-mobile--active" /> : <Heart className="player__favorite-icon-mobile" />}
+                    </button>
               </div>
+              
               <div className="player__controls">
               {hasPlayedSong && (
                 <div className="player__buttons">
@@ -303,6 +311,7 @@ useEffect(() => {
                     </div>
                     
                     <div className="player__controls-buttons-desktop">
+                      
                     <button
                     className={`player__controls-shuffle button ${shuffle ? 'shuffle-active' : ''}`}
                     onClick={toggleShuffle}

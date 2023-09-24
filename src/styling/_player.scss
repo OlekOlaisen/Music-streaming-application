@@ -102,6 +102,19 @@ audio {
   color: variable.$secondary-color
 }
 
+.player__favorite-icon-mobile {
+  font-size: 1.3rem;
+  color: variable.$primary-text;
+  display: none;
+}
+
+.player__favorite-icon-mobile--active {
+  font-size: 1.3rem;
+  color: variable.$secondary-color;
+  display: none;
+}
+
+
 
 .player__controls-song-details {
   display: flex;
@@ -448,7 +461,8 @@ audio {
 @media (min-width: 576px) { 
   
   .player__info-song-title {
-    width: 300px;
+    max-width: 300px;
+    width: 100%;
   }
   
   
@@ -607,6 +621,18 @@ audio {
 
 .button {
   font-size: 2rem;
+}
+
+.player__favorite-icon-mobile {
+  font-size: 1rem;
+  color: variable.$primary-text;
+  display: block;
+}
+
+.player__favorite-icon-mobile--active {
+  font-size: 1rem;
+  color: variable.$secondary-color;
+  display: block;
 }
 
 
