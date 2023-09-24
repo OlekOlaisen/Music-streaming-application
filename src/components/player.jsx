@@ -85,10 +85,17 @@ function Player() {
   if (isFavorite) {
     removeFavorite(currentSong.id);
   } else {
-    addFavorite({ id: currentSong.id, title: currentSong.title, artistName: currentSong.artist.name });
+    addFavorite({
+      id: currentSong.id,
+      title: currentSong.title,
+      artistName: currentSong.artist.name,
+      preview: currentSong.preview,
+      albumImage: currentSong.album.cover_xl 
+    });
   }
   setIsFavorite(!isFavorite);
 };
+
 
 useEffect(() => {
   const checkIsFavorite = () => {

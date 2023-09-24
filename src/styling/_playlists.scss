@@ -24,6 +24,16 @@
     color: variable.$secondary-color;
   }
 
+  .playlists__album-cover {
+    width: 50px;
+  }
+
+  .playlists__favorited-item {
+    display: flex;
+    flex-flow: row;
+    gap: 1rem;
+  }
+
   @media (min-width: 992px) {
     margin-left: 10rem;
   }

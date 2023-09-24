@@ -833,6 +833,14 @@ audio {
 .playlists__playlist-title {
   color: #f78278;
 }
+.playlists .playlists__album-cover {
+  width: 50px;
+}
+.playlists .playlists__favorited-item {
+  display: flex;
+  flex-flow: row;
+  gap: 1rem;
+}
 @media (min-width: 992px) {
   .playlists {
     margin-left: 10rem;
