@@ -10,7 +10,7 @@ function Sidebar() {
 	<section className='sidebar'>
 		<Link className="sidebar-link" to="/"><HouseDoorFill className="sidebar-link-icon"/>Home</Link>
 		<Link className="sidebar-link" to="/search"><Search className="sidebar-link-icon"/>Search</Link>
-		<Link className="sidebar-link" to="/playlists"><MusicNoteList className="sidebar-link-icon"/>Playlists</Link>
+		<Link className="sidebar-link" to="/playlists"><MusicNoteList className="sidebar-link-icon"/>Favorites</Link>
 	</section>	
   );
 }

@@ -18,11 +18,20 @@ export const AudioProvider = ({ children }) => {
   };
 
   const playSongInContext = (song, index, newPlaylist) => {
-    setPlaylist(newPlaylist);
-    setCurrentIndex(index);
-    setCurrentSong(song);
-    setIsPlaying(true);
-  };
+  if (audioRef.current) {
+    audioRef.current.src = song.preview;
+    audioRef.current.play().then(() => {
+      setIsPlaying(true);
+    }).catch((error) => {
+      console.error("Error playing audio:", error);
+    });
+  }
+  setPlaylist(newPlaylist);
+  setCurrentIndex(index);
+  setCurrentSong(song);
+  setIsPlaying(true);
+};
+
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);

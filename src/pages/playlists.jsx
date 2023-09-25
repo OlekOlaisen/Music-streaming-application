@@ -48,14 +48,14 @@ function Playlists() {
       {favoriteSongs.map((song) => (
         <div
           key={song.id}
-          className={`playlists__favorited-item ${playingSong && playingSong.id === song.id ? 'playing' : ''}`}
+          className={`playlists__favorited-item `}
           onClick={() => handleFavoriteSongClick(song)}
         >
           <div className="playlists__album-image">
             <img className='playlists__album-cover' src={song.albumImage} alt={`Album Cover for ${song.title}`} />
           </div>
           <div className='playlists__song-details'>
-            <p className='playlists__favorited-title'>{song.title}</p>
+            <p className={`playlists__favorited-title ${playingSong && playingSong.id === song.id ? 'playing' : ''}`}>{song.title}</p>
             <p className='playlists__favorited-artist'>{song.artistName}</p>
           </div>
         </div>
