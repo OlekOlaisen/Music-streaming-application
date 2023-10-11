@@ -27,6 +27,7 @@ The application has the following features:
 - Control playback (play, pause, next, previous)
 - Loop in different modes (Loop off, loop playlist or loop song)
 - Shuffle the next song in the playlist
+- You can favorite songs that you like and play them from the favorited section
 - Adjust volume and mute button (Desktop viewport only)
 - Extended view of the song currently playing (Click on the song title in the player)
 - Track duration count and countdown
