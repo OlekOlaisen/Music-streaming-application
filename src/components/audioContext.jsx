@@ -1,4 +1,10 @@
-import React, { createContext, useState, useRef, useEffect, useCallback } from 'react';
+import React, {
+  createContext,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+} from "react";
 
 export const AudioContext = createContext();
 
@@ -17,21 +23,20 @@ export const AudioProvider = ({ children }) => {
     setCurrentIndex(index);
   };
 
-  const playSongInContext = (song, index, newPlaylist) => {
-  if (audioRef.current) {
-    audioRef.current.src = song.preview;
-    audioRef.current.play().then(() => {
-      setIsPlaying(true);
-    }).catch((error) => {
+  const playSongInContext = async (song, index, newPlaylist) => {
+    try {
+      if (audioRef.current) {
+        audioRef.current.src = song.preview;
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+      setPlaylist(newPlaylist);
+      setCurrentIndex(index);
+      setCurrentSong(song);
+    } catch (error) {
       console.error("Error playing audio:", error);
-    });
-  }
-  setPlaylist(newPlaylist);
-  setCurrentIndex(index);
-  setCurrentSong(song);
-  setIsPlaying(true);
-};
-
+    }
+  };
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
@@ -55,7 +60,7 @@ export const AudioProvider = ({ children }) => {
       nextIndex = currentIndex < playlist.length - 1 ? currentIndex + 1 : 0;
     }
     // before moving to the next song, push the current index to history
-    setHistory(prev => [...prev, currentIndex]); 
+    setHistory((prev) => [...prev, currentIndex]);
     setCurrentIndex(nextIndex);
   }, [currentIndex, playlist, shuffle]);
 
@@ -69,7 +74,6 @@ export const AudioProvider = ({ children }) => {
       setCurrentIndex(playlist.length - 1); // Go to the end of the playlist if repeatMode is 1
     }
   };
-
 
   useEffect(() => {
     if (audioRef.current) {
@@ -86,12 +90,15 @@ export const AudioProvider = ({ children }) => {
     if (playlist[currentIndex]) {
       const audio = audioRef.current;
       audio.src = playlist[currentIndex].preview;
-      audio.play().then(() => {
-        setIsPlaying(true);
-      }).catch((error) => {
-        console.error("Error playing audio:", error);
-      });
-      setCurrentSong(playlist[currentIndex]); 
+      audio
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch((error) => {
+          console.error("Error playing audio:", error);
+        });
+      setCurrentSong(playlist[currentIndex]);
     }
   }, [currentIndex, playlist]);
 
@@ -109,10 +116,10 @@ export const AudioProvider = ({ children }) => {
       }
     };
 
-    audio.addEventListener('ended', handleSongEnd);
+    audio.addEventListener("ended", handleSongEnd);
 
     return () => {
-      audio.removeEventListener('ended', handleSongEnd);
+      audio.removeEventListener("ended", handleSongEnd);
     };
   }, [repeatMode, playNext]);
 
@@ -132,7 +139,7 @@ export const AudioProvider = ({ children }) => {
         currentIndex,
         currentSong,
         audioRef,
-        searchResults, 
+        searchResults,
         setSearchResults,
         shuffle,
         toggleShuffle,
