@@ -440,105 +440,103 @@ function Player() {
         <audio ref={audioRef} />
       </div>
 
-      {controlsExpanded && (
-        <section
-          className={`player__controls-expanded ${
-            controlsExpanded ? "open" : ""
-          } ${albumImage ? "hasBackground" : ""}`}
-          style={albumImage ? { "--bg-image": `url(${albumImage})` } : {}}
+      <section
+        className={`player__controls-expanded ${
+          controlsExpanded ? "open" : ""
+        } ${albumImage ? "hasBackground" : ""}`}
+        style={albumImage ? { "--bg-image": `url(${albumImage})` } : {}}
+      >
+        <button
+          className="player__controls-close button"
+          onClick={toggleControlsExpanded}
         >
-          <button
-            className="player__controls-close button"
-            onClick={toggleControlsExpanded}
-          >
-            <ChevronDown className="player__controls-close-icon" />
-          </button>
+          <ChevronDown className="player__controls-close-icon" />
+        </button>
 
-          <div className="player__controls-container-extended">
-            <div className="player__controls-options"></div>
-            <div className="player__controls-song-details">
-              <img
-                src={albumImage}
-                alt="Album"
-                className="player__controls-album-image"
-              />
-              <div className="player__controls-song-info">
-                <p className="player__controls-song-title">{songTitle}</p>
-                <p className="player__controls-artist-name">{artistName}</p>
-              </div>
-            </div>
-            <div
-              className="player__progress-extended"
-              style={{ "--progress": `${songProgress}%` }}
-            >
-              <input
-                type="range"
-                id="progress"
-                name="progress"
-                min="0"
-                max="100"
-                step="1"
-                value={isNaN(songProgress) ? 0 : songProgress} // Ensure valid value
-                onChange={handleProgressChange}
-              />
-              <div className="player__duration">
-                <span className="player__progress-currentTime">
-                  {formatTime(currentTime)}
-                </span>
-                <span className="player__progress-duration">
-                  {formatTime(duration - currentTime)}
-                </span>
-              </div>
-            </div>
-            <div className="player__controls-buttons">
-              <button
-                className={`player__controls-shuffle button ${
-                  shuffle ? "shuffle-active" : ""
-                }`}
-                onClick={toggleShuffle}
-              >
-                <Shuffle />
-              </button>
-              <button
-                className="player__controls-rewind button"
-                onClick={playPrevious}
-              >
-                <SkipStartFill />
-              </button>
-              <button
-                className="player__controls-toggle button"
-                onClick={togglePlay}
-              >
-                {isPlaying ? (
-                  <PauseFill className="player__controls-toggle-pause" />
-                ) : (
-                  <PlayFill className="player__controls-toggle-play" />
-                )}
-              </button>
-              <button
-                className="player__controls-forward button"
-                onClick={playNext}
-              >
-                <SkipEndFill />
-              </button>
-              <button
-                className="player__controls-loop button"
-                onClick={handleRepeat}
-              >
-                {repeatMode === 0 && (
-                  <Repeat className="player__controls-loop-off" />
-                )}
-                {repeatMode === 1 && (
-                  <Repeat className="player__controls-loop-on" />
-                )}
-                {repeatMode === 2 && (
-                  <Repeat1 className="player__controls-loop-1" />
-                )}
-              </button>
+        <div className="player__controls-container-extended">
+          <div className="player__controls-options"></div>
+          <div className="player__controls-song-details">
+            <img
+              src={albumImage}
+              alt="Album"
+              className="player__controls-album-image"
+            />
+            <div className="player__controls-song-info">
+              <p className="player__controls-song-title">{songTitle}</p>
+              <p className="player__controls-artist-name">{artistName}</p>
             </div>
           </div>
-        </section>
-      )}
+          <div
+            className="player__progress-extended"
+            style={{ "--progress": `${songProgress}%` }}
+          >
+            <input
+              type="range"
+              id="progress"
+              name="progress"
+              min="0"
+              max="100"
+              step="1"
+              value={isNaN(songProgress) ? 0 : songProgress} // Ensure valid value
+              onChange={handleProgressChange}
+            />
+            <div className="player__duration">
+              <span className="player__progress-currentTime">
+                {formatTime(currentTime)}
+              </span>
+              <span className="player__progress-duration">
+                {formatTime(duration - currentTime)}
+              </span>
+            </div>
+          </div>
+          <div className="player__controls-buttons">
+            <button
+              className={`player__controls-shuffle button ${
+                shuffle ? "shuffle-active" : ""
+              }`}
+              onClick={toggleShuffle}
+            >
+              <Shuffle />
+            </button>
+            <button
+              className="player__controls-rewind button"
+              onClick={playPrevious}
+            >
+              <SkipStartFill />
+            </button>
+            <button
+              className="player__controls-toggle button"
+              onClick={togglePlay}
+            >
+              {isPlaying ? (
+                <PauseFill className="player__controls-toggle-pause" />
+              ) : (
+                <PlayFill className="player__controls-toggle-play" />
+              )}
+            </button>
+            <button
+              className="player__controls-forward button"
+              onClick={playNext}
+            >
+              <SkipEndFill />
+            </button>
+            <button
+              className="player__controls-loop button"
+              onClick={handleRepeat}
+            >
+              {repeatMode === 0 && (
+                <Repeat className="player__controls-loop-off" />
+              )}
+              {repeatMode === 1 && (
+                <Repeat className="player__controls-loop-on" />
+              )}
+              {repeatMode === 2 && (
+                <Repeat1 className="player__controls-loop-1" />
+              )}
+            </button>
+          </div>
+        </div>
+      </section>
     </section>
   );
 }
