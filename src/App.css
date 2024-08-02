@@ -157,11 +157,15 @@ html {
   display: block;
   margin: 3rem auto;
 }
-.home__trending-tracks-title, .home__trending-artists-title, .home__trending-albums-title {
+.home__trending-tracks-title,
+.home__trending-artists-title,
+.home__trending-albums-title {
   margin: 1rem;
   color: #f78278;
 }
-.home__trending-tracks, .home__trending-artists, .home__trending-albums {
+.home__trending-tracks,
+.home__trending-artists,
+.home__trending-albums {
   display: flex;
   flex-flow: row;
   padding: 0.5rem;
@@ -169,7 +173,8 @@ html {
   overflow-x: auto;
   gap: 1rem;
 }
-.home__trending-tracks-item, .home__trending-albums-item {
+.home__trending-tracks-item,
+.home__trending-albums-item {
   overflow: hidden;
   width: 100px;
 }
@@ -182,7 +187,8 @@ html {
   overflow: hidden;
   word-wrap: break-word;
 }
-.home__trending-albums-cover, .home__trending-tracks-cover {
+.home__trending-albums-cover,
+.home__trending-tracks-cover {
   width: 100px;
   border-radius: 0.3rem;
 }
@@ -272,6 +278,8 @@ audio {
   gap: 1rem;
   margin-left: 1rem;
   padding: 0;
+  width: 200px;
+  height: 50px;
 }
 
 .player__controls {
@@ -500,7 +508,11 @@ audio {
 .player__progress {
   width: 100%;
   height: 4px;
-  background: linear-gradient(to right, #f78278 var(--progress), transparent var(--progress));
+  background: linear-gradient(
+    to right,
+    #f78278 var(--progress),
+    transparent var(--progress)
+  );
   border-radius: 5px;
   position: absolute;
   top: 0;
@@ -508,7 +520,7 @@ audio {
   transition: width 0.1s ease-in-out;
 }
 
-.player__progress input[type=range] {
+.player__progress input[type="range"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -526,9 +538,9 @@ audio {
 }
 
 /* Chrome */
-.player__progress input[type=range]::-webkit-slider-runnable-track {
+.player__progress input[type="range"]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   width: 100%;
   height: 4px;
   background: transparent;
@@ -538,7 +550,7 @@ audio {
   transition: all 0.2s;
 }
 
-.player__progress input[type=range]::-webkit-slider-thumb {
+.player__progress input[type="range"]::-webkit-slider-thumb {
   margin-top: -3px;
   width: 0px;
   height: 0px;
@@ -552,7 +564,7 @@ audio {
 }
 
 /* Firefox */
-.player__progress input[type=range]::-moz-range-track {
+.player__progress input[type="range"]::-moz-range-track {
   width: 100%;
   height: 4px;
   cursor: pointer;
@@ -563,7 +575,7 @@ audio {
   transition: all 0.2s;
 }
 
-.player__progress input[type=range]::-moz-range-thumb {
+.player__progress input[type="range"]::-moz-range-thumb {
   width: 0px;
   height: 0px;
   background: transparent;
@@ -581,7 +593,11 @@ audio {
 .player__progress-extended {
   width: 100%;
   height: 4px;
-  background: linear-gradient(to right, #f78278 var(--progress), #0e1721 var(--progress));
+  background: linear-gradient(
+    to right,
+    #f78278 var(--progress),
+    #0e1721 var(--progress)
+  );
   border-radius: 5px;
   position: relative;
   cursor: pointer;
@@ -598,10 +614,10 @@ audio {
   color: white;
 }
 
-.player__progress-extended input[type=range] {
+.player__progress-extended input[type="range"] {
   -moz-appearance: none;
   -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   width: 100%;
   height: 4px;
   position: absolute;
@@ -616,7 +632,7 @@ audio {
 }
 
 /* Chrome */
-.player__progress-extended input[type=range]::-webkit-slider-runnable-track {
+.player__progress-extended input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 4px;
   background: transparent;
@@ -626,7 +642,7 @@ audio {
   transition: all 0.2s;
 }
 
-.player__progress-extended input[type=range]::-webkit-slider-thumb {
+.player__progress-extended input[type="range"]::-webkit-slider-thumb {
   margin-top: -3px;
   width: 0px;
   height: 0px;
@@ -640,7 +656,7 @@ audio {
 }
 
 /* Firefox */
-.player__progress-extended input[type=range]::-moz-range-track {
+.player__progress-extended input[type="range"]::-moz-range-track {
   width: 100%;
   height: 4px;
   cursor: pointer;
@@ -651,7 +667,7 @@ audio {
   transition: all 0.2s;
 }
 
-.player__progress-extended input[type=range]::-moz-range-thumb {
+.player__progress-extended input[type="range"]::-moz-range-thumb {
   width: 0px;
   height: 0px;
   background: transparent;
@@ -721,8 +737,8 @@ audio {
   }
   .player__audio-slider {
     -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     width: 100%;
     height: 4px;
     background: transparent;
@@ -740,7 +756,7 @@ audio {
   .player__audio-slider::-moz-range-thumb {
     -webkit-appearance: none;
     -moz-appearance: none;
-         appearance: none;
+    appearance: none;
     display: none;
     width: 4px;
     height: 4px;
@@ -809,18 +825,18 @@ audio {
   .player__controls-artist-name {
     font-size: 1rem;
   }
-  input[type=range] {
+  input[type="range"] {
     overflow: hidden;
     width: 100%;
     background-color: transparent;
     border-radius: 10px;
   }
-  input[type=range]::-webkit-slider-runnable-track {
+  input[type="range"]::-webkit-slider-runnable-track {
     height: 4px;
     -webkit-appearance: none;
     color: #13bba4;
   }
-  input[type=range]::-webkit-slider-thumb {
+  input[type="range"]::-webkit-slider-thumb {
     width: 0px;
     -webkit-appearance: none;
     height: 0px;
@@ -900,7 +916,8 @@ audio {
   border-radius: 50%;
   width: 200px;
 }
-.artists__fans, .artists__albums {
+.artists__fans,
+.artists__albums {
   font-size: 0.8rem;
   color: grey;
 }
@@ -936,7 +953,7 @@ audio {
   width: 150px;
   height: 150px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 0.3rem;
 }
 .artists__album-headline {
@@ -966,7 +983,9 @@ audio {
   font-size: 0.8rem;
 }
 
-.genre-0, .genre-1, .genre-2 {
+.genre-0,
+.genre-1,
+.genre-2 {
   font-size: 0.8rem;
   color: #f78278;
   text-align: start;
@@ -1189,4 +1208,4 @@ html {
 
 body {
   background-color: #131c26;
-}/*# sourceMappingURL=App.css.map */
+} /*# sourceMappingURL=App.css.map */
